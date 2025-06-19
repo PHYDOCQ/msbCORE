@@ -1,28 +1,58 @@
 <?php
 // login.php
-session_start();
+require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/includes/auth.php';
+
+debugLog(['page' => 'login', 'method' => $_SERVER['REQUEST_METHOD']], 'LOGIN_PAGE_ACCESS');
 
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    debugLog(['action' => 'login_attempt', 'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'], 'LOGIN_POST');
+    
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if ($username && $password) {
-        $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = ? LIMIT 1");
-        $stmt->execute([$username]);
-        $user = $stmt->fetch();
+        debugLog(['username' => $username, 'has_password' => !empty($password)], 'LOGIN_CREDENTIALS');
+        
+        try {
+            $db = Database::getInstance();
+            $user = $db->selectOne(
+                "SELECT id, username, email, password, role, status FROM users WHERE (username = :username OR email = :username) AND status = 'active'",
+                ['username' => $username]
+            );
 
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            header('Location: index.php');
-            exit();
-        } else {
-            $error = 'Username atau password salah';
+            if ($user && password_verify($password, $user['password'])) {
+                debugLog(['user_id' => $user['id'], 'username' => $user['username']], 'LOGIN_SUCCESS');
+                
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['login_time'] = time();
+                
+                // Update last login
+                $db->update(
+                    'users',
+                    ['last_login_at' => date('Y-m-d H:i:s')],
+                    'id = :id',
+                    ['id' => $user['id']]
+                );
+                
+                header('Location: index.php');
+                exit();
+            } else {
+                debugLog(['username' => $username, 'reason' => 'invalid_credentials'], 'LOGIN_FAILED');
+                $error = 'Username atau password salah';
+            }
+        } catch (Exception $e) {
+            debugLog(['error' => $e->getMessage(), 'username' => $username], 'LOGIN_ERROR');
+            $error = 'Terjadi kesalahan sistem. Silakan coba lagi.';
         }
     } else {
+        debugLog(['missing_username' => empty($username), 'missing_password' => empty($password)], 'LOGIN_VALIDATION_ERROR');
         $error = 'Lengkapi semua field';
     }
 }

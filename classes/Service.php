@@ -19,36 +19,48 @@ class Service {
     
     public function create($data) {
         try {
+            debugLog(['action' => 'create_service', 'data' => $data], 'SERVICE_CREATE_START');
+            
             // Validate required fields
             $requiredFields = ['name', 'category_id', 'price', 'duration_minutes'];
             foreach ($requiredFields as $field) {
                 if (empty($data[$field])) {
+                    debugLog(['missing_field' => $field], 'SERVICE_VALIDATION_ERROR');
                     throw new Exception("Field {$field} is required");
                 }
             }
+            debugLog('Required fields validation passed', 'SERVICE_VALIDATION');
             
             // Validate numeric fields
             if (!is_numeric($data['price']) || $data['price'] < 0) {
+                debugLog(['invalid_price' => $data['price']], 'SERVICE_VALIDATION_ERROR');
                 throw new Exception('Invalid price');
             }
             
             if (!is_numeric($data['duration_minutes']) || $data['duration_minutes'] <= 0) {
+                debugLog(['invalid_duration' => $data['duration_minutes']], 'SERVICE_VALIDATION_ERROR');
                 throw new Exception('Invalid duration');
             }
+            debugLog('Numeric fields validation passed', 'SERVICE_VALIDATION');
             
             // Set default values
             $data['status'] = $data['status'] ?? 'active';
             $data['created_at'] = date('Y-m-d H:i:s');
             $data['created_by'] = $_SESSION['user_id'] ?? null;
             
+            debugLog(['prepared_data' => $data], 'SERVICE_CREATE_PREPARED');
+            
             // Insert service
             $serviceId = $this->db->insert($this->table, $data);
+            
+            debugLog(['service_id' => $serviceId], 'SERVICE_CREATE_SUCCESS');
             
             // Log activity
             $this->logActivity($serviceId, 'created', 'Service created');
             
             return $serviceId;
         } catch (Exception $e) {
+            debugLog(['error' => $e->getMessage(), 'data' => $data], 'SERVICE_CREATE_ERROR');
             throw $e;
         }
     }

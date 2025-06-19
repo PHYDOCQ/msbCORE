@@ -3,10 +3,14 @@ header('Content-Type: application/json');
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 
+debugLog(['user_id' => $_SESSION['user_id'] ?? 'anonymous', 'endpoint' => 'dashboard'], 'API_DASHBOARD_START');
+
 $auth->requireLogin();
 
 try {
     $response = ['success' => true, 'data' => []];
+    
+    debugLog('Starting dashboard data collection', 'API_DASHBOARD_DATA');
     
     // Work Order Status Data
     $statusQuery = "SELECT 
@@ -17,7 +21,9 @@ try {
                         COUNT(CASE WHEN status = 'on_hold' THEN 1 END) as on_hold
                     FROM work_orders";
     
+    debugLog(['query' => 'work_order_status'], 'API_DASHBOARD_QUERY');
     $response['workOrderStatus'] = $db->query($statusQuery)->fetch();
+    debugLog(['result' => $response['workOrderStatus']], 'API_DASHBOARD_STATUS_RESULT');
     
     // Revenue Trend (Last 12 months)
     $revenueTrendQuery = "SELECT 

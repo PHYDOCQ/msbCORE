@@ -19,20 +19,28 @@ class User {
     
     public function login($email, $password, $remember = false) {
         try {
+            debugLog(['email' => $email, 'remember' => $remember, 'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'], 'USER_LOGIN_START');
+            
             $user = $this->db->selectOne(
                 "SELECT * FROM {$this->table} WHERE email = :email AND status = 'active'",
                 ['email' => $email]
             );
             
             if (!$user) {
+                debugLog(['email' => $email, 'reason' => 'user_not_found'], 'USER_LOGIN_FAILED');
                 throw new Exception('Invalid email or password');
             }
             
+            debugLog(['user_id' => $user['id'], 'email' => $email], 'USER_LOGIN_USER_FOUND');
+            
             if (!password_verify($password, $user['password'])) {
+                debugLog(['user_id' => $user['id'], 'reason' => 'invalid_password'], 'USER_LOGIN_FAILED');
                 // Log failed login attempt
                 $this->logLoginAttempt($user['id'], false, $_SERVER['REMOTE_ADDR']);
                 throw new Exception('Invalid email or password');
             }
+            
+            debugLog(['user_id' => $user['id']], 'USER_LOGIN_PASSWORD_VERIFIED');
             
             // Update last login
             $this->updateLastLogin($user['id']);
@@ -43,11 +51,15 @@ class User {
             // Set session
             $this->setUserSession($user, $remember);
             
+            debugLog(['user_id' => $user['id'], 'session_set' => true], 'USER_LOGIN_SESSION_SET');
+            
             // Remove sensitive data
             unset($user['password']);
             
+            debugLog(['user_id' => $user['id']], 'USER_LOGIN_SUCCESS');
             return $user;
         } catch (Exception $e) {
+            debugLog(['error' => $e->getMessage(), 'email' => $email], 'USER_LOGIN_ERROR');
             throw $e;
         }
     }
