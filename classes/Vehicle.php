@@ -18,6 +18,8 @@ class Vehicle {
     // ========================================
     
     public function create($data) {
+        debugLog(['action' => 'create_vehicle', 'data' => $data], 'VEHICLE_CREATE_START');
+        
         $this->db->beginTransaction();
         
         try {
@@ -25,20 +27,26 @@ class Vehicle {
             $requiredFields = ['customer_id', 'license_plate', 'brand', 'model', 'year'];
             foreach ($requiredFields as $field) {
                 if (empty($data[$field])) {
+                    debugLog(['missing_field' => $field], 'VEHICLE_VALIDATION_ERROR');
                     throw new Exception("Field {$field} is required");
                 }
             }
+            debugLog('Required fields validation passed', 'VEHICLE_VALIDATION');
             
             // Validate license plate uniqueness
             if ($this->licensePlateExists($data['license_plate'])) {
+                debugLog(['license_plate' => $data['license_plate']], 'VEHICLE_DUPLICATE_ERROR');
                 throw new Exception('License plate already exists');
             }
+            debugLog(['license_plate' => $data['license_plate']], 'VEHICLE_LICENSE_UNIQUE');
             
             // Validate year
             $currentYear = date('Y');
             if ($data['year'] < 1900 || $data['year'] > $currentYear + 1) {
+                debugLog(['year' => $data['year'], 'current_year' => $currentYear], 'VEHICLE_YEAR_ERROR');
                 throw new Exception('Invalid vehicle year');
             }
+            debugLog(['year' => $data['year']], 'VEHICLE_YEAR_VALID');
             
             // Set default values
             $data['status'] = $data['status'] ?? 'active';
@@ -46,7 +54,9 @@ class Vehicle {
             $data['created_by'] = $_SESSION['user_id'] ?? null;
             
             // Normalize license plate
+            $originalPlate = $data['license_plate'];
             $data['license_plate'] = strtoupper(str_replace(' ', '', $data['license_plate']));
+            debugLog(['original' => $originalPlate, 'normalized' => $data['license_plate']], 'VEHICLE_PLATE_NORMALIZED');
             
             // Insert vehicle
             $vehicleId = $this->db->insert($this->table, $data);
