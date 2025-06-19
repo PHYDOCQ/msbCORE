@@ -10,7 +10,7 @@ define('DEBUG_MODE', APP_ENV === 'development');
 
 // Database Configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'bengkel_management_pro');
+define('DB_NAME', 'bengkel');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
