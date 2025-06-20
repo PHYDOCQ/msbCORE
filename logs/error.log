@@ -1,3 +1,15 @@
 [20-Jun-2025 16:47:59 Asia/Jakarta] PHP Parse error:  syntax error, unexpected token "use" in /home/user/workspace/classes/Email.php on line 6
 [20-Jun-2025 16:48:58 Asia/Jakarta] PHP Fatal error:  Cannot redeclare generateCustomerCode() (previously declared in /home/user/workspace/includes/functions.php:476) in /home/user/workspace/includes/functions.php on line 475
 [20-Jun-2025 16:49:52 Asia/Jakarta] PHP Fatal error:  Cannot declare class Utils, because the name is already in use in /home/user/workspace/includes/functions.php on line 5
+[20-Jun-2025 18:09:03 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
+[20-Jun-2025 18:09:03 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method AdvancedServerTester::testDatabaseMethods() in /storage/emulated/0/htdocs/test_server.php:279
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(2145): AdvancedServerTester->runAllTests()
+#1 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 279
+[20-Jun-2025 18:10:19 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
+[20-Jun-2025 18:10:19 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method AdvancedServerTester::testDatabaseMethods() in /storage/emulated/0/htdocs/test_server.php:279
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(2145): AdvancedServerTester->runAllTests()
+#1 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 279

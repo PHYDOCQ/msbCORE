@@ -7,3 +7,1487 @@
 [2025-06-20 17:14:06] ERROR: Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'bengkel'
 [2025-06-20 17:14:09] ERROR: Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'bengkel'
 [2025-06-20 17:16:42] ERROR: Database connection failed: SQLSTATE[HY000] [1049] Unknown database 'msb_bengkel'
+[2025-06-20 17:18:52] DB: Database connection established successfully
+[2025-06-20 17:18:52] SYSTEM_TEST: Starting system validation tests
+[2025-06-20 17:18:52] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 17:18:52] DB_PERF: Query executed in 0.00020194053649902s
+[2025-06-20 17:18:52] DB_TRANSACTION: Transaction started
+[2025-06-20 17:18:52] DB_TRANSACTION: Transaction committed
+[2025-06-20 17:18:53] SYSTEM_TEST_COMPLETE: {
+    "results": [
+        {
+            "test": "Database Connection",
+            "status": "PASS",
+            "message": "Successfully connected to database"
+        },
+        {
+            "test": "Basic Query",
+            "status": "PASS",
+            "message": "Basic SELECT query executed successfully"
+        },
+        {
+            "test": "Transaction Support",
+            "status": "PASS",
+            "message": "Transaction methods working correctly"
+        },
+        {
+            "test": "Method: selectOne",
+            "status": "PASS",
+            "message": "Method selectOne exists and is callable"
+        },
+        {
+            "test": "Method: select",
+            "status": "PASS",
+            "message": "Method select exists and is callable"
+        },
+        {
+            "test": "Method: insert",
+            "status": "PASS",
+            "message": "Method insert exists and is callable"
+        },
+        {
+            "test": "Method: update",
+            "status": "PASS",
+            "message": "Method update exists and is callable"
+        },
+        {
+            "test": "Method: delete",
+            "status": "PASS",
+            "message": "Method delete exists and is callable"
+        },
+        {
+            "test": "Method: count",
+            "status": "PASS",
+            "message": "Method count exists and is callable"
+        },
+        {
+            "test": "Method: exists",
+            "status": "PASS",
+            "message": "Method exists exists and is callable"
+        },
+        {
+            "test": "Class: User",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Service",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Vehicle",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Customer",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Report",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Email",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Notification",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Config: config\/config.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/config.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/database.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/database.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/security.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/security.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Constant: APP_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: APP_VERSION",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_HOST",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DEBUG_MODE",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Security: hashPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: verifyPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateToken",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: sanitizeInput",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateCSRF",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Password Hashing",
+            "status": "PASS",
+            "message": "Password hashing and verification working"
+        },
+        {
+            "test": "Token Generation",
+            "status": "PASS",
+            "message": "Token generation working correctly"
+        },
+        {
+            "test": "API: api\/dashboard.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/dashboard.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/inventory.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/inventory.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/work_orders.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/work_orders.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/notifications.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/notifications.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "Directory: assets\/css",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/css",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/js",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/js",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: classes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: classes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: config",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: config",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: includes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: includes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: api",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: api",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: logs",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: logs",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "File: index.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: login.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: composer.json",
+            "status": "PASS",
+            "message": "Critical file exists"
+        }
+    ]
+}
+[2025-06-20 17:19:05] DB: Database connection established successfully
+[2025-06-20 17:19:05] SYSTEM_TEST: Starting system validation tests
+[2025-06-20 17:19:05] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 17:19:05] DB_PERF: Query executed in 0.00018095970153809s
+[2025-06-20 17:19:05] DB_TRANSACTION: Transaction started
+[2025-06-20 17:19:05] DB_TRANSACTION: Transaction committed
+[2025-06-20 17:19:06] SYSTEM_TEST_COMPLETE: {
+    "results": [
+        {
+            "test": "Database Connection",
+            "status": "PASS",
+            "message": "Successfully connected to database"
+        },
+        {
+            "test": "Basic Query",
+            "status": "PASS",
+            "message": "Basic SELECT query executed successfully"
+        },
+        {
+            "test": "Transaction Support",
+            "status": "PASS",
+            "message": "Transaction methods working correctly"
+        },
+        {
+            "test": "Method: selectOne",
+            "status": "PASS",
+            "message": "Method selectOne exists and is callable"
+        },
+        {
+            "test": "Method: select",
+            "status": "PASS",
+            "message": "Method select exists and is callable"
+        },
+        {
+            "test": "Method: insert",
+            "status": "PASS",
+            "message": "Method insert exists and is callable"
+        },
+        {
+            "test": "Method: update",
+            "status": "PASS",
+            "message": "Method update exists and is callable"
+        },
+        {
+            "test": "Method: delete",
+            "status": "PASS",
+            "message": "Method delete exists and is callable"
+        },
+        {
+            "test": "Method: count",
+            "status": "PASS",
+            "message": "Method count exists and is callable"
+        },
+        {
+            "test": "Method: exists",
+            "status": "PASS",
+            "message": "Method exists exists and is callable"
+        },
+        {
+            "test": "Class: User",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Service",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Vehicle",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Customer",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Report",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Email",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Notification",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Config: config\/config.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/config.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/database.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/database.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/security.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/security.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Constant: APP_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: APP_VERSION",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_HOST",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DEBUG_MODE",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Security: hashPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: verifyPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateToken",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: sanitizeInput",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateCSRF",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Password Hashing",
+            "status": "PASS",
+            "message": "Password hashing and verification working"
+        },
+        {
+            "test": "Token Generation",
+            "status": "PASS",
+            "message": "Token generation working correctly"
+        },
+        {
+            "test": "API: api\/dashboard.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/dashboard.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/inventory.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/inventory.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/work_orders.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/work_orders.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/notifications.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/notifications.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "Directory: assets\/css",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/css",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/js",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/js",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: classes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: classes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: config",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: config",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: includes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: includes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: api",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: api",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: logs",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: logs",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "File: index.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: login.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: composer.json",
+            "status": "PASS",
+            "message": "Critical file exists"
+        }
+    ]
+}
+[2025-06-20 17:19:36] DB: Database connection established successfully
+[2025-06-20 17:19:36] SYSTEM_TEST: Starting system validation tests
+[2025-06-20 17:19:36] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 17:19:36] DB_PERF: Query executed in 0.00015807151794434s
+[2025-06-20 17:19:36] DB_TRANSACTION: Transaction started
+[2025-06-20 17:19:36] DB_TRANSACTION: Transaction committed
+[2025-06-20 17:19:36] SYSTEM_TEST_COMPLETE: {
+    "results": [
+        {
+            "test": "Database Connection",
+            "status": "PASS",
+            "message": "Successfully connected to database"
+        },
+        {
+            "test": "Basic Query",
+            "status": "PASS",
+            "message": "Basic SELECT query executed successfully"
+        },
+        {
+            "test": "Transaction Support",
+            "status": "PASS",
+            "message": "Transaction methods working correctly"
+        },
+        {
+            "test": "Method: selectOne",
+            "status": "PASS",
+            "message": "Method selectOne exists and is callable"
+        },
+        {
+            "test": "Method: select",
+            "status": "PASS",
+            "message": "Method select exists and is callable"
+        },
+        {
+            "test": "Method: insert",
+            "status": "PASS",
+            "message": "Method insert exists and is callable"
+        },
+        {
+            "test": "Method: update",
+            "status": "PASS",
+            "message": "Method update exists and is callable"
+        },
+        {
+            "test": "Method: delete",
+            "status": "PASS",
+            "message": "Method delete exists and is callable"
+        },
+        {
+            "test": "Method: count",
+            "status": "PASS",
+            "message": "Method count exists and is callable"
+        },
+        {
+            "test": "Method: exists",
+            "status": "PASS",
+            "message": "Method exists exists and is callable"
+        },
+        {
+            "test": "Class: User",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Service",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Vehicle",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Customer",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Report",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Email",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Notification",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Config: config\/config.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/config.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/database.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/database.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/security.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/security.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Constant: APP_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: APP_VERSION",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_HOST",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DEBUG_MODE",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Security: hashPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: verifyPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateToken",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: sanitizeInput",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateCSRF",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Password Hashing",
+            "status": "PASS",
+            "message": "Password hashing and verification working"
+        },
+        {
+            "test": "Token Generation",
+            "status": "PASS",
+            "message": "Token generation working correctly"
+        },
+        {
+            "test": "API: api\/dashboard.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/dashboard.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/inventory.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/inventory.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/work_orders.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/work_orders.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/notifications.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/notifications.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "Directory: assets\/css",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/css",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/js",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/js",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: classes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: classes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: config",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: config",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: includes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: includes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: api",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: api",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: logs",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: logs",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "File: index.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: login.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: composer.json",
+            "status": "PASS",
+            "message": "Critical file exists"
+        }
+    ]
+}
+[2025-06-20 17:19:57] DB: Database connection established successfully
+[2025-06-20 17:23:01] DB: Database connection established successfully
+[2025-06-20 17:23:01] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-20 17:30:47] DB: Database connection established successfully
+[2025-06-20 17:30:47] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-20 17:32:11] DB: Database connection established successfully
+[2025-06-20 17:32:11] API_DASHBOARD_START: {
+    "user_id": "anonymous",
+    "endpoint": "dashboard"
+}
+[2025-06-20 17:32:11] DB: Database connection established successfully
+[2025-06-20 17:32:11] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-20 17:58:53] DB: Database connection established successfully
+[2025-06-20 17:58:53] SYSTEM_TEST: Starting system validation tests
+[2025-06-20 17:58:53] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 17:58:53] DB_PERF: Query executed in 0.00020289421081543s
+[2025-06-20 17:58:53] DB_TRANSACTION: Transaction started
+[2025-06-20 17:58:53] DB_TRANSACTION: Transaction committed
+[2025-06-20 17:58:53] SYSTEM_TEST_COMPLETE: {
+    "results": [
+        {
+            "test": "Database Connection",
+            "status": "PASS",
+            "message": "Successfully connected to database"
+        },
+        {
+            "test": "Basic Query",
+            "status": "PASS",
+            "message": "Basic SELECT query executed successfully"
+        },
+        {
+            "test": "Transaction Support",
+            "status": "PASS",
+            "message": "Transaction methods working correctly"
+        },
+        {
+            "test": "Method: selectOne",
+            "status": "PASS",
+            "message": "Method selectOne exists and is callable"
+        },
+        {
+            "test": "Method: select",
+            "status": "PASS",
+            "message": "Method select exists and is callable"
+        },
+        {
+            "test": "Method: insert",
+            "status": "PASS",
+            "message": "Method insert exists and is callable"
+        },
+        {
+            "test": "Method: update",
+            "status": "PASS",
+            "message": "Method update exists and is callable"
+        },
+        {
+            "test": "Method: delete",
+            "status": "PASS",
+            "message": "Method delete exists and is callable"
+        },
+        {
+            "test": "Method: count",
+            "status": "PASS",
+            "message": "Method count exists and is callable"
+        },
+        {
+            "test": "Method: exists",
+            "status": "PASS",
+            "message": "Method exists exists and is callable"
+        },
+        {
+            "test": "Class: User",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Service",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Vehicle",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Customer",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Report",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Email",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Class: Notification",
+            "status": "PASS",
+            "message": "Class loads and instantiates correctly"
+        },
+        {
+            "test": "Config: config\/config.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/config.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/database.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/database.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Config: config\/security.php",
+            "status": "PASS",
+            "message": "Configuration file exists"
+        },
+        {
+            "test": "Readable: config\/security.php",
+            "status": "PASS",
+            "message": "File is readable"
+        },
+        {
+            "test": "Constant: APP_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: APP_VERSION",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_HOST",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DB_NAME",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Constant: DEBUG_MODE",
+            "status": "PASS",
+            "message": "Constant is defined"
+        },
+        {
+            "test": "Security: hashPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: verifyPassword",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateToken",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: sanitizeInput",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Security: generateCSRF",
+            "status": "PASS",
+            "message": "Security method exists"
+        },
+        {
+            "test": "Password Hashing",
+            "status": "PASS",
+            "message": "Password hashing and verification working"
+        },
+        {
+            "test": "Token Generation",
+            "status": "PASS",
+            "message": "Token generation working correctly"
+        },
+        {
+            "test": "API: api\/dashboard.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/dashboard.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/inventory.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/inventory.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/work_orders.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/work_orders.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/notifications.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/notifications.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "API: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "API endpoint file exists"
+        },
+        {
+            "test": "Syntax: api\/FileUpload.php",
+            "status": "PASS",
+            "message": "File exists and is readable"
+        },
+        {
+            "test": "Directory: assets\/css",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/css",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/js",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/js",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: assets\/uploads",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: classes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: classes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: config",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: config",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: includes",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: includes",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: api",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: api",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "Directory: logs",
+            "status": "PASS",
+            "message": "Directory exists"
+        },
+        {
+            "test": "Writable: logs",
+            "status": "PASS",
+            "message": "Directory is writable"
+        },
+        {
+            "test": "File: index.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: login.php",
+            "status": "PASS",
+            "message": "Critical file exists"
+        },
+        {
+            "test": "File: composer.json",
+            "status": "PASS",
+            "message": "Critical file exists"
+        }
+    ]
+}
+[2025-06-20 17:59:37] DB: Database connection established successfully
+[2025-06-20 17:59:37] SERVER_TEST: Starting comprehensive server tests
+[2025-06-20 17:59:37] DB_QUERY: {
+    "sql": "SELECT 1 as test, NOW() as current_time",
+    "params": []
+}
+[2025-06-20 17:59:37] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT 1 as test, NOW() as current_time",
+    "params": []
+}
+[2025-06-20 17:59:37] DB_TRANSACTION: Transaction started
+[2025-06-20 17:59:37] DB_TRANSACTION: Transaction rolled back
+[2025-06-20 17:59:38] DB_QUERY: {
+    "sql": "SELECT 1",
+    "params": []
+}
+[2025-06-20 17:59:38] DB_PERF: Query executed in 0.0047049522399902s
+[2025-06-20 17:59:38] SERVER_TEST: Comprehensive server tests completed
+[2025-06-20 18:09:03] DB: Database connection established successfully
+[2025-06-20 18:09:03] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.00079512596130371s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.00018596649169922s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.014402151107788s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.0017538070678711s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.00019001960754395s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.098701000213623s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.0030579566955566s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.0031461715698242s
+[2025-06-20 18:09:03] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-20 18:09:03] DB_PERF: Query executed in 0.00022411346435547s
+[2025-06-20 18:10:19] DB: Database connection established successfully
+[2025-06-20 18:10:19] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.00073599815368652s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.00032687187194824s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.014233827590942s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.0021469593048096s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.00016188621520996s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.0047259330749512s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.0038979053497314s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.0036439895629883s
+[2025-06-20 18:10:19] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-20 18:10:19] DB_PERF: Query executed in 0.00023102760314941s
