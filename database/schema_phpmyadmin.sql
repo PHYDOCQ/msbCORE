@@ -1,29 +1,23 @@
 -- =====================================================
 -- msbCORE BENGKEL MANAGEMENT SYSTEM DATABASE SCHEMA
 -- Version: 3.2.0 - Enhanced Body Repair & Paint Workshop
--- Created: 2025-06-19
--- Updated: 2025-06-20
+-- phpMyAdmin Compatible Version
 -- Compatible with: PHP 8.2.6, MySQL 5.7.34
 -- =====================================================
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Note: Create database 'msbcore_bengkel' manually in phpMyAdmin first
+-- Then import this file
 
--- =====================================================
--- DATABASE CREATION
--- =====================================================
-CREATE DATABASE IF NOT EXISTS `msbcore_bengkel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `msbcore_bengkel`;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 -- =====================================================
 -- USERS TABLE
 -- =====================================================
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL UNIQUE,
-  `email` varchar(100) NOT NULL UNIQUE,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `role` enum('admin','manager','technician','staff') NOT NULL DEFAULT 'staff',
@@ -43,6 +37,8 @@ CREATE TABLE `users` (
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
   KEY `idx_username` (`username`),
   KEY `idx_email` (`email`),
   KEY `idx_role` (`role`),
@@ -54,20 +50,18 @@ CREATE TABLE `users` (
 -- =====================================================
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `customer_code` varchar(20) NOT NULL UNIQUE,
+  `customer_code` varchar(20) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
   `address` text DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `postal_code` varchar(10) DEFAULT NULL,
-  `id_number` varchar(20) DEFAULT NULL,
-  `customer_type` enum('individual','company') NOT NULL DEFAULT 'individual',
+  `customer_type` enum('individual','corporate') NOT NULL DEFAULT 'individual',
   `company_name` varchar(100) DEFAULT NULL,
-  `tax_number` varchar(30) DEFAULT NULL,
+  `tax_number` varchar(50) DEFAULT NULL,
   `credit_limit` decimal(15,2) DEFAULT 0.00,
-  `payment_terms` int(11) DEFAULT 0,
-  `discount_percentage` decimal(5,2) DEFAULT 0.00,
+  `payment_terms` int(11) DEFAULT 30,
   `notes` text DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -75,9 +69,10 @@ CREATE TABLE `customers` (
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `customer_code` (`customer_code`),
   KEY `idx_name` (`name`),
-  KEY `idx_phone` (`phone`),
   KEY `idx_email` (`email`),
+  KEY `idx_phone` (`phone`),
   KEY `idx_customer_type` (`customer_type`),
   KEY `idx_is_active` (`is_active`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -88,31 +83,100 @@ CREATE TABLE `customers` (
 CREATE TABLE `vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
-  `license_plate` varchar(20) NOT NULL UNIQUE,
+  `license_plate` varchar(20) NOT NULL,
   `brand` varchar(50) NOT NULL,
   `model` varchar(50) NOT NULL,
-  `year` int(4) NOT NULL,
+  `year` int(11) NOT NULL,
   `color` varchar(30) DEFAULT NULL,
   `engine_number` varchar(50) DEFAULT NULL,
   `chassis_number` varchar(50) DEFAULT NULL,
   `fuel_type` enum('gasoline','diesel','electric','hybrid') DEFAULT 'gasoline',
   `transmission` enum('manual','automatic','cvt') DEFAULT 'manual',
   `mileage` int(11) DEFAULT 0,
-  `insurance_company` varchar(100) DEFAULT NULL,
-  `insurance_policy` varchar(50) DEFAULT NULL,
-  `insurance_expiry` date DEFAULT NULL,
   `notes` text DEFAULT NULL,
-  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `license_plate` (`license_plate`),
   KEY `idx_customer_id` (`customer_id`),
-  KEY `idx_brand_model` (`brand`, `model`),
+  KEY `idx_brand` (`brand`),
+  KEY `idx_model` (`model`),
   KEY `idx_year` (`year`),
-  KEY `idx_status` (`status`),
+  KEY `idx_is_active` (`is_active`),
   CONSTRAINT `fk_vehicles_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =====================================================
+-- SERVICES TABLE
+-- =====================================================
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_code` varchar(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `category` enum('body_repair','paint_job','maintenance','inspection','other') NOT NULL DEFAULT 'maintenance',
+  `estimated_duration` int(11) DEFAULT NULL,
+  `base_price` decimal(15,2) NOT NULL DEFAULT 0.00,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `service_code` (`service_code`),
+  KEY `idx_name` (`name`),
+  KEY `idx_category` (`category`),
+  KEY `idx_is_active` (`is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =====================================================
+-- WORK ORDERS TABLE
+-- =====================================================
+CREATE TABLE `work_orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `work_order_number` varchar(20) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
+  `service_advisor_id` int(11) NOT NULL,
+  `technician_id` int(11) DEFAULT NULL,
+  `work_order_date` date NOT NULL,
+  `promised_date` date DEFAULT NULL,
+  `completed_date` date DEFAULT NULL,
+  `status` enum('pending','in_progress','completed','cancelled','on_hold') NOT NULL DEFAULT 'pending',
+  `priority` enum('low','normal','high','urgent') NOT NULL DEFAULT 'normal',
+  `customer_complaint` text DEFAULT NULL,
+  `diagnosis` text DEFAULT NULL,
+  `work_performed` text DEFAULT NULL,
+  `recommendations` text DEFAULT NULL,
+  `labor_cost` decimal(15,2) DEFAULT 0.00,
+  `parts_cost` decimal(15,2) DEFAULT 0.00,
+  `total_cost` decimal(15,2) DEFAULT 0.00,
+  `discount_amount` decimal(15,2) DEFAULT 0.00,
+  `tax_amount` decimal(15,2) DEFAULT 0.00,
+  `final_amount` decimal(15,2) DEFAULT 0.00,
+  `payment_status` enum('pending','partial','paid','refunded') DEFAULT 'pending',
+  `notes` text DEFAULT NULL,
+  `is_warranty` tinyint(1) DEFAULT 0,
+  `warranty_period` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `work_order_number` (`work_order_number`),
+  KEY `idx_customer_id` (`customer_id`),
+  KEY `idx_vehicle_id` (`vehicle_id`),
+  KEY `idx_service_advisor_id` (`service_advisor_id`),
+  KEY `idx_technician_id` (`technician_id`),
+  KEY `idx_status` (`status`),
+  KEY `idx_work_order_date` (`work_order_date`),
+  CONSTRAINT `fk_work_orders_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_work_orders_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_work_orders_service_advisor` FOREIGN KEY (`service_advisor_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_work_orders_technician` FOREIGN KEY (`technician_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
@@ -121,12 +185,12 @@ CREATE TABLE `vehicles` (
 CREATE TABLE `remember_tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `token_hash` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `expires_at` timestamp NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `token_hash` (`token_hash`),
   KEY `idx_user_id` (`user_id`),
+  KEY `idx_token` (`token`),
   KEY `idx_expires_at` (`expires_at`),
   CONSTRAINT `fk_remember_tokens_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -136,15 +200,15 @@ CREATE TABLE `remember_tokens` (
 -- =====================================================
 CREATE TABLE `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
-  `success` tinyint(1) NOT NULL DEFAULT 0,
+  `user_agent` text DEFAULT NULL,
   `attempted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `success` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  KEY `idx_user_id` (`user_id`),
+  KEY `idx_email` (`email`),
   KEY `idx_ip_address` (`ip_address`),
-  KEY `idx_attempted_at` (`attempted_at`),
-  CONSTRAINT `fk_login_attempts_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
+  KEY `idx_attempted_at` (`attempted_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
@@ -174,49 +238,15 @@ CREATE TABLE `notifications` (
   `title` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `type` enum('info','success','warning','error') NOT NULL DEFAULT 'info',
-  `action_url` varchar(255) DEFAULT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`),
-  KEY `idx_is_read` (`is_read`),
   KEY `idx_type` (`type`),
+  KEY `idx_is_read` (`is_read`),
   KEY `idx_created_at` (`created_at`),
   CONSTRAINT `fk_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- =====================================================
--- WORK ORDERS TABLE
--- =====================================================
-CREATE TABLE `work_orders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `work_order_number` varchar(20) NOT NULL UNIQUE,
-  `customer_id` int(11) NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `status` enum('pending','in_progress','completed','cancelled') NOT NULL DEFAULT 'pending',
-  `priority` enum('low','medium','high','urgent') NOT NULL DEFAULT 'medium',
-  `estimated_amount` decimal(15,2) DEFAULT 0.00,
-  `final_amount` decimal(15,2) DEFAULT 0.00,
-  `estimated_completion_date` date DEFAULT NULL,
-  `actual_completion_date` date DEFAULT NULL,
-  `assigned_technician_id` int(11) DEFAULT NULL,
-  `notes` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_by` int(11) DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_customer_id` (`customer_id`),
-  KEY `idx_vehicle_id` (`vehicle_id`),
-  KEY `idx_status` (`status`),
-  KEY `idx_priority` (`priority`),
-  KEY `idx_assigned_technician` (`assigned_technician_id`),
-  KEY `idx_created_at` (`created_at`),
-  CONSTRAINT `fk_work_orders_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_work_orders_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_work_orders_technician` FOREIGN KEY (`assigned_technician_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
@@ -226,12 +256,15 @@ CREATE TABLE `inventory_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
-  KEY `idx_is_active` (`is_active`)
+  KEY `idx_parent_id` (`parent_id`),
+  KEY `idx_is_active` (`is_active`),
+  CONSTRAINT `fk_inventory_categories_parent` FOREIGN KEY (`parent_id`) REFERENCES `inventory_categories` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
@@ -239,7 +272,7 @@ CREATE TABLE `inventory_categories` (
 -- =====================================================
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_code` varchar(20) NOT NULL UNIQUE,
+  `item_code` varchar(20) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
@@ -257,6 +290,7 @@ CREATE TABLE `inventory` (
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `item_code` (`item_code`),
   KEY `idx_category_id` (`category_id`),
   KEY `idx_name` (`name`),
   KEY `idx_current_stock` (`current_stock`),
@@ -283,7 +317,7 @@ CREATE TABLE `damage_assessments` (
   `insurance_claim` tinyint(1) DEFAULT 0,
   `insurance_company` varchar(100) DEFAULT NULL,
   `claim_number` varchar(50) DEFAULT NULL,
-  `photos_before` json DEFAULT NULL,
+  `photos_before` text DEFAULT NULL COMMENT 'JSON data for photos',
   `notes` text DEFAULT NULL,
   `status` enum('pending','approved','in_progress','completed') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -320,8 +354,8 @@ CREATE TABLE `paint_jobs` (
   `end_time` timestamp NULL DEFAULT NULL,
   `quality_check` enum('pending','passed','failed','rework') DEFAULT 'pending',
   `quality_checker_id` int(11) DEFAULT NULL,
-  `photos_progress` json DEFAULT NULL,
-  `photos_final` json DEFAULT NULL,
+  `photos_progress` text DEFAULT NULL COMMENT 'JSON data for progress photos',
+  `photos_final` text DEFAULT NULL COMMENT 'JSON data for final photos',
   `notes` text DEFAULT NULL,
   `status` enum('scheduled','in_progress','drying','quality_check','completed','rework') DEFAULT 'scheduled',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -349,13 +383,13 @@ CREATE TABLE `body_repair_tasks` (
   `technician_id` int(11) NOT NULL,
   `estimated_hours` decimal(5,2) DEFAULT NULL,
   `actual_hours` decimal(5,2) DEFAULT NULL,
-  `tools_required` json DEFAULT NULL,
-  `materials_used` json DEFAULT NULL,
+  `tools_required` text DEFAULT NULL COMMENT 'JSON data for tools',
+  `materials_used` text DEFAULT NULL COMMENT 'JSON data for materials',
   `start_time` timestamp NULL DEFAULT NULL,
   `end_time` timestamp NULL DEFAULT NULL,
   `quality_rating` enum('excellent','good','satisfactory','needs_improvement') DEFAULT NULL,
-  `photos_before` json DEFAULT NULL,
-  `photos_after` json DEFAULT NULL,
+  `photos_before` text DEFAULT NULL COMMENT 'JSON data for before photos',
+  `photos_after` text DEFAULT NULL COMMENT 'JSON data for after photos',
   `notes` text DEFAULT NULL,
   `status` enum('pending','in_progress','completed','on_hold','cancelled') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -374,7 +408,7 @@ CREATE TABLE `body_repair_tasks` (
 -- PAINT MATERIALS TABLE
 CREATE TABLE `paint_materials` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_code` varchar(20) NOT NULL UNIQUE,
+  `item_code` varchar(20) NOT NULL,
   `material_type` enum('primer','base_coat','clear_coat','thinner','hardener','additive','sandpaper','masking_tape') NOT NULL,
   `brand` varchar(50) NOT NULL,
   `product_name` varchar(100) NOT NULL,
@@ -392,6 +426,7 @@ CREATE TABLE `paint_materials` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `item_code` (`item_code`),
   KEY `idx_material_type` (`material_type`),
   KEY `idx_brand` (`brand`),
   KEY `idx_color_code` (`color_code`),
@@ -401,11 +436,11 @@ CREATE TABLE `paint_materials` (
 -- WORKSHOP BAYS TABLE
 CREATE TABLE `workshop_bays` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bay_number` varchar(10) NOT NULL UNIQUE,
+  `bay_number` varchar(10) NOT NULL,
   `bay_type` enum('body_repair','paint_booth','drying_bay','preparation','quality_check') NOT NULL,
   `bay_name` varchar(100) NOT NULL,
   `capacity` int(11) DEFAULT 1,
-  `equipment` json DEFAULT NULL,
+  `equipment` text DEFAULT NULL COMMENT 'JSON data for equipment',
   `temperature_control` tinyint(1) DEFAULT 0,
   `humidity_control` tinyint(1) DEFAULT 0,
   `ventilation_system` tinyint(1) DEFAULT 0,
@@ -415,6 +450,7 @@ CREATE TABLE `workshop_bays` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `bay_number` (`bay_number`),
   KEY `idx_bay_type` (`bay_type`),
   KEY `idx_status` (`status`),
   KEY `idx_current_work_order` (`current_work_order_id`),
@@ -433,8 +469,8 @@ CREATE TABLE `quality_inspections` (
   `color_match` enum('perfect','good','acceptable','poor') DEFAULT NULL,
   `finish_quality` enum('excellent','good','satisfactory','poor') DEFAULT NULL,
   `overall_rating` enum('excellent','good','satisfactory','poor') NOT NULL,
-  `defects_found` json DEFAULT NULL,
-  `photos` json DEFAULT NULL,
+  `defects_found` text DEFAULT NULL COMMENT 'JSON data for defects',
+  `photos` text DEFAULT NULL COMMENT 'JSON data for photos',
   `customer_signature` varchar(255) DEFAULT NULL,
   `inspector_notes` text DEFAULT NULL,
   `customer_feedback` text DEFAULT NULL,
@@ -499,6 +535,7 @@ INSERT INTO `paint_materials` (`item_code`, `material_type`, `brand`, `product_n
 ('HRD001', 'hardener', 'PPG', 'Fast Hardener', 'HRD-FST', 'Fast Hardener', 'liter', 75000.00, 18.500, 4.000);
 
 -- =====================================================
--- COMMIT TRANSACTION
+-- SAMPLE ADMIN USER (password: admin123)
 -- =====================================================
-COMMIT;
+INSERT INTO `users` (`username`, `email`, `password_hash`, `full_name`, `role`, `status`, `is_active`) VALUES
+('admin', 'admin@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'admin', 'active', 1);
