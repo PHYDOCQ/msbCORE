@@ -47,6 +47,8 @@ class AdvancedServerTester {
         'critical' => ['name' => 'Critical Functions', 'icon' => '🔧', 'color' => '#dc3545'],
         'database' => ['name' => 'Database Tests', 'icon' => '📊', 'color' => '#28a745'],
         'schema' => ['name' => 'Schema Validation', 'icon' => '🗃️', 'color' => '#6f42c1'],
+        'authentication' => ['name' => 'Authentication System', 'icon' => '🔐', 'color' => '#e91e63'],
+        'login' => ['name' => 'Login Testing', 'icon' => '👤', 'color' => '#9c27b0'],
         'security' => ['name' => 'Security Features', 'icon' => '🔒', 'color' => '#fd7e14'],
         'classes' => ['name' => 'Class Loading', 'icon' => '📁', 'color' => '#20c997'],
         'api' => ['name' => 'API Endpoints', 'icon' => '🌐', 'color' => '#007bff'],
@@ -278,6 +280,8 @@ class AdvancedServerTester {
         $this->testDatabaseConnection();
         $this->testDatabaseMethods();
         $this->testDatabaseSchema();
+        $this->testAuthenticationSystem();
+        $this->testLoginFunctionality();
         $this->testSecurityFeatures();
         $this->testClassFiles();
         $this->testAPIEndpoints();
@@ -1756,6 +1760,563 @@ class AdvancedServerTester {
         } catch (Exception $e) {
             $this->addResult('database', 'Database Privileges', 'INFO', 
                 'Could not check privileges: ' . $e->getMessage());
+        }
+    }
+    
+    // ========================================
+    // AUTHENTICATION SYSTEM TESTS
+    // ========================================
+    
+    private function testAuthenticationSystem() {
+        $this->renderSection('🔐 Authentication System Analysis', 'authentication');
+        
+        // Test authentication files existence
+        $authFiles = [
+            'login.php' => 'Login page',
+            'logout.php' => 'Logout handler',
+            'auth.php' => 'Authentication handler',
+            'config/security.php' => 'Security configuration'
+        ];
+        
+        foreach ($authFiles as $file => $description) {
+            $filePath = __DIR__ . '/' . $file;
+            if (file_exists($filePath)) {
+                $this->addResult('authentication', "Auth File: $description", 'PASS', 
+                    "File exists: $file");
+            } else {
+                $this->addResult('authentication', "Auth File: $description", 'FAIL', 
+                    "Missing file: $file");
+            }
+        }
+        
+        // Test users table structure
+        $this->testUsersTableStructure();
+        
+        // Test password hashing functions
+        $this->testPasswordHashing();
+        
+        // Test session security
+        $this->testSessionSecurity();
+        
+        // Test remember tokens table
+        $this->testRememberTokensTable();
+        
+        // Test authentication configuration
+        $this->testAuthConfiguration();
+    }
+    
+    private function testUsersTableStructure() {
+        if (!$this->db) {
+            $this->addResult('authentication', 'Users Table Structure', 'SKIP', 
+                'Database not available');
+            return;
+        }
+        
+        try {
+            // Check if users table exists
+            $tableExists = $this->db->query("SHOW TABLES LIKE 'users'")->fetch();
+            if (!$tableExists) {
+                $this->addResult('authentication', 'Users Table Existence', 'FAIL', 
+                    'Users table does not exist');
+                return;
+            }
+            
+            $this->addResult('authentication', 'Users Table Existence', 'PASS', 
+                'Users table exists');
+            
+            // Check table structure
+            $columns = $this->db->query("DESCRIBE users")->fetchAll();
+            $requiredColumns = [
+                'id' => 'Primary key',
+                'username' => 'Username field',
+                'email' => 'Email field',
+                'password_hash' => 'Password hash field',
+                'role' => 'User role field',
+                'status' => 'Account status field',
+                'created_at' => 'Creation timestamp',
+                'updated_at' => 'Update timestamp'
+            ];
+            
+            $existingColumns = array_column($columns, 'Field');
+            
+            foreach ($requiredColumns as $column => $description) {
+                if (in_array($column, $existingColumns)) {
+                    $this->addResult('authentication', "Users Column: $description", 'PASS', 
+                        "Column '$column' exists");
+                } else {
+                    $this->addResult('authentication', "Users Column: $description", 'FAIL', 
+                        "Missing column '$column'");
+                }
+            }
+            
+            // Check for sample users
+            $userCount = $this->db->query("SELECT COUNT(*) as count FROM users")->fetch();
+            if ($userCount && $userCount['count'] > 0) {
+                $this->addResult('authentication', 'Sample Users', 'PASS', 
+                    "Found {$userCount['count']} users in database");
+                
+                // Check for admin user
+                $adminUser = $this->db->query("SELECT * FROM users WHERE role = 'admin' LIMIT 1")->fetch();
+                if ($adminUser) {
+                    $this->addResult('authentication', 'Admin User', 'PASS', 
+                        "Admin user exists: {$adminUser['username']}");
+                } else {
+                    $this->addResult('authentication', 'Admin User', 'WARN', 
+                        'No admin user found');
+                }
+            } else {
+                $this->addResult('authentication', 'Sample Users', 'WARN', 
+                    'No users found in database');
+            }
+            
+        } catch (Exception $e) {
+            $this->addResult('authentication', 'Users Table Structure', 'FAIL', 
+                'Error checking users table: ' . $e->getMessage());
+        }
+    }
+    
+    private function testPasswordHashing() {
+        // Test password_hash function
+        if (function_exists('password_hash')) {
+            $this->addResult('authentication', 'Password Hash Function', 'PASS', 
+                'password_hash() function available');
+            
+            // Test password hashing
+            $testPassword = 'test123';
+            $hash = password_hash($testPassword, PASSWORD_DEFAULT);
+            
+            if ($hash && password_verify($testPassword, $hash)) {
+                $this->addResult('authentication', 'Password Hashing Test', 'PASS', 
+                    'Password hashing and verification working correctly');
+            } else {
+                $this->addResult('authentication', 'Password Hashing Test', 'FAIL', 
+                    'Password hashing or verification failed');
+            }
+        } else {
+            $this->addResult('authentication', 'Password Hash Function', 'FAIL', 
+                'password_hash() function not available');
+        }
+        
+        // Test bcrypt configuration
+        if (defined('BCRYPT_ROUNDS')) {
+            $rounds = BCRYPT_ROUNDS;
+            $status = ($rounds >= 10 && $rounds <= 15) ? 'PASS' : 'WARN';
+            $message = $status === 'PASS' ? 
+                "Bcrypt rounds set to $rounds (recommended: 10-15)" :
+                "Bcrypt rounds set to $rounds (consider 10-15 for security/performance balance)";
+            
+            $this->addResult('authentication', 'Bcrypt Configuration', $status, $message);
+        } else {
+            $this->addResult('authentication', 'Bcrypt Configuration', 'WARN', 
+                'BCRYPT_ROUNDS not defined, using PHP default');
+        }
+    }
+    
+    private function testSessionSecurity() {
+        // Test session configuration
+        $sessionTests = [
+            'session.cookie_httponly' => ['expected' => '1', 'description' => 'HTTP-only cookies'],
+            'session.use_only_cookies' => ['expected' => '1', 'description' => 'Use only cookies'],
+            'session.cookie_secure' => ['expected' => (isset($_SERVER['HTTPS']) ? '1' : '0'), 'description' => 'Secure cookies'],
+            'session.gc_maxlifetime' => ['min' => 300, 'max' => 7200, 'description' => 'Session lifetime']
+        ];
+        
+        foreach ($sessionTests as $setting => $test) {
+            $value = ini_get($setting);
+            
+            if (isset($test['expected'])) {
+                $status = ($value == $test['expected']) ? 'PASS' : 'WARN';
+                $message = $status === 'PASS' ? 
+                    "{$test['description']} properly configured ($value)" :
+                    "{$test['description']} not optimal (current: $value, expected: {$test['expected']})";
+            } else {
+                $numValue = (int)$value;
+                $status = ($numValue >= $test['min'] && $numValue <= $test['max']) ? 'PASS' : 'WARN';
+                $message = $status === 'PASS' ? 
+                    "{$test['description']} within recommended range ($value seconds)" :
+                    "{$test['description']} outside recommended range ($value seconds, recommended: {$test['min']}-{$test['max']})";
+            }
+            
+            $this->addResult('authentication', "Session Security: {$test['description']}", $status, $message);
+        }
+        
+        // Test session status
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $this->addResult('authentication', 'Session Status', 'PASS', 
+                'Session is active');
+            
+            // Test session ID security
+            $sessionId = session_id();
+            if (strlen($sessionId) >= 26) {
+                $this->addResult('authentication', 'Session ID Length', 'PASS', 
+                    "Session ID length: " . strlen($sessionId) . " characters");
+            } else {
+                $this->addResult('authentication', 'Session ID Length', 'WARN', 
+                    "Session ID might be too short: " . strlen($sessionId) . " characters");
+            }
+        } else {
+            $this->addResult('authentication', 'Session Status', 'INFO', 
+                'Session not active (normal for testing)');
+        }
+    }
+    
+    private function testRememberTokensTable() {
+        if (!$this->db) {
+            $this->addResult('authentication', 'Remember Tokens Table', 'SKIP', 
+                'Database not available');
+            return;
+        }
+        
+        try {
+            $tableExists = $this->db->query("SHOW TABLES LIKE 'remember_tokens'")->fetch();
+            if ($tableExists) {
+                $this->addResult('authentication', 'Remember Tokens Table', 'PASS', 
+                    'Remember tokens table exists');
+                
+                // Check table structure
+                $columns = $this->db->query("DESCRIBE remember_tokens")->fetchAll();
+                $requiredColumns = ['id', 'user_id', 'token_hash', 'expires_at', 'created_at'];
+                $existingColumns = array_column($columns, 'Field');
+                
+                $missingColumns = array_diff($requiredColumns, $existingColumns);
+                if (empty($missingColumns)) {
+                    $this->addResult('authentication', 'Remember Tokens Structure', 'PASS', 
+                        'All required columns present');
+                } else {
+                    $this->addResult('authentication', 'Remember Tokens Structure', 'FAIL', 
+                        'Missing columns: ' . implode(', ', $missingColumns));
+                }
+            } else {
+                $this->addResult('authentication', 'Remember Tokens Table', 'WARN', 
+                    'Remember tokens table does not exist (optional feature)');
+            }
+        } catch (Exception $e) {
+            $this->addResult('authentication', 'Remember Tokens Table', 'FAIL', 
+                'Error checking remember tokens table: ' . $e->getMessage());
+        }
+    }
+    
+    private function testAuthConfiguration() {
+        // Test security constants
+        $securityConstants = [
+            'ENCRYPTION_KEY' => 'Encryption key for data protection',
+            'JWT_SECRET' => 'JWT secret for token signing',
+            'SESSION_LIFETIME' => 'Session lifetime configuration'
+        ];
+        
+        foreach ($securityConstants as $constant => $description) {
+            if (defined($constant)) {
+                $value = constant($constant);
+                if (!empty($value)) {
+                    $this->addResult('authentication', "Security Config: $description", 'PASS', 
+                        "$constant is defined and not empty");
+                } else {
+                    $this->addResult('authentication', "Security Config: $description", 'WARN', 
+                        "$constant is defined but empty");
+                }
+            } else {
+                $this->addResult('authentication', "Security Config: $description", 'INFO', 
+                    "$constant is not defined (may be optional)");
+            }
+        }
+        
+        // Test debug mode security
+        if (defined('DEBUG_MODE')) {
+            $status = DEBUG_MODE ? 'WARN' : 'PASS';
+            $message = DEBUG_MODE ? 
+                'Debug mode is enabled (disable in production)' :
+                'Debug mode is disabled (good for production)';
+            
+            $this->addResult('authentication', 'Debug Mode Security', $status, $message);
+        }
+    }
+    
+    // ========================================
+    // LOGIN FUNCTIONALITY TESTS
+    // ========================================
+    
+    private function testLoginFunctionality() {
+        $this->renderSection('👤 Login System Testing', 'login');
+        
+        // Test login page accessibility
+        $this->testLoginPageAccess();
+        
+        // Test login form structure
+        $this->testLoginFormStructure();
+        
+        // Test authentication logic
+        $this->testAuthenticationLogic();
+        
+        // Test login security features
+        $this->testLoginSecurity();
+        
+        // Test logout functionality
+        $this->testLogoutFunctionality();
+        
+        // Test user roles and permissions
+        $this->testUserRolesPermissions();
+    }
+    
+    private function testLoginPageAccess() {
+        $loginFile = __DIR__ . '/login.php';
+        
+        if (file_exists($loginFile)) {
+            $this->addResult('login', 'Login Page File', 'PASS', 
+                'login.php file exists');
+            
+            // Check if file is readable
+            if (is_readable($loginFile)) {
+                $this->addResult('login', 'Login Page Readable', 'PASS', 
+                    'login.php is readable');
+                
+                // Basic content check
+                $content = file_get_contents($loginFile);
+                if (strpos($content, 'form') !== false) {
+                    $this->addResult('login', 'Login Form Present', 'PASS', 
+                        'Login form detected in login.php');
+                } else {
+                    $this->addResult('login', 'Login Form Present', 'WARN', 
+                        'No form element detected in login.php');
+                }
+                
+                // Check for security features
+                $securityFeatures = [
+                    'csrf' => 'CSRF protection',
+                    'token' => 'Security token',
+                    'password_hash' => 'Password hashing',
+                    'session' => 'Session management'
+                ];
+                
+                foreach ($securityFeatures as $feature => $description) {
+                    if (stripos($content, $feature) !== false) {
+                        $this->addResult('login', "Security Feature: $description", 'PASS', 
+                            "Found $feature implementation");
+                    } else {
+                        $this->addResult('login', "Security Feature: $description", 'INFO', 
+                            "No obvious $feature implementation found");
+                    }
+                }
+            } else {
+                $this->addResult('login', 'Login Page Readable', 'FAIL', 
+                    'login.php is not readable');
+            }
+        } else {
+            $this->addResult('login', 'Login Page File', 'FAIL', 
+                'login.php file does not exist');
+        }
+    }
+    
+    private function testLoginFormStructure() {
+        $loginFile = __DIR__ . '/login.php';
+        
+        if (!file_exists($loginFile)) {
+            $this->addResult('login', 'Login Form Structure', 'SKIP', 
+                'login.php not found');
+            return;
+        }
+        
+        $content = file_get_contents($loginFile);
+        
+        // Check for required form elements
+        $formElements = [
+            'username' => 'Username input field',
+            'password' => 'Password input field',
+            'submit' => 'Submit button',
+            'method.*post' => 'POST method',
+            'action' => 'Form action'
+        ];
+        
+        foreach ($formElements as $pattern => $description) {
+            if (preg_match("/$pattern/i", $content)) {
+                $this->addResult('login', "Form Element: $description", 'PASS', 
+                    "Found $description in login form");
+            } else {
+                $this->addResult('login', "Form Element: $description", 'WARN', 
+                    "Missing or unclear $description");
+            }
+        }
+        
+        // Check for HTML5 validation
+        if (preg_match('/required/i', $content)) {
+            $this->addResult('login', 'HTML5 Validation', 'PASS', 
+                'HTML5 required attributes found');
+        } else {
+            $this->addResult('login', 'HTML5 Validation', 'INFO', 
+                'No HTML5 validation attributes detected');
+        }
+    }
+    
+    private function testAuthenticationLogic() {
+        if (!$this->db) {
+            $this->addResult('login', 'Authentication Logic', 'SKIP', 
+                'Database not available for testing');
+            return;
+        }
+        
+        try {
+            // Test if we can query users table
+            $userCount = $this->db->query("SELECT COUNT(*) as count FROM users WHERE status = 'active'")->fetch();
+            if ($userCount) {
+                $this->addResult('login', 'User Query Test', 'PASS', 
+                    "Found {$userCount['count']} active users");
+                
+                // Test sample authentication query structure
+                $testUser = $this->db->query("SELECT id, username, password_hash, role, status FROM users WHERE status = 'active' LIMIT 1")->fetch();
+                
+                if ($testUser) {
+                    $this->addResult('login', 'Authentication Query', 'PASS', 
+                        'Authentication query structure is valid');
+                    
+                    // Test password verification with sample data
+                    if (!empty($testUser['password_hash'])) {
+                        $this->addResult('login', 'Password Hash Storage', 'PASS', 
+                            'Password hashes are stored in database');
+                    } else {
+                        $this->addResult('login', 'Password Hash Storage', 'WARN', 
+                            'Empty password hash found');
+                    }
+                } else {
+                    $this->addResult('login', 'Authentication Query', 'WARN', 
+                        'No active users found for testing');
+                }
+            }
+        } catch (Exception $e) {
+            $this->addResult('login', 'Authentication Logic', 'FAIL', 
+                'Error testing authentication: ' . $e->getMessage());
+        }
+    }
+    
+    private function testLoginSecurity() {
+        // Test rate limiting configuration
+        if (defined('RATE_LIMIT_REQUESTS') && defined('RATE_LIMIT_WINDOW')) {
+            $requests = RATE_LIMIT_REQUESTS;
+            $window = RATE_LIMIT_WINDOW;
+            $this->addResult('login', 'Rate Limiting Config', 'PASS', 
+                "Rate limiting: $requests requests per $window seconds");
+        } else {
+            $this->addResult('login', 'Rate Limiting Config', 'WARN', 
+                'Rate limiting constants not defined');
+        }
+        
+        // Test failed login tracking
+        if ($this->db) {
+            try {
+                $columns = $this->db->query("DESCRIBE users")->fetchAll();
+                $columnNames = array_column($columns, 'Field');
+                
+                if (in_array('failed_login_attempts', $columnNames)) {
+                    $this->addResult('login', 'Failed Login Tracking', 'PASS', 
+                        'Failed login attempts column exists');
+                } else {
+                    $this->addResult('login', 'Failed Login Tracking', 'WARN', 
+                        'No failed login attempts tracking');
+                }
+                
+                if (in_array('account_locked_until', $columnNames)) {
+                    $this->addResult('login', 'Account Locking', 'PASS', 
+                        'Account locking mechanism available');
+                } else {
+                    $this->addResult('login', 'Account Locking', 'WARN', 
+                        'No account locking mechanism');
+                }
+            } catch (Exception $e) {
+                $this->addResult('login', 'Login Security Features', 'FAIL', 
+                    'Error checking security features: ' . $e->getMessage());
+            }
+        }
+        
+        // Test HTTPS enforcement
+        $isHttps = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
+        $status = $isHttps ? 'PASS' : 'WARN';
+        $message = $isHttps ? 
+            'HTTPS is enabled (secure login)' :
+            'HTTPS not detected (consider enabling for production)';
+        
+        $this->addResult('login', 'HTTPS Security', $status, $message);
+    }
+    
+    private function testLogoutFunctionality() {
+        $logoutFile = __DIR__ . '/logout.php';
+        
+        if (file_exists($logoutFile)) {
+            $this->addResult('login', 'Logout File', 'PASS', 
+                'logout.php file exists');
+            
+            $content = file_get_contents($logoutFile);
+            
+            // Check for session destruction
+            if (strpos($content, 'session_destroy') !== false || strpos($content, 'session_unset') !== false) {
+                $this->addResult('login', 'Session Cleanup', 'PASS', 
+                    'Session destruction code found');
+            } else {
+                $this->addResult('login', 'Session Cleanup', 'WARN', 
+                    'No obvious session cleanup found');
+            }
+            
+            // Check for redirect after logout
+            if (strpos($content, 'header') !== false && strpos($content, 'Location') !== false) {
+                $this->addResult('login', 'Logout Redirect', 'PASS', 
+                    'Redirect after logout found');
+            } else {
+                $this->addResult('login', 'Logout Redirect', 'INFO', 
+                    'No redirect after logout detected');
+            }
+        } else {
+            $this->addResult('login', 'Logout File', 'WARN', 
+                'logout.php file does not exist');
+        }
+    }
+    
+    private function testUserRolesPermissions() {
+        if (!$this->db) {
+            $this->addResult('login', 'User Roles System', 'SKIP', 
+                'Database not available');
+            return;
+        }
+        
+        try {
+            // Check role enumeration
+            $tableInfo = $this->db->query("SHOW COLUMNS FROM users LIKE 'role'")->fetch();
+            if ($tableInfo) {
+                $roleEnum = $tableInfo['Type'];
+                if (strpos($roleEnum, 'enum') !== false) {
+                    $this->addResult('login', 'Role System', 'PASS', 
+                        "Role enumeration defined: $roleEnum");
+                    
+                    // Extract roles from enum
+                    preg_match_all("/'([^']+)'/", $roleEnum, $matches);
+                    $roles = $matches[1];
+                    
+                    $expectedRoles = ['admin', 'manager', 'technician', 'staff'];
+                    $missingRoles = array_diff($expectedRoles, $roles);
+                    
+                    if (empty($missingRoles)) {
+                        $this->addResult('login', 'Role Completeness', 'PASS', 
+                            'All expected roles present: ' . implode(', ', $roles));
+                    } else {
+                        $this->addResult('login', 'Role Completeness', 'INFO', 
+                            'Missing roles: ' . implode(', ', $missingRoles));
+                    }
+                } else {
+                    $this->addResult('login', 'Role System', 'WARN', 
+                        'Role field is not an enum type');
+                }
+            }
+            
+            // Check role distribution
+            $roleStats = $this->db->query("SELECT role, COUNT(*) as count FROM users GROUP BY role")->fetchAll();
+            if ($roleStats) {
+                $roleInfo = [];
+                foreach ($roleStats as $stat) {
+                    $roleInfo[] = "{$stat['role']}: {$stat['count']}";
+                }
+                $this->addResult('login', 'Role Distribution', 'INFO', 
+                    'User roles: ' . implode(', ', $roleInfo));
+            }
+            
+        } catch (Exception $e) {
+            $this->addResult('login', 'User Roles System', 'FAIL', 
+                'Error checking roles: ' . $e->getMessage());
         }
     }
     

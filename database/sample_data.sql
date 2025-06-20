@@ -3,7 +3,7 @@
 -- =====================================================
 
 -- Insert default admin user (password: admin123)
-INSERT INTO `users` (`username`, `email`, `password`, `full_name`, `role`, `status`) VALUES
+INSERT INTO `users` (`username`, `email`, `password_hash`, `full_name`, `role`, `status`) VALUES
 ('admin', 'admin@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'admin', 'active'),
 ('manager', 'manager@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Workshop Manager', 'manager', 'active'),
 ('tech1', 'tech1@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Senior Technician', 'technician', 'active');
