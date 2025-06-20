@@ -2,10 +2,16 @@
 // Application Configuration
 define('APP_NAME', 'Bengkel Management Pro');
 define('APP_VERSION', '3.1.0');
-define('APP_URL', ($_SERVER['HTTPS'] ?? 'off') === 'on' ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/');
+
+// Safe URL detection
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$path = dirname($_SERVER['SCRIPT_NAME'] ?? '') . '/';
+define('APP_URL', $protocol . $host . $path);
 
 // Environment Detection
-define('APP_ENV', $_SERVER['SERVER_NAME'] === 'localhost' ? 'development' : 'production');
+$serverName = $_SERVER['SERVER_NAME'] ?? 'localhost';
+define('APP_ENV', $serverName === 'localhost' ? 'development' : 'production');
 define('DEBUG_MODE', APP_ENV === 'development');
 
 // Database Configuration
@@ -44,7 +50,7 @@ define('RATE_LIMIT_WINDOW', 3600); // 1 hour
 // Session Configuration
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', $_SERVER['HTTPS'] ?? false);
+ini_set('session.cookie_secure', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 1 : 0);
 ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
 ini_set('session.cookie_samesite', 'Strict');
 

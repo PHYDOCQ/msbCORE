@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/security.php';
 
+if (!class_exists('Utils')) {
 class Utils {
     
     public static function generateCustomerCode($db = null) {
@@ -470,25 +471,36 @@ class Utils {
         return $deletedCount;
     }
 }
+}
 
 // Helper functions for backward compatibility
-function generateCustomerCode() {
-    return Utils::generateCustomerCode();
+if (!function_exists('generateCustomerCode')) {
+    function generateCustomerCode() {
+        return Utils::generateCustomerCode();
+    }
 }
 
-function generateWorkOrderNumber() {
-    return Utils::generateWorkOrderNumber();
+if (!function_exists('generateWorkOrderNumber')) {
+    function generateWorkOrderNumber() {
+        return Utils::generateWorkOrderNumber();
+    }
 }
 
-function formatCurrency($amount, $currency = 'IDR') {
-    return Utils::formatCurrency($amount, $currency);
+if (!function_exists('formatCurrency')) {
+    function formatCurrency($amount, $currency = 'IDR') {
+        return Utils::formatCurrency($amount, $currency);
+    }
 }
 
-function formatDate($date, $format = 'd/m/Y H:i') {
-    return Utils::formatDate($date, $format);
+if (!function_exists('formatDate')) {
+    function formatDate($date, $format = 'd/m/Y H:i') {
+        return Utils::formatDate($date, $format);
+    }
 }
 
-function createNotification($userId, $title, $message, $type = 'info', $actionUrl = null) {
-    return Utils::sendNotification($userId, $title, $message, $type, $actionUrl);
+if (!function_exists('createNotification')) {
+    function createNotification($userId, $title, $message, $type = 'info', $actionUrl = null) {
+        return Utils::sendNotification($userId, $title, $message, $type, $actionUrl);
+    }
 }
 ?>

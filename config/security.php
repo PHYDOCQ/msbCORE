@@ -4,13 +4,29 @@ require_once __DIR__ . '/config.php';
 class Security {
     
     public static function hashPassword($password) {
-        $options = [
-            'memory_cost' => 65536, // 64 MB
-            'time_cost' => 4,       // 4 iterations
-            'threads' => 3          // 3 threads
-        ];
+        // Check if ARGON2ID is available (PHP 7.2+)
+        if (defined('PASSWORD_ARGON2ID')) {
+            $options = [
+                'memory_cost' => 65536, // 64 MB
+                'time_cost' => 4,       // 4 iterations
+                'threads' => 3          // 3 threads
+            ];
+            return password_hash($password, PASSWORD_ARGON2ID, $options);
+        }
         
-        return password_hash($password, PASSWORD_ARGON2ID, $options);
+        // Fallback to ARGON2I if available (PHP 7.2+)
+        if (defined('PASSWORD_ARGON2I')) {
+            $options = [
+                'memory_cost' => 65536, // 64 MB
+                'time_cost' => 4,       // 4 iterations
+                'threads' => 3          // 3 threads
+            ];
+            return password_hash($password, PASSWORD_ARGON2I, $options);
+        }
+        
+        // Fallback to default (bcrypt)
+        $options = ['cost' => 12];
+        return password_hash($password, PASSWORD_DEFAULT, $options);
     }
     
     public static function verifyPassword($password, $hash) {
