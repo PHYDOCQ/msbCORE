@@ -268,13 +268,48 @@ try {
             <main>
                 <div class="container-fluid px-4">
                     
-                    <!-- Flash Messages -->
+                    <!-- Toast Container -->
+                    <div class="toast-container"></div>
+                    
+                    <!-- Flash Messages (converted to toast) -->
                     <?php if ($flashMessage): ?>
-                    <div class="alert alert-<?php echo htmlspecialchars($flashType); ?> alert-dismissible fade show mt-3" role="alert">
-                        <i class="fas fa-info-circle me-2"></i>
-                        <?php echo htmlspecialchars($flashMessage); ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const flashType = '<?php echo $flashType; ?>';
+                            const flashMessage = '<?php echo addslashes($flashMessage); ?>';
+                            
+                            // Convert flash type to toast type
+                            let toastType = 'info';
+                            let title = 'Informasi';
+                            
+                            switch(flashType) {
+                                case 'success':
+                                    toastType = 'success';
+                                    title = 'Berhasil';
+                                    break;
+                                case 'danger':
+                                case 'error':
+                                    toastType = 'error';
+                                    title = 'Error';
+                                    break;
+                                case 'warning':
+                                    toastType = 'warning';
+                                    title = 'Peringatan';
+                                    break;
+                                case 'info':
+                                default:
+                                    toastType = 'info';
+                                    title = 'Informasi';
+                                    break;
+                            }
+                            
+                            showToast(flashMessage, toastType, {
+                                title: title,
+                                duration: 6000,
+                                sound: true
+                            });
+                        });
+                    </script>
                     <?php endif; ?>
                     
                     <!-- Debug Panel (Development Only) -->

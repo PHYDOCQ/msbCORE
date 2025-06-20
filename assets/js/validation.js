@@ -1,595 +1,392 @@
 /**
- * BENGKEL MANAGEMENT PRO - VALIDATION MODULE
- * Version: 3.1.0
- * Advanced Form Validation with Custom Rules
+ * ENHANCED FORM VALIDATION SYSTEM
+ * Version: 2.0.0
+ * Author: Professional Development Team
  */
 
-class BengkelValidation {
+class FormValidator {
     constructor() {
-        this.rules = new Map();
-        this.messages = new Map();
-        this.validators = new Map();
-        
+        this.rules = {};
+        this.messages = {};
         this.init();
     }
     
     init() {
-        this.registerDefaultValidators();
-        this.registerDefaultMessages();
-        this.setupEventListeners();
+        // Initialize default validation rules
+        this.setupDefaultRules();
+        this.setupDefaultMessages();
+        this.bindEvents();
     }
     
-    registerDefaultValidators() {
-        // Required validator
-        this.addValidator('required', (value, params) => {
-            if (Array.isArray(value)) {
-                return value.length > 0;
+    setupDefaultRules() {
+        this.rules = {
+            required: (value) => value.trim() !== '',
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            phone: (value) => /^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/\s/g, '')),
+            password: (value) => value.length >= 6,
+            number: (value) => !isNaN(value) && value !== '',
+            min: (value, min) => parseFloat(value) >= parseFloat(min),
+            max: (value, max) => parseFloat(value) <= parseFloat(max),
+            minLength: (value, length) => value.length >= parseInt(length),
+            maxLength: (value, length) => value.length <= parseInt(length),
+            pattern: (value, pattern) => new RegExp(pattern).test(value),
+            url: (value) => {
+                try {
+                    new URL(value);
+                    return true;
+                } catch {
+                    return false;
+                }
+            },
+            date: (value) => !isNaN(Date.parse(value)),
+            time: (value) => /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value),
+            alphanumeric: (value) => /^[a-zA-Z0-9]+$/.test(value),
+            alpha: (value) => /^[a-zA-Z]+$/.test(value),
+            numeric: (value) => /^[0-9]+$/.test(value),
+            licensePlate: (value) => /^[A-Z]{1,2}\s?[0-9]{1,4}\s?[A-Z]{1,3}$/i.test(value),
+            vin: (value) => /^[A-HJ-NPR-Z0-9]{17}$/i.test(value),
+            currency: (value) => /^\d+(\.\d{1,2})?$/.test(value)
+        };
+    }
+    
+    setupDefaultMessages() {
+        this.messages = {
+            required: 'Field ini wajib diisi',
+            email: 'Format email tidak valid',
+            phone: 'Format nomor telepon tidak valid',
+            password: 'Password minimal 6 karakter',
+            number: 'Harus berupa angka',
+            min: 'Nilai minimal {min}',
+            max: 'Nilai maksimal {max}',
+            minLength: 'Minimal {length} karakter',
+            maxLength: 'Maksimal {length} karakter',
+            pattern: 'Format tidak sesuai',
+            url: 'Format URL tidak valid',
+            date: 'Format tanggal tidak valid',
+            time: 'Format waktu tidak valid (HH:MM)',
+            alphanumeric: 'Hanya boleh huruf dan angka',
+            alpha: 'Hanya boleh huruf',
+            numeric: 'Hanya boleh angka',
+            licensePlate: 'Format plat nomor tidak valid',
+            vin: 'Format VIN tidak valid (17 karakter)',
+            currency: 'Format mata uang tidak valid'
+        };
+    }
+    
+    bindEvents() {
+        // Real-time validation on input
+        document.addEventListener('input', (e) => {
+            if (e.target.matches('input, select, textarea')) {
+                this.validateField(e.target);
             }
-            return value !== null && value !== undefined && String(value).trim() !== '';
         });
         
-        // Email validator
-        this.addValidator('email', (value) => {
-            if (!value) return true; // Optional field
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(value);
-        });
-        
-        // Phone validator
-        this.addValidator('phone', (value) => {
-            if (!value) return true;
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            return phoneRegex.test(value);
-        });
-        
-        // URL validator
-        this.addValidator('url', (value) => {
-            if (!value) return true;
-            try {
-                new URL(value);
-                return true;
-            } catch {
-                return false;
+        // Validation on blur
+        document.addEventListener('blur', (e) => {
+            if (e.target.matches('input, select, textarea')) {
+                this.validateField(e.target);
             }
-        });
+        }, true);
         
-        // Minimum length validator
-        this.addValidator('min_length', (value, params) => {
-            if (!value) return true;
-            const minLength = parseInt(params[0]);
-            return String(value).length >= minLength;
-        });
-        
-        // Maximum length validator
-        this.addValidator('max_length', (value, params) => {
-            if (!value) return true;
-            const maxLength = parseInt(params[0]);
-            return String(value).length <= maxLength;
-        });
-        
-        // Minimum value validator
-        this.addValidator('min', (value, params) => {
-            if (!value) return true;
-            const minValue = parseFloat(params[0]);
-            return parseFloat(value) >= minValue;
-        });
-        
-        // Maximum value validator
-        this.addValidator('max', (value, params) => {
-            if (!value) return true;
-            const maxValue = parseFloat(params[0]);
-            return parseFloat(value) <= maxValue;
-        });
-        
-        // Numeric validator
-        this.addValidator('numeric', (value) => {
-            if (!value) return true;
-            return !isNaN(value) && !isNaN(parseFloat(value));
-        });
-        
-        // Integer validator
-        this.addValidator('integer', (value) => {
-            if (!value) return true;
-            return Number.isInteger(Number(value));
-        });
-        
-        // Alpha validator (letters only)
-        this.addValidator('alpha', (value) => {
-            if (!value) return true;
-            const alphaRegex = /^[a-zA-Z\s]+$/;
-            return alphaRegex.test(value);
-        });
-        
-        // Alphanumeric validator
-        this.addValidator('alphanumeric', (value) => {
-            if (!value) return true;
-            const alphanumRegex = /^[a-zA-Z0-9\s]+$/;
-            return alphanumRegex.test(value);
-        });
-        
-        // Date validator
-        this.addValidator('date', (value) => {
-            if (!value) return true;
-            const date = new Date(value);
-            return date instanceof Date && !isNaN(date);
-        });
-        
-        // Date after validator
-        this.addValidator('date_after', (value, params) => {
-            if (!value) return true;
-            const date = new Date(value);
-            const afterDate = new Date(params[0]);
-            return date > afterDate;
-        });
-        
-        // Date before validator
-        this.addValidator('date_before', (value, params) => {
-            if (!value) return true;
-            const date = new Date(value);
-            const beforeDate = new Date(params[0]);
-            return date < beforeDate;
-        });
-        
-        // Confirmed validator (password confirmation)
-        this.addValidator('confirmed', (value, params, element) => {
-            if (!value) return true;
-            const confirmField = element.form.querySelector(`[name="${params[0]}"]`);
-            return confirmField && value === confirmField.value;
-        });
-        
-        // In validator (value must be in list)
-        this.addValidator('in', (value, params) => {
-            if (!value) return true;
-            return params.includes(value);
-        });
-        
-        // Not in validator (value must not be in list)
-        this.addValidator('not_in', (value, params) => {
-            if (!value) return true;
-            return !params.includes(value);
-        });
-        
-        // Regex validator
-        this.addValidator('regex', (value, params) => {
-            if (!value) return true;
-            const regex = new RegExp(params[0]);
-            return regex.test(value);
-        });
-        
-        // Custom business validators
-        this.addValidator('license_plate', (value) => {
-            if (!value) return true;
-            // Indonesian license plate format
-            const plateRegex = /^[A-Z]{1,2}\s?\d{1,4}\s?[A-Z]{1,3}$/i;
-            return plateRegex.test(value);
-        });
-        
-        this.addValidator('currency', (value) => {
-            if (!value) return true;
-            const currencyRegex = /^\d+(\.\d{1,2})?$/;
-            return currencyRegex.test(value);
-        });
-        
-        this.addValidator('vin', (value) => {
-            if (!value) return true;
-            // Vehicle Identification Number
-            const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/i;
-            return vinRegex.test(value);
-        });
-        
-        this.addValidator('unique', async (value, params, element) => {
-            if (!value) return true;
-            
-            const table = params[0];
-            const column = params[1];
-            const excludeId = params[2] || null;
-            
-            try {
-                const response = await fetch('/api/validation.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-Token': window.APP_CONFIG.csrf_token
-                    },
-                    body: JSON.stringify({
-                        action: 'check_unique',
-                        table: table,
-                        column: column,
-                        value: value,
-                        exclude_id: excludeId
-                    })
-                });
-                
-                const data = await response.json();
-                return data.is_unique;
-            } catch (error) {
-                console.error('Unique validation error:', error);
-                return true; // Assume valid on error
+        // Form submission validation
+        document.addEventListener('submit', (e) => {
+            const form = e.target;
+            if (form.dataset.validate !== 'false') {
+                if (!this.validateForm(form)) {
+                    e.preventDefault();
+                    this.showFormErrors(form);
+                }
             }
         });
     }
     
-    registerDefaultMessages() {
-        this.addMessage('required', 'This field is required.');
-        this.addMessage('email', 'Please enter a valid email address.');
-        this.addMessage('phone', 'Please enter a valid phone number.');
-        this.addMessage('url', 'Please enter a valid URL.');
-        this.addMessage('min_length', 'This field must be at least {0} characters long.');
-        this.addMessage('max_length', 'This field must not exceed {0} characters.');
-        this.addMessage('min', 'This field must be at least {0}.');
-        this.addMessage('max', 'This field must not exceed {0}.');
-        this.addMessage('numeric', 'This field must be a number.');
-        this.addMessage('integer', 'This field must be an integer.');
-        this.addMessage('alpha', 'This field may only contain letters and spaces.');
-        this.addMessage('alphanumeric', 'This field may only contain letters, numbers, and spaces.');
-        this.addMessage('date', 'Please enter a valid date.');
-        this.addMessage('date_after', 'This date must be after {0}.');
-        this.addMessage('date_before', 'This date must be before {0}.');
-        this.addMessage('confirmed', 'The confirmation does not match.');
-        this.addMessage('in', 'The selected value is invalid.');
-        this.addMessage('not_in', 'The selected value is invalid.');
-        this.addMessage('regex', 'The format is invalid.');
-        this.addMessage('license_plate', 'Please enter a valid license plate number.');
-        this.addMessage('currency', 'Please enter a valid amount.');
-        this.addMessage('vin', 'Please enter a valid VIN number.');
-        this.addMessage('unique', 'This value is already taken.');
-    }
-    
-    setupEventListeners() {
-        document.addEventListener('input', (event) => {
-            const element = event.target;
-            if (this.hasValidationRules(element)) {
-                this.debounce(() => {
-                    this.validateField(element);
-                }, 300)();
-            }
-        });
-        
-        document.addEventListener('blur', (event) => {
-            const element = event.target;
-            if (this.hasValidationRules(element)) {
-                this.validateField(element);
-            }
-        });
-        
-        document.addEventListener('submit', (event) => {
-            const form = event.target;
-            if (form.tagName === 'FORM' && form.hasAttribute('data-validate')) {
-                event.preventDefault();
-                this.validateForm(form).then(isValid => {
-                    if (isValid) {
-                        form.submit();
-                    }
-                });
-            }
-        });
-    }
-    
-    // ========================================
-    // VALIDATION METHODS
-    // ========================================
-    
-    async validateField(element) {
-        const rules = this.getFieldRules(element);
-        if (!rules || rules.length === 0) {
-            return true;
-        }
-        
-        const value = this.getFieldValue(element);
+    validateField(field) {
+        const value = field.value.trim();
+        const rules = this.getFieldRules(field);
         let isValid = true;
         let errorMessage = '';
         
-        for (const rule of rules) {
-            const [ruleName, ...params] = rule.split(':');
-            const ruleParams = params.length > 0 ? params[0].split(',') : [];
-            
-            const validator = this.validators.get(ruleName);
-            if (!validator) {
-                console.warn(`Validator '${ruleName}' not found`);
-                continue;
-            }
-            
-            try {
-                const result = await validator(value, ruleParams, element);
-                if (!result) {
-                    isValid = false;
-                    errorMessage = this.getErrorMessage(ruleName, ruleParams, element);
-                    break;
-                }
-            } catch (error) {
-                console.error(`Validation error for rule '${ruleName}':`, error);
+        // Clear previous validation state
+        this.clearFieldValidation(field);
+        
+        // Skip validation if field is empty and not required
+        if (!value && !rules.required) {
+            return true;
+        }
+        
+        // Validate each rule
+        for (const [ruleName, ruleValue] of Object.entries(rules)) {
+            if (!this.validateRule(value, ruleName, ruleValue)) {
                 isValid = false;
-                errorMessage = 'Validation error occurred';
+                errorMessage = this.getErrorMessage(ruleName, ruleValue);
                 break;
             }
         }
         
-        this.updateFieldValidationState(element, isValid, errorMessage);
-        return isValid;
-    }
-    
-    async validateForm(form) {
-        const fields = form.querySelectorAll('[data-rules], [required]');
-        const validationPromises = Array.from(fields).map(field => this.validateField(field));
-        
-        const results = await Promise.all(validationPromises);
-        const isValid = results.every(result => result === true);
-        
-        if (!isValid) {
-            this.focusFirstInvalidField(form);
+        // Apply validation result
+        if (isValid && value) {
+            this.setFieldValid(field);
+        } else if (!isValid) {
+            this.setFieldInvalid(field, errorMessage);
         }
         
         return isValid;
     }
     
-    validateValue(value, rules) {
-        if (typeof rules === 'string') {
-            rules = rules.split('|');
-        }
+    validateForm(form) {
+        const fields = form.querySelectorAll('input, select, textarea');
+        let isValid = true;
         
-        for (const rule of rules) {
-            const [ruleName, ...params] = rule.split(':');
-            const ruleParams = params.length > 0 ? params[0].split(',') : [];
-            
-            const validator = this.validators.get(ruleName);
-            if (!validator) {
-                console.warn(`Validator '${ruleName}' not found`);
-                continue;
+        fields.forEach(field => {
+            if (!this.validateField(field)) {
+                isValid = false;
             }
-            
-            if (!validator(value, ruleParams)) {
-                return {
-                    valid: false,
-                    message: this.getErrorMessage(ruleName, ruleParams)
-                };
-            }
-        }
+        });
         
-        return { valid: true };
+        return isValid;
     }
     
-    // ========================================
-    // HELPER METHODS
-    // ========================================
-    
-    hasValidationRules(element) {
-        return element.hasAttribute('data-rules') || 
-               element.hasAttribute('required') ||
-               element.type === 'email' ||
-               element.type === 'url' ||
-               element.type === 'tel';
+    validateRule(value, ruleName, ruleValue) {
+        const rule = this.rules[ruleName];
+        if (!rule) return true;
+        
+        if (typeof ruleValue === 'boolean' && ruleValue) {
+            return rule(value);
+        } else if (ruleValue !== false) {
+            return rule(value, ruleValue);
+        }
+        
+        return true;
     }
     
-    getFieldRules(element) {
-        let rules = [];
+    getFieldRules(field) {
+        const rules = {};
         
-        // Get rules from data-rules attribute
-        if (element.hasAttribute('data-rules')) {
-            rules = element.getAttribute('data-rules').split('|');
+        // Required
+        if (field.hasAttribute('required')) {
+            rules.required = true;
         }
         
-        // Add HTML5 validation rules
-        if (element.hasAttribute('required')) {
-            rules.push('required');
+        // Type-based rules
+        switch (field.type) {
+            case 'email':
+                rules.email = true;
+                break;
+            case 'tel':
+                rules.phone = true;
+                break;
+            case 'password':
+                rules.password = true;
+                break;
+            case 'number':
+                rules.number = true;
+                break;
+            case 'url':
+                rules.url = true;
+                break;
+            case 'date':
+                rules.date = true;
+                break;
+            case 'time':
+                rules.time = true;
+                break;
         }
         
-        if (element.type === 'email') {
-            rules.push('email');
+        // Attribute-based rules
+        if (field.hasAttribute('min')) {
+            rules.min = field.getAttribute('min');
         }
         
-        if (element.type === 'url') {
-            rules.push('url');
+        if (field.hasAttribute('max')) {
+            rules.max = field.getAttribute('max');
         }
         
-        if (element.type === 'tel') {
-            rules.push('phone');
+        if (field.hasAttribute('minlength')) {
+            rules.minLength = field.getAttribute('minlength');
         }
         
-        if (element.hasAttribute('min')) {
-            rules.push(`min:${element.getAttribute('min')}`);
+        if (field.hasAttribute('maxlength')) {
+            rules.maxLength = field.getAttribute('maxlength');
         }
         
-        if (element.hasAttribute('max')) {
-            rules.push(`max:${element.getAttribute('max')}`);
+        if (field.hasAttribute('pattern')) {
+            rules.pattern = field.getAttribute('pattern');
         }
         
-        if (element.hasAttribute('minlength')) {
-            rules.push(`min_length:${element.getAttribute('minlength')}`);
-        }
-        
-        if (element.hasAttribute('maxlength')) {
-            rules.push(`max_length:${element.getAttribute('maxlength')}`);
-        }
-        
-        if (element.hasAttribute('pattern')) {
-            rules.push(`regex:${element.getAttribute('pattern')}`);
-        }
+        // Custom validation rules from data attributes
+        Object.keys(field.dataset).forEach(key => {
+            if (key.startsWith('validate')) {
+                const ruleName = key.replace('validate', '').toLowerCase();
+                if (this.rules[ruleName]) {
+                    rules[ruleName] = field.dataset[key] === 'true' ? true : field.dataset[key];
+                }
+            }
+        });
         
         return rules;
     }
     
-    getFieldValue(element) {
-        if (element.type === 'checkbox') {
-            return element.checked;
-        } else if (element.type === 'radio') {
-            const form = element.form;
-            const radioGroup = form.querySelectorAll(`[name="${element.name}"]`);
-            for (const radio of radioGroup) {
-                if (radio.checked) {
-                    return radio.value;
-                }
-            }
-            return null;
-        } else if (element.tagName === 'SELECT' && element.multiple) {
-            return Array.from(element.selectedOptions).map(option => option.value);
-        } else {
-            return element.value;
-        }
-    }
-    
-    getErrorMessage(ruleName, params = [], element = null) {
-        let message = this.messages.get(ruleName) || 'Invalid value';
+    getErrorMessage(ruleName, ruleValue) {
+        let message = this.messages[ruleName] || 'Invalid input';
         
-        // Replace parameter placeholders
-        params.forEach((param, index) => {
-            message = message.replace(`{${index}}`, param);
-        });
-        
-        // Custom message from element
-        if (element && element.hasAttribute(`data-${ruleName}-message`)) {
-            message = element.getAttribute(`data-${ruleName}-message`);
+        // Replace placeholders
+        if (typeof ruleValue !== 'boolean') {
+            message = message.replace(`{${ruleName}}`, ruleValue);
+            message = message.replace('{min}', ruleValue);
+            message = message.replace('{max}', ruleValue);
+            message = message.replace('{length}', ruleValue);
         }
         
         return message;
     }
     
-    updateFieldValidationState(element, isValid, errorMessage = '') {
-        element.classList.remove('is-valid', 'is-invalid');
+    clearFieldValidation(field) {
+        field.classList.remove('is-valid', 'is-invalid');
         
-        if (isValid) {
-            element.classList.add('is-valid');
-            this.removeFieldError(element);
-        } else {
-            element.classList.add('is-invalid');
-            this.showFieldError(element, errorMessage);
-        }
-        
-        // Trigger custom event
-        element.dispatchEvent(new CustomEvent('validation', {
-            detail: { isValid, errorMessage }
-        }));
-    }
-    
-    showFieldError(element, message) {
-        this.removeFieldError(element);
-        
-        const errorElement = document.createElement('div');
-        errorElement.className = 'invalid-feedback';
-        errorElement.textContent = message;
-        errorElement.setAttribute('data-validation-error', 'true');
-        
-        // Insert after the element or its parent container
-        const container = element.closest('.form-group') || element.closest('.input-group') || element.parentNode;
-        container.appendChild(errorElement);
-    }
-    
-    removeFieldError(element) {
-        const container = element.closest('.form-group') || element.closest('.input-group') || element.parentNode;
-        const errorElements = container.querySelectorAll('[data-validation-error="true"]');
-        errorElements.forEach(errorElement => errorElement.remove());
-    }
-    
-    focusFirstInvalidField(form) {
-        const firstInvalidField = form.querySelector('.is-invalid');
-        if (firstInvalidField) {
-            firstInvalidField.focus();
-            firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const feedback = field.parentNode.querySelector('.invalid-feedback, .valid-feedback');
+        if (feedback) {
+            feedback.remove();
         }
     }
     
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
+    setFieldValid(field) {
+        field.classList.add('is-valid');
+        field.classList.remove('is-invalid');
+        
+        const feedback = document.createElement('div');
+        feedback.className = 'valid-feedback';
+        feedback.textContent = 'Looks good!';
+        field.parentNode.appendChild(feedback);
     }
     
-    // ========================================
-    // PUBLIC API METHODS
-    // ========================================
+    setFieldInvalid(field, message) {
+        field.classList.add('is-invalid');
+        field.classList.remove('is-valid');
+        
+        const feedback = document.createElement('div');
+        feedback.className = 'invalid-feedback';
+        feedback.textContent = message;
+        field.parentNode.appendChild(feedback);
+    }
     
-    addValidator(name, validator) {
-        this.validators.set(name, validator);
+    showFormErrors(form) {
+        const invalidFields = form.querySelectorAll('.is-invalid');
+        
+        if (invalidFields.length > 0) {
+            // Show toast notification
+            if (typeof showError === 'function') {
+                showError(`Mohon perbaiki ${invalidFields.length} kesalahan pada form`, {
+                    title: 'Validasi Gagal',
+                    duration: 5000
+                });
+            }
+            
+            // Focus on first invalid field
+            invalidFields[0].focus();
+            
+            // Scroll to first invalid field
+            invalidFields[0].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }
+    
+    // Custom validation methods
+    addRule(name, validator, message) {
+        this.rules[name] = validator;
+        this.messages[name] = message;
     }
     
     addMessage(ruleName, message) {
-        this.messages.set(ruleName, message);
+        this.messages[ruleName] = message;
     }
     
-    removeValidator(name) {
-        this.validators.delete(name);
+    // Utility methods for specific validations
+    validateLicensePlate(value) {
+        // Indonesian license plate format
+        const patterns = [
+            /^[A-Z]{1,2}\s?[0-9]{1,4}\s?[A-Z]{1,3}$/i, // Standard format
+            /^[0-9]{1,4}\s?[A-Z]{1,3}\s?[0-9]{1,4}$/i  // Alternative format
+        ];
+        
+        return patterns.some(pattern => pattern.test(value));
     }
     
-    removeMessage(ruleName) {
-        this.messages.delete(ruleName);
+    validateIndonesianPhone(value) {
+        // Indonesian phone number formats
+        const cleanValue = value.replace(/[\s\-\(\)]/g, '');
+        const patterns = [
+            /^(\+62|62|0)[0-9]{8,13}$/, // Indonesian format
+            /^08[0-9]{8,11}$/           // Mobile format
+        ];
+        
+        return patterns.some(pattern => pattern.test(cleanValue));
     }
     
-    async validate(element) {
-        return await this.validateField(element);
+    validateCurrency(value, currency = 'IDR') {
+        // Remove currency symbols and spaces
+        const cleanValue = value.replace(/[^\d.,]/g, '');
+        
+        // Check if it's a valid number
+        const numValue = parseFloat(cleanValue.replace(',', '.'));
+        
+        return !isNaN(numValue) && numValue >= 0;
     }
     
-    async validateFormAsync(form) {
-        return await this.validateForm(form);
-    }
-    
-    clearValidation(element) {
-        element.classList.remove('is-valid', 'is-invalid');
-        this.removeFieldError(element);
-    }
-    
-    clearFormValidation(form) {
-        const fields = form.querySelectorAll('.is-valid, .is-invalid');
-        fields.forEach(field => this.clearValidation(field));
-    }
-    
-    setFieldValid(element) {
-        this.updateFieldValidationState(element, true);
-    }
-    
-    setFieldInvalid(element, message) {
-        this.updateFieldValidationState(element, false, message);
-    }
-    
-    // ========================================
-    // UTILITY METHODS
-    // ========================================
-    
-    isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    isValidPhone(phone) {
-        const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-        return phoneRegex.test(phone);
-    }
-    
-    isValidUrl(url) {
-        try {
-            new URL(url);
-            return true;
-        } catch {
-            return false;
+    // Real-time formatting methods
+    formatCurrency(input) {
+        let value = input.value.replace(/[^\d]/g, '');
+        
+        if (value) {
+            // Format as Indonesian Rupiah
+            const formatted = new Intl.NumberFormat('id-ID').format(value);
+            input.value = 'Rp ' + formatted;
         }
     }
     
-    isValidLicensePlate(plate) {
-        const plateRegex = /^[A-Z]{1,2}\s?\d{1,4}\s?[A-Z]{1,3}$/i;
-        return plateRegex.test(plate);
+    formatPhone(input) {
+        let value = input.value.replace(/\D/g, '');
+        
+        if (value.startsWith('0')) {
+            // Format: 0812-3456-7890
+            value = value.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+        } else if (value.startsWith('62')) {
+            // Format: +62 812-3456-7890
+            value = value.replace(/(\d{2})(\d{3})(\d{4})(\d{4})/, '+$1 $2-$3-$4');
+        }
+        
+        input.value = value;
     }
     
-    isValidCurrency(amount) {
-        const currencyRegex = /^\d+(\.\d{1,2})?$/;
-        return currencyRegex.test(amount);
-    }
-    
-    isValidVIN(vin) {
-        const vinRegex = /^[A-HJ-NPR-Z0-9]{17}$/i;
-        return vinRegex.test(vin);
+    formatLicensePlate(input) {
+        let value = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        
+        // Format: AB 1234 CD
+        if (value.length > 2) {
+            value = value.replace(/([A-Z]{1,2})([0-9]{1,4})([A-Z]{0,3})/, '$1 $2 $3');
+        }
+        
+        input.value = value.trim();
     }
 }
 
-// Initialize validation when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.bengkelValidation = new BengkelValidation();
-});
+// Initialize form validator
+const formValidator = new FormValidator();
 
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = BengkelValidation;
-}
+// Add custom Indonesian-specific validations
+formValidator.addRule('indonesianPhone', (value) => {
+    return formValidator.validateIndonesianPhone(value);
+}, 'Format nomor telepon Indonesia tidak valid');
+
+formValidator.addRule('indonesianLicensePlate', (value) => {
+    return formValidator.validateLicensePlate(value);
+}, 'Format plat nomor Indonesia tidak valid');
+
+formValidator.addRule('rupiah', (value) => {
+    return formValidator.validateCurrency(value, 'IDR');
+}, 'Format mata uang Rupiah tidak valid');
+
+// Export for global usage
+window.FormValidator = FormValidator;
+window.formValidator = formValidator;
