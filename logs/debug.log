@@ -1491,3 +1491,8 @@
     "params": []
 }
 [2025-06-20 18:10:19] DB_PERF: Query executed in 0.00023102760314941s
+[2025-06-20 18:19:13] DB: Database connection established successfully
+[2025-06-20 18:19:13] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
