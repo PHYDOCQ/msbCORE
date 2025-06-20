@@ -1,29 +1,53 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// Check if autoloader exists and define availability
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+    define('PHPMAILER_AVAILABLE', true);
+} else {
+    define('PHPMAILER_AVAILABLE', false);
+}
 
-require_once 'vendor/autoload.php';
+// Import PHPMailer classes if available
+if (PHPMAILER_AVAILABLE) {
+    // These will only be used if PHPMailer is available
+    class_alias('PHPMailer\PHPMailer\PHPMailer', 'PHPMailer_PHPMailer');
+    class_alias('PHPMailer\PHPMailer\SMTP', 'PHPMailer_SMTP');
+    class_alias('PHPMailer\PHPMailer\Exception', 'PHPMailer_Exception');
+}
 
 class Email {
     private $mailer;
+    private $phpmailerAvailable;
     
     public function __construct() {
-        $this->mailer = new PHPMailer(true);
-        $this->configure();
+        $this->phpmailerAvailable = PHPMAILER_AVAILABLE;
+        
+        if ($this->phpmailerAvailable) {
+            $this->mailer = new PHPMailer_PHPMailer(true);
+            $this->configure();
+        } else {
+            error_log("PHPMailer not available - email functionality disabled");
+        }
     }
     
     private function configure() {
+        if (!$this->phpmailerAvailable) {
+            return false;
+        }
+        
         try {
             $this->mailer->isSMTP();
-            $this->mailer->Host = SMTP_HOST;
+            $this->mailer->Host = defined('SMTP_HOST') ? SMTP_HOST : 'localhost';
             $this->mailer->SMTPAuth = true;
-            $this->mailer->Username = SMTP_USER;
-            $this->mailer->Password = SMTP_PASS;
-            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $this->mailer->Port = SMTP_PORT;
+            $this->mailer->Username = defined('SMTP_USER') ? SMTP_USER : '';
+            $this->mailer->Password = defined('SMTP_PASS') ? SMTP_PASS : '';
+            $this->mailer->SMTPSecure = $this->phpmailerAvailable ? PHPMailer_PHPMailer::ENCRYPTION_STARTTLS : 'tls';
+            $this->mailer->Port = defined('SMTP_PORT') ? SMTP_PORT : 587;
             
-            $this->mailer->setFrom(FROM_EMAIL, FROM_NAME);
+            $this->mailer->setFrom(
+                defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost', 
+                defined('FROM_NAME') ? FROM_NAME : 'System'
+            );
             $this->mailer->CharSet = 'UTF-8';
             
         } catch (Exception $e) {
@@ -213,6 +237,24 @@ class Email {
             </div>
         </body>
         </html>";
+    }
+    
+    private function sendFallbackEmail($to, $subject, $message) {
+        // Fallback using PHP's mail() function
+        $headers = "From: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "
+";
+        $headers .= "Reply-To: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "
+";
+        $headers .= "Content-Type: text/html; charset=UTF-8
+";
+        
+        $result = mail($to, $subject, $message, $headers);
+        
+        if (!$result) {
+            error_log("Fallback email failed to send to: $to");
+        }
+        
+        return $result;
     }
 }
 ?>

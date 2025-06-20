@@ -1,0 +1,6 @@
+[2025-06-20 16:47:42] ERROR: Database connection failed: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost'
+[2025-06-20 16:47:59] DB: Database connection established successfully
+[2025-06-20 16:48:57] DB: Database connection established successfully
+[2025-06-20 16:49:52] DB: Database connection established successfully
+[2025-06-20 16:50:28] DB: Database connection established successfully
+[2025-06-20 16:51:38] DB: Database connection established successfully
