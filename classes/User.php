@@ -33,7 +33,7 @@ class User {
             
             debugLog(['user_id' => $user['id'], 'email' => $email], 'USER_LOGIN_USER_FOUND');
             
-            if (!password_verify($password, $user['password'])) {
+            if (!password_verify($password, $user['password_hash'])) {
                 debugLog(['user_id' => $user['id'], 'reason' => 'invalid_password'], 'USER_LOGIN_FAILED');
                 // Log failed login attempt
                 $this->logLoginAttempt($user['id'], false, $_SERVER['REMOTE_ADDR']);
@@ -54,7 +54,7 @@ class User {
             debugLog(['user_id' => $user['id'], 'session_set' => true], 'USER_LOGIN_SESSION_SET');
             
             // Remove sensitive data
-            unset($user['password']);
+            unset($user['password_hash']);
             
             debugLog(['user_id' => $user['id']], 'USER_LOGIN_SUCCESS');
             return $user;
@@ -107,7 +107,8 @@ class User {
             }
             
             // Hash password
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            unset($data['password']); // Remove plain password
             
             // Set default values
             $data['created_at'] = date('Y-m-d H:i:s');
@@ -144,7 +145,7 @@ class User {
                 throw new Exception('User not found');
             }
             
-            if (!password_verify($currentPassword, $user['password'])) {
+            if (!password_verify($currentPassword, $user['password_hash'])) {
                 throw new Exception('Current password is incorrect');
             }
             
@@ -152,7 +153,7 @@ class User {
             
             $this->db->update(
                 $this->table,
-                ['password' => $hashedPassword, 'password_changed_at' => date('Y-m-d H:i:s')],
+                ['password_hash' => $hashedPassword, 'password_changed_at' => date('Y-m-d H:i:s')],
                 'id = :id',
                 ['id' => $userId]
             );
@@ -226,7 +227,7 @@ class User {
             $this->db->update(
                 $this->table,
                 [
-                    'password' => $hashedPassword,
+                    'password_hash' => $hashedPassword,
                     'password_changed_at' => date('Y-m-d H:i:s')
                 ],
                 'email = :email',
@@ -577,7 +578,8 @@ class User {
     private function prepareUserData($data) {
         // Hash password if provided
         if (!empty($data['password'])) {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            unset($data['password']); // Remove plain password
         }
         
         // Set default values

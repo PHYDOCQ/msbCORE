@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $db = Database::getInstance();
             $user = $db->selectOne(
-                "SELECT id, username, email, password, role, status FROM users WHERE (username = :username OR email = :username) AND status = 'active'",
+                "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = :username OR email = :username) AND status = 'active'",
                 ['username' => $username]
             );
 
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && password_verify($password, $user['password_hash'])) {
                 debugLog(['user_id' => $user['id'], 'username' => $user['username']], 'LOGIN_SUCCESS');
                 
                 $_SESSION['user_id'] = $user['id'];
