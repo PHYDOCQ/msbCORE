@@ -1,0 +1,7 @@
+[Fri Jun 20 04:57:16 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8000) started
+[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 Accepted
+[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 [302]: HEAD /
+[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 Closing
+[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 Accepted
+[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 [200]: HEAD /login.php
+[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 Closing

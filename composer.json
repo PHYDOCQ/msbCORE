@@ -1,14 +1,16 @@
 {
     "name": "msbcore/bengkel-management",
-    "description": "Bengkel Management System - Professional Workshop Management",
+    "description": "Bengkel Management System - Professional Body Repair & Paint Workshop Management",
     "type": "project",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.2.6",
         "ext-pdo": "*",
         "ext-json": "*",
         "ext-openssl": "*",
-        "ext-fileinfo": "*"
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
