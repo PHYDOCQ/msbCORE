@@ -76,11 +76,15 @@ try {
     echo json_encode($response);
     
 } catch(Exception $e) {
+    debugLog(['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()], 'API_DASHBOARD_ERROR');
+    
     http_response_code(500);
     echo json_encode([
         'success' => false,
         'error' => 'Internal server error',
-        'message' => $e->getMessage()
+        'message' => DEBUG_MODE ? $e->getMessage() : 'Terjadi kesalahan sistem. Silakan coba lagi.',
+        'code' => 'DASHBOARD_ERROR',
+        'timestamp' => date('Y-m-d H:i:s')
     ]);
 }
 ?><?php
