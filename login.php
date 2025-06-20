@@ -20,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $db = Database::getInstance();
             $user = $db->selectOne(
-                "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = :username OR email = :username) AND status = 'active'",
-                ['username' => $username]
+                "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+                [$username, $username]
             );
 
             if ($user && password_verify($password, $user['password_hash'])) {
@@ -36,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Update last login
                 $db->update(
                     'users',
-                    ['last_login_at' => date('Y-m-d H:i:s')],
-                    'id = :id',
-                    ['id' => $user['id']]
+                    ['last_login' => date('Y-m-d H:i:s')],
+                    'id = ?',
+                    [$user['id']]
                 );
                 
                 header('Location: index.php');
@@ -209,47 +209,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             });
             
-            // Enhanced form submission
+            // Simple form validation without preventing submission
             loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
                 const username = document.getElementById('username').value.trim();
                 const password = document.getElementById('password').value;
                 
-                // Validate form
-                let isValid = true;
-                
-                if (!username) {
-                    showFieldError('username', 'Username atau email harus diisi');
-                    isValid = false;
-                } else {
-                    clearFieldError('username');
-                }
-                
-                if (!password) {
-                    showFieldError('password', 'Password harus diisi');
-                    isValid = false;
-                } else if (password.length < 3) {
-                    showFieldError('password', 'Password terlalu pendek');
-                    isValid = false;
-                } else {
-                    clearFieldError('password');
-                }
-                
-                if (!isValid) {
-                    showError('Mohon lengkapi semua field yang diperlukan', {
-                        title: 'Validasi Gagal'
-                    });
-                    return;
+                // Basic validation
+                if (!username || !password) {
+                    e.preventDefault();
+                    alert('Mohon lengkapi username dan password');
+                    return false;
                 }
                 
                 // Show loading state
                 setLoadingState(true);
                 
-                // Submit form
-                setTimeout(() => {
-                    loginForm.submit();
-                }, 500);
+                // Let the form submit normally (no preventDefault)
+                console.log('Form submitting with username:', username);
+                return true;
             });
             
             // Real-time validation
