@@ -2,8 +2,9 @@
 /**
  * ADVANCED COMPREHENSIVE SERVER TESTING SUITE
  * Professional-grade testing with advanced interface and detailed analytics
+ * ADMIN ACCESS ONLY - Enhanced Security & Features
  * 
- * @version 3.0
+ * @version 4.0
  * @author msbCORE System
  * @license MIT
  */
@@ -12,18 +13,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 set_time_limit(600); // 10 minutes for comprehensive testing
-session_start();
-
-// Security check - basic IP filtering (can be enhanced)
-$allowedIPs = ['127.0.0.1', '::1', 'localhost'];
-$clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
 // Include required files with advanced error handling
 $requiredFiles = [
     __DIR__ . '/config/config.php',
     __DIR__ . '/config/database.php',
     __DIR__ . '/config/security.php',
-    __DIR__ . '/includes/functions.php'
+    __DIR__ . '/includes/functions.php',
+    __DIR__ . '/includes/auth.php'
 ];
 
 $missingFiles = [];
@@ -35,6 +32,73 @@ foreach ($requiredFiles as $file) {
     }
 }
 
+// ADMIN ACCESS CONTROL - Enhanced Security
+if (!isset($auth)) {
+    die('Authentication system not available. Please check your configuration.');
+}
+
+// Check if user is logged in and is admin
+if (!$auth->isLoggedIn()) {
+    header('Location: ' . APP_URL . 'login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+    exit('Access denied. Admin login required.');
+}
+
+$currentUser = $auth->getCurrentUser();
+if (!$currentUser || $currentUser['role'] !== 'admin') {
+    http_response_code(403);
+    die('
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Access Denied - Admin Only</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card border-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h4 class="mb-0"><i class="fas fa-shield-alt"></i> Access Denied</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-shield fa-4x text-danger mb-3"></i>
+                            <h5>Administrator Access Required</h5>
+                            <p class="text-muted">This server testing suite is restricted to administrators only.</p>
+                            <p><strong>Current User:</strong> ' . htmlspecialchars($currentUser['full_name'] ?? 'Unknown') . '</p>
+                            <p><strong>Role:</strong> ' . htmlspecialchars($currentUser['role'] ?? 'Unknown') . '</p>
+                            <hr>
+                            <a href="' . APP_URL . 'home/" class="btn btn-primary">
+                                <i class="fas fa-home"></i> Return to Dashboard
+                            </a>
+                            <a href="' . APP_URL . 'login.php?action=logout" class="btn btn-outline-secondary">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    ');
+}
+
+// Log admin access
+debugLog([
+    'admin_user' => $currentUser['username'],
+    'user_id' => $currentUser['id'],
+    'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+    'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
+], 'ADMIN_SERVER_TEST_ACCESS');
+
+// Security check - enhanced IP filtering with admin override
+$allowedIPs = ['127.0.0.1', '::1', 'localhost'];
+$clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+
 class AdvancedServerTester {
     private $results = [];
     private $db = null;
@@ -43,7 +107,7 @@ class AdvancedServerTester {
     private $systemInfo = [];
     private $clientInfo = [];
     private $testCategories = [
-        'environment' => ['name' => 'Environment', 'icon' => '🌍', 'color' => '#17a2b8'],
+        'environment' => ['name' => 'Environment Analysis', 'icon' => '🌍', 'color' => '#17a2b8'],
         'critical' => ['name' => 'Critical Functions', 'icon' => '🔧', 'color' => '#dc3545'],
         'database' => ['name' => 'Database Tests', 'icon' => '📊', 'color' => '#28a745'],
         'schema' => ['name' => 'Schema Validation', 'icon' => '🗃️', 'color' => '#6f42c1'],
@@ -53,8 +117,16 @@ class AdvancedServerTester {
         'classes' => ['name' => 'Class Loading', 'icon' => '📁', 'color' => '#20c997'],
         'api' => ['name' => 'API Endpoints', 'icon' => '🌐', 'color' => '#007bff'],
         'files' => ['name' => 'File Structure', 'icon' => '📂', 'color' => '#6c757d'],
-        'performance' => ['name' => 'Performance', 'icon' => '⚡', 'color' => '#ffc107'],
-        'network' => ['name' => 'Network & Security', 'icon' => '🛡️', 'color' => '#e83e8c']
+        'performance' => ['name' => 'Performance Analysis', 'icon' => '⚡', 'color' => '#ffc107'],
+        'network' => ['name' => 'Network & Security', 'icon' => '🛡️', 'color' => '#e83e8c'],
+        'extensions' => ['name' => 'PHP Extensions', 'icon' => '🧩', 'color' => '#795548'],
+        'configuration' => ['name' => 'Server Configuration', 'icon' => '⚙️', 'color' => '#607d8b'],
+        'optimization' => ['name' => 'Optimization Tests', 'icon' => '🚀', 'color' => '#ff5722'],
+        'monitoring' => ['name' => 'System Monitoring', 'icon' => '📈', 'color' => '#009688'],
+        'backup' => ['name' => 'Backup Systems', 'icon' => '💾', 'color' => '#3f51b5'],
+        'email' => ['name' => 'Email Configuration', 'icon' => '📧', 'color' => '#ff9800'],
+        'logs' => ['name' => 'Log Analysis', 'icon' => '📋', 'color' => '#795548'],
+        'maintenance' => ['name' => 'Maintenance Tools', 'icon' => '🔨', 'color' => '#9e9e9e']
     ];
     
     public function __construct() {
@@ -288,7 +360,14 @@ class AdvancedServerTester {
         $this->testFileStructure();
         $this->testPerformance();
         $this->testNetworkSecurity();
-        $this->testSystemConfiguration();
+        $this->testPHPExtensions();
+        $this->testServerConfiguration();
+        $this->testOptimizationFeatures();
+        $this->testSystemMonitoring();
+        $this->testBackupSystems();
+        $this->testEmailConfiguration();
+        $this->testLogAnalysis();
+        $this->testMaintenanceTools();
         
         $this->renderAdvancedSummary();
         $this->renderAdvancedFooter();
@@ -2398,7 +2477,302 @@ class AdvancedServerTester {
         }
     }
     
-    // Continue with all other enhanced test methods...
+    // ========================================
+    // NEW ENHANCED TEST METHODS
+    // ========================================
+    
+    private function testPHPExtensions() {
+        $this->renderSection('🧩 PHP Extensions Analysis', 'extensions');
+        
+        $requiredExtensions = [
+            'pdo' => 'Database connectivity',
+            'pdo_mysql' => 'MySQL database support',
+            'mysqli' => 'MySQL improved extension',
+            'curl' => 'HTTP client functionality',
+            'json' => 'JSON data handling',
+            'mbstring' => 'Multibyte string support',
+            'openssl' => 'SSL/TLS encryption',
+            'zip' => 'Archive handling',
+            'gd' => 'Image processing',
+            'fileinfo' => 'File type detection'
+        ];
+        
+        $optionalExtensions = [
+            'redis' => 'Redis caching support',
+            'memcached' => 'Memcached support',
+            'imagick' => 'Advanced image processing',
+            'xdebug' => 'Development debugging',
+            'opcache' => 'PHP opcode caching',
+            'intl' => 'Internationalization support'
+        ];
+        
+        // Test required extensions
+        foreach ($requiredExtensions as $ext => $description) {
+            if (extension_loaded($ext)) {
+                $version = phpversion($ext) ?: 'Unknown';
+                $this->addResult('extensions', "Required: $ext", 'PASS', 
+                    "$description (v$version)");
+            } else {
+                $this->addResult('extensions', "Required: $ext", 'FAIL', 
+                    "$description - Extension missing");
+            }
+        }
+        
+        // Test optional extensions
+        foreach ($optionalExtensions as $ext => $description) {
+            if (extension_loaded($ext)) {
+                $version = phpversion($ext) ?: 'Unknown';
+                $this->addResult('extensions', "Optional: $ext", 'PASS', 
+                    "$description (v$version)");
+            } else {
+                $this->addResult('extensions', "Optional: $ext", 'INFO', 
+                    "$description - Not installed");
+            }
+        }
+        
+        // Extension count summary
+        $loadedCount = count(get_loaded_extensions());
+        $this->addResult('extensions', 'Total Extensions', 'INFO', 
+            "$loadedCount extensions loaded");
+    }
+    
+    private function testServerConfiguration() {
+        $this->renderSection('⚙️ Server Configuration Analysis', 'configuration');
+        
+        // Web server information
+        $serverSoftware = $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown';
+        $this->addResult('configuration', 'Web Server', 'INFO', $serverSoftware);
+        
+        // PHP SAPI
+        $sapi = php_sapi_name();
+        $this->addResult('configuration', 'PHP SAPI', 'INFO', $sapi);
+        
+        // Important PHP settings
+        $importantSettings = [
+            'memory_limit' => ['type' => 'memory', 'recommended' => '256M'],
+            'max_execution_time' => ['type' => 'time', 'recommended' => '300'],
+            'upload_max_filesize' => ['type' => 'memory', 'recommended' => '10M'],
+            'post_max_size' => ['type' => 'memory', 'recommended' => '10M'],
+            'max_input_vars' => ['type' => 'number', 'recommended' => '3000']
+        ];
+        
+        foreach ($importantSettings as $setting => $info) {
+            $current = ini_get($setting);
+            $status = 'INFO';
+            $message = "Current: $current";
+            
+            if ($info['type'] === 'memory') {
+                $currentBytes = $this->parseMemorySize($current);
+                $recommendedBytes = $this->parseMemorySize($info['recommended']);
+                if ($currentBytes >= $recommendedBytes) {
+                    $status = 'PASS';
+                    $message .= " (adequate)";
+                } else {
+                    $status = 'WARN';
+                    $message .= " (recommended: {$info['recommended']})";
+                }
+            }
+            
+            $this->addResult('configuration', "PHP Setting: $setting", $status, $message);
+        }
+    }
+    
+    private function testOptimizationFeatures() {
+        $this->renderSection('🚀 Optimization Features', 'optimization');
+        
+        // OPcache status
+        if (extension_loaded('Zend OPcache')) {
+            $opcacheStatus = opcache_get_status();
+            if ($opcacheStatus && $opcacheStatus['opcache_enabled']) {
+                $hitRate = round($opcacheStatus['opcache_statistics']['opcache_hit_rate'], 2);
+                $this->addResult('optimization', 'OPcache', 'PASS', 
+                    "Enabled - Hit rate: {$hitRate}%");
+            } else {
+                $this->addResult('optimization', 'OPcache', 'WARN', 
+                    'Extension loaded but disabled');
+            }
+        } else {
+            $this->addResult('optimization', 'OPcache', 'WARN', 
+                'Not available - Consider enabling for better performance');
+        }
+        
+        // Memory usage optimization
+        $memoryUsage = memory_get_usage(true);
+        $peakMemory = memory_get_peak_usage(true);
+        $this->addResult('optimization', 'Memory Usage', 'INFO', 
+            "Current: " . $this->formatBytes($memoryUsage) . 
+            " | Peak: " . $this->formatBytes($peakMemory));
+    }
+    
+    private function testSystemMonitoring() {
+        $this->renderSection('📈 System Monitoring', 'monitoring');
+        
+        // Load average (Unix systems)
+        if (function_exists('sys_getloadavg')) {
+            $load = sys_getloadavg();
+            $loadStr = implode(', ', array_map(fn($l) => round($l, 2), $load));
+            $status = $load[0] > 2.0 ? 'WARN' : 'PASS';
+            $this->addResult('monitoring', 'System Load', $status, 
+                "1min, 5min, 15min: $loadStr");
+        }
+        
+        // Disk space
+        if (function_exists('disk_free_space')) {
+            $freeBytes = disk_free_space(__DIR__);
+            $totalBytes = disk_total_space(__DIR__);
+            $usedPercent = round((($totalBytes - $freeBytes) / $totalBytes) * 100, 1);
+            
+            $status = $usedPercent > 90 ? 'WARN' : ($usedPercent > 80 ? 'INFO' : 'PASS');
+            $this->addResult('monitoring', 'Disk Usage', $status, 
+                "{$usedPercent}% used (" . $this->formatBytes($freeBytes) . " free)");
+        }
+        
+        // Process information
+        if (function_exists('getmypid')) {
+            $pid = getmypid();
+            $this->addResult('monitoring', 'Process ID', 'INFO', "PID: $pid");
+        }
+    }
+    
+    private function testBackupSystems() {
+        $this->renderSection('💾 Backup Systems', 'backup');
+        
+        // Check for backup directories
+        $backupDirs = [
+            __DIR__ . '/backups',
+            __DIR__ . '/backup',
+            __DIR__ . '/../backups',
+            __DIR__ . '/../backup'
+        ];
+        
+        $backupDirFound = false;
+        foreach ($backupDirs as $dir) {
+            if (is_dir($dir)) {
+                $files = glob($dir . '/*');
+                $fileCount = count($files);
+                $this->addResult('backup', 'Backup Directory', 'PASS', 
+                    "Found: $dir ($fileCount files)");
+                $backupDirFound = true;
+                break;
+            }
+        }
+        
+        if (!$backupDirFound) {
+            $this->addResult('backup', 'Backup Directory', 'WARN', 
+                'No backup directory found');
+        }
+        
+        // Check database backup capability
+        if ($this->db) {
+            $this->addResult('backup', 'Database Backup', 'INFO', 
+                'Database connection available for backup');
+        } else {
+            $this->addResult('backup', 'Database Backup', 'WARN', 
+                'No database connection for backup');
+        }
+    }
+    
+    private function testEmailConfiguration() {
+        $this->renderSection('📧 Email Configuration', 'email');
+        
+        // Check mail function
+        if (function_exists('mail')) {
+            $this->addResult('email', 'Mail Function', 'PASS', 
+                'PHP mail() function available');
+        } else {
+            $this->addResult('email', 'Mail Function', 'FAIL', 
+                'PHP mail() function not available');
+        }
+        
+        // Check SMTP settings from config
+        if (defined('SMTP_HOST')) {
+            $this->addResult('email', 'SMTP Configuration', 'PASS', 
+                'SMTP host configured: ' . SMTP_HOST);
+        } else {
+            $this->addResult('email', 'SMTP Configuration', 'WARN', 
+                'SMTP not configured');
+        }
+        
+        // Check PHPMailer if available
+        if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
+            $this->addResult('email', 'PHPMailer', 'PASS', 
+                'PHPMailer library available');
+        } else {
+            $this->addResult('email', 'PHPMailer', 'INFO', 
+                'PHPMailer not found - using basic mail()');
+        }
+    }
+    
+    private function testLogAnalysis() {
+        $this->renderSection('📋 Log Analysis', 'logs');
+        
+        // Check log directories
+        $logDirs = [
+            __DIR__ . '/logs',
+            __DIR__ . '/../logs'
+        ];
+        
+        foreach ($logDirs as $logDir) {
+            if (is_dir($logDir) && is_readable($logDir)) {
+                $files = glob($logDir . '/*.log');
+                $this->addResult('logs', 'Log Directory', 'PASS', 
+                    "$logDir (" . count($files) . " log files)");
+                break;
+            }
+        }
+        
+        // Check PHP error log
+        $errorLog = ini_get('error_log');
+        if ($errorLog && file_exists($errorLog)) {
+            $size = filesize($errorLog);
+            $status = $size > 10485760 ? 'WARN' : 'INFO'; // 10MB
+            $this->addResult('logs', 'PHP Error Log', $status, 
+                "Size: " . $this->formatBytes($size));
+        }
+    }
+    
+    private function testMaintenanceTools() {
+        $this->renderSection('🔨 Maintenance Tools', 'maintenance');
+        
+        // Check for maintenance mode
+        $maintenanceFiles = [
+            __DIR__ . '/maintenance.php',
+            __DIR__ . '/.maintenance',
+            __DIR__ . '/maintenance.html'
+        ];
+        
+        $maintenanceActive = false;
+        foreach ($maintenanceFiles as $file) {
+            if (file_exists($file)) {
+                $this->addResult('maintenance', 'Maintenance Mode', 'INFO', 
+                    "Maintenance file exists: " . basename($file));
+                $maintenanceActive = true;
+            }
+        }
+        
+        if (!$maintenanceActive) {
+            $this->addResult('maintenance', 'Maintenance Mode', 'PASS', 
+                'No maintenance mode active');
+        }
+    }
+    
+    // ========================================
+    // UTILITY METHODS FOR NEW TESTS
+    // ========================================
+    
+    private function parseMemorySize($size) {
+        $size = trim($size);
+        $last = strtolower($size[strlen($size)-1]);
+        $size = (int)$size;
+        
+        switch($last) {
+            case 'g': $size *= 1024;
+            case 'm': $size *= 1024;
+            case 'k': $size *= 1024;
+        }
+        
+        return $size;
+    }
     
     private function renderSection($title, $category) {
         $categoryInfo = $this->testCategories[$category] ?? ['icon' => '🔧', 'color' => '#007bff'];
