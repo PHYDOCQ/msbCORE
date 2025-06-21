@@ -115,8 +115,18 @@ class Auth {
     }
     
     public function isLoggedIn() {
+        debugLog([
+            'session_logged_in' => $_SESSION['logged_in'] ?? 'not_set',
+            'session_user_id' => $_SESSION['user_id'] ?? 'not_set',
+            'session_last_activity' => $_SESSION['last_activity'] ?? 'not_set',
+            'current_time' => time(),
+            'session_lifetime' => SESSION_LIFETIME,
+            'has_remember_cookie' => isset($_COOKIE['remember_token'])
+        ], 'AUTH_IS_LOGGED_IN_CHECK');
+        
         // Check session
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+            debugLog(['status' => 'session_logged_in_true'], 'AUTH_SESSION_CHECK');
             // Check session expiry
             if (isset($_SESSION['last_activity'])) {
                 if (time() - $_SESSION['last_activity'] > SESSION_LIFETIME) {
@@ -137,7 +147,16 @@ class Auth {
     }
     
     public function requireLogin($redirectTo = '/login.php') {
+        debugLog([
+            'method' => 'requireLogin',
+            'current_url' => $_SERVER['REQUEST_URI'] ?? '',
+            'session_data' => $_SESSION,
+            'is_logged_in' => $this->isLoggedIn()
+        ], 'AUTH_REQUIRE_LOGIN');
+        
         if (!$this->isLoggedIn()) {
+            debugLog(['reason' => 'not_logged_in', 'redirecting_to' => $redirectTo], 'AUTH_REDIRECT');
+            
             if ($this->isAjaxRequest()) {
                 http_response_code(401);
                 header('Content-Type: application/json');
@@ -148,6 +167,8 @@ class Auth {
                 header('Location: ' . $redirectTo . '?redirect=' . urlencode($currentUrl));
                 exit;
             }
+        } else {
+            debugLog(['status' => 'authenticated', 'user_id' => $_SESSION['user_id'] ?? null], 'AUTH_PASSED');
         }
     }
     
