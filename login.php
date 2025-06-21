@@ -19,19 +19,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         try {
             $db = Database::getInstance();
-            $user = $db->selectOne(
-                "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
-                [$username, $username]
-            );
+             $user = $db->selectOne(
+                 "SELECT id, username, email, password_hash, full_name, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+                 [$username, $username]
+             );
 
             if ($user && password_verify($password, $user['password_hash'])) {
                 debugLog(['user_id' => $user['id'], 'username' => $user['username']], 'LOGIN_SUCCESS');
                 
+                // Use Auth class to properly set session
+                session_regenerate_id(true);
+                $_SESSION['logged_in'] = true;
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['full_name'] = $user['full_name'] ?? $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['role'] = $user['role'];
+                $_SESSION['last_activity'] = time();
                 $_SESSION['login_time'] = time();
+                
+                debugLog(['session_set' => $_SESSION], 'LOGIN_SESSION_SET');
                 
                 // Update last login
                 $db->update(
@@ -41,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     [$user['id']]
                 );
                 
+                debugLog(['redirect_target' => 'home/index.php', 'session_data' => $_SESSION], 'LOGIN_REDIRECT');
                 header('Location: home/index.php');
                 exit();
             } else {
