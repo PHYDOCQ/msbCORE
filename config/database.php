@@ -1,7 +1,7 @@
 <?php
 // Simple database configuration for testing
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'garage_management');
+define('DB_NAME', 'msbcore_bengkel');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 

@@ -27,3 +27,160 @@ Stack trace:
 #1 /storage/emulated/0/htdocs/test_server.php(2784): AdvancedServerTester->runAllTests()
 #2 {main}
   thrown in /storage/emulated/0/htdocs/test_server.php on line 1721
+[21-Jun-2025 21:47:50 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
+[21-Jun-2025 21:47:50 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "DATABASE_NAME" in /storage/emulated/0/htdocs/test_server.php:1721
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(281): AdvancedServerTester->testDatabaseMethods()
+#1 /storage/emulated/0/htdocs/test_server.php(2784): AdvancedServerTester->runAllTests()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 1721
+[21-Jun-2025 22:29:07 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:29:07 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:29:07 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:29:07 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:29:07 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/test_server.php:330
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(136): AdvancedServerTester->initializeDatabase()
+#1 /storage/emulated/0/htdocs/test_server.php(3157): AdvancedServerTester->__construct()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 330
+[21-Jun-2025 22:29:12 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:29:12 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:29:12 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:29:12 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:29:12 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/test_server.php:330
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(136): AdvancedServerTester->initializeDatabase()
+#1 /storage/emulated/0/htdocs/test_server.php(3157): AdvancedServerTester->__construct()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 330
+[21-Jun-2025 22:29:25 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:29:25 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:29:25 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:29:25 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:29:25 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:29:29 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:29:29 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:29:29 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:29:29 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:29:29 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:29:55 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:29:55 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:29:55 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:29:55 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:29:55 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:30:06 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:30:06 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:30:06 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:30:06 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:30:06 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:30:13 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:30:13 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:30:13 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:30:13 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:30:19 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:30:19 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:30:19 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:30:19 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:30:19 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/login.php:21
+Stack trace:
+#0 {main}
+  thrown in /storage/emulated/0/htdocs/login.php on line 21
+[21-Jun-2025 22:30:24 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:30:24 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:30:24 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:30:24 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:30:24 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/login.php:21
+Stack trace:
+#0 {main}
+  thrown in /storage/emulated/0/htdocs/login.php on line 21
+[21-Jun-2025 22:32:35 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:32:35 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:32:35 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:32:35 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:32:35 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:32:39 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:32:39 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:32:39 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:32:39 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:32:39 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:32:45 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:32:45 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:32:45 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:32:45 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:32:45 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:32:54 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:32:54 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:32:54 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:32:54 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:32:54 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:33:13 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:33:13 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:33:13 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:33:13 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:33:13 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/includes/functions.php:371
+Stack trace:
+#0 /storage/emulated/0/htdocs/includes/footer.php(106): Utils::logActivity('page_view', 2, 'view', '/')
+#1 /storage/emulated/0/htdocs/index.php(19): require_once('/storage/emulat...')
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/includes/functions.php on line 371
+[21-Jun-2025 22:33:22 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:33:22 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:33:22 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:33:22 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:33:22 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/test_server.php:330
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(136): AdvancedServerTester->initializeDatabase()
+#1 /storage/emulated/0/htdocs/test_server.php(3157): AdvancedServerTester->__construct()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 330
+[21-Jun-2025 22:33:24 Asia/Jakarta] PHP Warning:  Constant DB_HOST already defined in /storage/emulated/0/htdocs/config/database.php on line 3
+[21-Jun-2025 22:33:24 Asia/Jakarta] PHP Warning:  Constant DB_NAME already defined in /storage/emulated/0/htdocs/config/database.php on line 4
+[21-Jun-2025 22:33:24 Asia/Jakarta] PHP Warning:  Constant DB_USER already defined in /storage/emulated/0/htdocs/config/database.php on line 5
+[21-Jun-2025 22:33:24 Asia/Jakarta] PHP Warning:  Constant DB_PASS already defined in /storage/emulated/0/htdocs/config/database.php on line 6
+[21-Jun-2025 22:33:24 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method Database::getInstance() in /storage/emulated/0/htdocs/test_server.php:330
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(136): AdvancedServerTester->initializeDatabase()
+#1 /storage/emulated/0/htdocs/test_server.php(3157): AdvancedServerTester->__construct()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 330

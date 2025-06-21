@@ -2434,3 +2434,3124 @@
     "page": "login",
     "method": "GET"
 }
+[2025-06-21 19:52:27] DB: Database connection established successfully
+[2025-06-21 19:52:27] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:52:30] DB: Database connection established successfully
+[2025-06-21 19:52:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:52:30] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:52:30] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:52:30] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:30] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:30] DB_PERF: Query executed in 0.0011990070343018s
+[2025-06-21 19:52:30] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:52:30] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:52:30] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:52:30"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:52:30] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:52:30",
+        2
+    ]
+}
+[2025-06-21 19:52:30] DB_PERF: Query executed in 0.0069489479064941s
+[2025-06-21 19:52:30] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:52:30] DB: Database connection established successfully
+[2025-06-21 19:52:30] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:52:30] DB: Database connection established successfully
+[2025-06-21 19:52:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:52:35] DB: Database connection established successfully
+[2025-06-21 19:52:35] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:52:35] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:52:35] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:52:35] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:35] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:35] DB_PERF: Query executed in 0.00074219703674316s
+[2025-06-21 19:52:35] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:52:35] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:52:35] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:52:35"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:52:35] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:52:35",
+        2
+    ]
+}
+[2025-06-21 19:52:35] DB_PERF: Query executed in 0.0026669502258301s
+[2025-06-21 19:52:35] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:52:35] DB: Database connection established successfully
+[2025-06-21 19:52:36] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:52:36] DB: Database connection established successfully
+[2025-06-21 19:52:36] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:52:37] DB: Database connection established successfully
+[2025-06-21 19:52:37] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:52:37] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:52:37] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:52:37] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:37] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:37] DB_PERF: Query executed in 0.00048685073852539s
+[2025-06-21 19:52:37] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:52:38] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:52:38] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:52:38"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:52:38] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:52:38",
+        2
+    ]
+}
+[2025-06-21 19:52:38] DB_PERF: Query executed in 0.014194965362549s
+[2025-06-21 19:52:38] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:52:38] DB: Database connection established successfully
+[2025-06-21 19:52:38] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:52:38] DB: Database connection established successfully
+[2025-06-21 19:52:38] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:52:53] DB: Database connection established successfully
+[2025-06-21 19:52:53] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:52:53] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:52:53] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:52:53] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:53] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:52:53] DB_PERF: Query executed in 0.00048518180847168s
+[2025-06-21 19:52:53] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:52:53] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:52:53] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:52:53"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:52:53] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:52:53",
+        2
+    ]
+}
+[2025-06-21 19:52:53] DB_PERF: Query executed in 0.0091249942779541s
+[2025-06-21 19:52:53] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:52:53] DB: Database connection established successfully
+[2025-06-21 19:52:53] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:52:54] DB: Database connection established successfully
+[2025-06-21 19:52:54] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:53:04] DB: Database connection established successfully
+[2025-06-21 19:53:04] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:53:06] DB: Database connection established successfully
+[2025-06-21 19:53:06] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:53:06] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:53:06] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:53:06] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:53:06] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:53:06] DB_PERF: Query executed in 0.0010838508605957s
+[2025-06-21 19:53:06] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:53:06] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:53:06] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:53:06"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:53:06] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:53:06",
+        2
+    ]
+}
+[2025-06-21 19:53:06] DB_PERF: Query executed in 0.0058789253234863s
+[2025-06-21 19:53:06] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:53:06] DB: Database connection established successfully
+[2025-06-21 19:53:06] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:53:06] DB: Database connection established successfully
+[2025-06-21 19:53:06] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:53:08] DB: Database connection established successfully
+[2025-06-21 19:53:08] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:53:08] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:53:08] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:53:08] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:53:08] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:53:08] DB_PERF: Query executed in 0.0035150051116943s
+[2025-06-21 19:53:08] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:53:08] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:53:08] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:53:08"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:53:08] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:53:08",
+        2
+    ]
+}
+[2025-06-21 19:53:08] DB_PERF: Query executed in 0.0023291110992432s
+[2025-06-21 19:53:08] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:53:08] DB: Database connection established successfully
+[2025-06-21 19:53:08] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:53:08] DB: Database connection established successfully
+[2025-06-21 19:53:08] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:28] DB: Database connection established successfully
+[2025-06-21 19:56:28] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:30] DB: Database connection established successfully
+[2025-06-21 19:56:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:56:30] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:56:30] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:56:30] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:30] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:30] DB_PERF: Query executed in 0.00050687789916992s
+[2025-06-21 19:56:30] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:56:30] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:56:30] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:56:30"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:56:30] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:56:30",
+        2
+    ]
+}
+[2025-06-21 19:56:30] DB_PERF: Query executed in 0.006619930267334s
+[2025-06-21 19:56:30] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:56:30] DB: Database connection established successfully
+[2025-06-21 19:56:30] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:56:30] DB: Database connection established successfully
+[2025-06-21 19:56:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:32] DB: Database connection established successfully
+[2025-06-21 19:56:32] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:56:32] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:56:32] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:56:32] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:32] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:32] DB_PERF: Query executed in 0.0011329650878906s
+[2025-06-21 19:56:32] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:56:32] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:56:32] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:56:32"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:56:32] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:56:32",
+        2
+    ]
+}
+[2025-06-21 19:56:32] DB_PERF: Query executed in 0.0094881057739258s
+[2025-06-21 19:56:32] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:56:32] DB: Database connection established successfully
+[2025-06-21 19:56:32] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:56:32] DB: Database connection established successfully
+[2025-06-21 19:56:32] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:34] DB: Database connection established successfully
+[2025-06-21 19:56:34] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:56:34] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:56:34] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:56:34] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:34] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:34] DB_PERF: Query executed in 0.00051307678222656s
+[2025-06-21 19:56:34] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:56:34] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:56:34] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:56:34"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:56:34] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:56:34",
+        2
+    ]
+}
+[2025-06-21 19:56:34] DB_PERF: Query executed in 0.0014870166778564s
+[2025-06-21 19:56:34] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:56:34] DB: Database connection established successfully
+[2025-06-21 19:56:34] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:56:34] DB: Database connection established successfully
+[2025-06-21 19:56:34] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:45] DB: Database connection established successfully
+[2025-06-21 19:56:45] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:56:47] DB: Database connection established successfully
+[2025-06-21 19:56:47] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:56:47] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:56:47] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:56:47] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:47] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:56:47] DB_PERF: Query executed in 0.00046300888061523s
+[2025-06-21 19:56:47] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:56:47] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:56:47] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:56:47"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:56:47] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:56:47",
+        2
+    ]
+}
+[2025-06-21 19:56:47] DB_PERF: Query executed in 0.032127141952515s
+[2025-06-21 19:56:47] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:56:47] DB: Database connection established successfully
+[2025-06-21 19:56:47] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:56:47] DB: Database connection established successfully
+[2025-06-21 19:56:47] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:01:16] DB: Database connection established successfully
+[2025-06-21 21:01:16] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:01:18] DB: Database connection established successfully
+[2025-06-21 21:01:18] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 21:01:18] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 21:01:18] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 21:01:18] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:01:18] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:01:18] DB_PERF: Query executed in 0.00076818466186523s
+[2025-06-21 21:01:18] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:01:18] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 21:01:18] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 21:01:18"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 21:01:18] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 21:01:18",
+        2
+    ]
+}
+[2025-06-21 21:01:18] DB_PERF: Query executed in 0.0072159767150879s
+[2025-06-21 21:01:18] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 21:01:18] DB: Database connection established successfully
+[2025-06-21 21:01:19] DB: Database connection established successfully
+[2025-06-21 21:01:19] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:01:23] DB: Database connection established successfully
+[2025-06-21 21:01:23] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 21:01:23] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 21:01:23] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 21:01:23] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:01:23] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:01:23] DB_PERF: Query executed in 0.0005500316619873s
+[2025-06-21 21:01:23] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:01:23] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 21:01:23] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 21:01:23"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 21:01:23] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 21:01:23",
+        2
+    ]
+}
+[2025-06-21 21:01:23] DB_PERF: Query executed in 0.0068709850311279s
+[2025-06-21 21:01:23] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 21:01:23] DB: Database connection established successfully
+[2025-06-21 21:01:24] DB: Database connection established successfully
+[2025-06-21 21:01:24] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:03:50] DB: Database connection established successfully
+[2025-06-21 21:03:50] DB: Database connection established successfully
+[2025-06-21 21:03:50] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:03:53] DB: Database connection established successfully
+[2025-06-21 21:03:53] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 21:03:53] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 21:03:53] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 21:03:53] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:03:53] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:03:53] DB_PERF: Query executed in 0.0071959495544434s
+[2025-06-21 21:03:53] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:03:53] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 21:03:53] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 21:03:53"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 21:03:53] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 21:03:53",
+        2
+    ]
+}
+[2025-06-21 21:03:53] DB_PERF: Query executed in 0.0085990428924561s
+[2025-06-21 21:03:53] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 21:03:53] DB: Database connection established successfully
+[2025-06-21 21:03:53] DB: Database connection established successfully
+[2025-06-21 21:03:53] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:04:04] DB: Database connection established successfully
+[2025-06-21 21:04:04] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 21:04:04] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 21:04:04] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 21:04:04] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:04:04] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:04:04] DB_PERF: Query executed in 0.0012850761413574s
+[2025-06-21 21:04:04] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:04:04] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 21:04:04] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 21:04:04"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 21:04:04] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 21:04:04",
+        2
+    ]
+}
+[2025-06-21 21:04:04] DB_PERF: Query executed in 0.0073721408843994s
+[2025-06-21 21:04:04] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 21:04:04] DB: Database connection established successfully
+[2025-06-21 21:04:05] DB: Database connection established successfully
+[2025-06-21 21:04:05] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:41:28] DB: Database connection established successfully
+[2025-06-21 21:41:28] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 21:41:30] DB: Database connection established successfully
+[2025-06-21 21:41:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 21:41:30] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 21:41:30] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 21:41:30] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, full_name, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:41:30] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, full_name, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 21:41:30] DB_PERF: Query executed in 0.0087978839874268s
+[2025-06-21 21:41:30] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:41:30] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 21:41:30] LOGIN_SESSION_SET: {
+    "session_set": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516890
+    }
+}
+[2025-06-21 21:41:30] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 21:41:30"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 21:41:30] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 21:41:30",
+        2
+    ]
+}
+[2025-06-21 21:41:30] DB_PERF: Query executed in 0.01259183883667s
+[2025-06-21 21:41:30] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 21:41:30] LOGIN_REDIRECT: {
+    "redirect_target": "home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516890
+    }
+}
+[2025-06-21 21:41:31] DB: Database connection established successfully
+[2025-06-21 21:41:31] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516890,
+    "current_time": 1750516891,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:31] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:31] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516890
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:41:31] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516891,
+    "current_time": 1750516891,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:31] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:31] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:41:31] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516891,
+    "current_time": 1750516891,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:31] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:31] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516891,
+    "current_time": 1750516891,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:31] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:31] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:41:32] DB: Database connection established successfully
+[2025-06-21 21:41:32] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:41:32] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516891,
+    "current_time": 1750516892,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:32] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:32] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516891,
+        "csrf_token": "c1ced3f4b50d04859f377f2bf11d5d46",
+        "csrf_token_time": 1750516891
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:41:32] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516892,
+    "current_time": 1750516892,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:41:32] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:41:32] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:41:32] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:41:32] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:41:32] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:41:32] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:42:00] DB: Database connection established successfully
+[2025-06-21 21:42:00] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516892,
+    "current_time": 1750516920,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:00] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:00] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516892,
+        "csrf_token": "c1ced3f4b50d04859f377f2bf11d5d46",
+        "csrf_token_time": 1750516891
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:42:00] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516920,
+    "current_time": 1750516920,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:00] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:00] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:42:00] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516920,
+    "current_time": 1750516920,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:00] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:00] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516920,
+    "current_time": 1750516920,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:00] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:00] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:42:01] DB: Database connection established successfully
+[2025-06-21 21:42:01] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:42:01] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516920,
+    "current_time": 1750516921,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:01] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:01] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516920,
+        "csrf_token": "26f430870a548d07d8f2dd90665d8104",
+        "csrf_token_time": 1750516920
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:42:01] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516921,
+    "current_time": 1750516921,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:01] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:01] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:42:01] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:42:01] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:42:01] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:42:01] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:42:10] DB: Database connection established successfully
+[2025-06-21 21:42:10] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516921,
+    "current_time": 1750516930,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:10] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:10] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516921,
+        "csrf_token": "26f430870a548d07d8f2dd90665d8104",
+        "csrf_token_time": 1750516920
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:42:10] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516930,
+    "current_time": 1750516930,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:10] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:10] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:42:10] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516930,
+    "current_time": 1750516930,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:10] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:10] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516930,
+    "current_time": 1750516930,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:10] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:10] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:42:11] DB: Database connection established successfully
+[2025-06-21 21:42:11] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:42:11] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516930,
+    "current_time": 1750516931,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:11] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:11] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516930,
+        "csrf_token": "f6155adad43769d2fc9bfbbd0c7a7c2b",
+        "csrf_token_time": 1750516930
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:42:11] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516931,
+    "current_time": 1750516931,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:42:11] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:42:11] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:42:11] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:42:11] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:42:11] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:42:11] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:12] DB: Database connection established successfully
+[2025-06-21 21:45:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750516931,
+    "current_time": 1750517112,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:12] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750516931,
+        "csrf_token": "f6155adad43769d2fc9bfbbd0c7a7c2b",
+        "csrf_token_time": 1750516930
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517112,
+    "current_time": 1750517112,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:12] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517112,
+    "current_time": 1750517112,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517112,
+    "current_time": 1750517112,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:12] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:13] DB: Database connection established successfully
+[2025-06-21 21:45:13] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517112,
+    "current_time": 1750517113,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:13] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517112,
+        "csrf_token": "b6ee64b354284f398a8368cd1866d066",
+        "csrf_token_time": 1750517112
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517113,
+    "current_time": 1750517113,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:13] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:13] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:13] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:13] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:13] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:14] DB: Database connection established successfully
+[2025-06-21 21:45:14] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517113,
+    "current_time": 1750517114,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:14] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:14] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517113,
+        "csrf_token": "b6ee64b354284f398a8368cd1866d066",
+        "csrf_token_time": 1750517112
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:14] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517114,
+    "current_time": 1750517114,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:14] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:14] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:14] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517114,
+    "current_time": 1750517114,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:14] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:14] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517114,
+    "current_time": 1750517114,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:14] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:14] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:15] DB: Database connection established successfully
+[2025-06-21 21:45:15] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:15] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517114,
+    "current_time": 1750517115,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:15] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:15] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517114,
+        "csrf_token": "68806628f38d59ac61985299a564a166",
+        "csrf_token_time": 1750517114
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:15] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517115,
+    "current_time": 1750517115,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:15] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:15] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:15] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:15] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:15] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:15] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:49] DB: Database connection established successfully
+[2025-06-21 21:45:49] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517115,
+    "current_time": 1750517149,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:49] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:49] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517115,
+        "csrf_token": "68806628f38d59ac61985299a564a166",
+        "csrf_token_time": 1750517114
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:49] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517149,
+    "current_time": 1750517149,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:49] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:49] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:49] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517149,
+    "current_time": 1750517149,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:49] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:49] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517149,
+    "current_time": 1750517149,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:49] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:49] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:50] DB: Database connection established successfully
+[2025-06-21 21:45:50] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517149,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517149,
+        "csrf_token": "9d8f1894d5a7d34103cf14f8abd7bd46",
+        "csrf_token_time": 1750517149
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:50] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:50] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:50] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:50] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:50] DB: Database connection established successfully
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517150,
+        "csrf_token": "9d8f1894d5a7d34103cf14f8abd7bd46",
+        "csrf_token_time": 1750517149
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517150,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:50] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:50] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:51] DB: Database connection established successfully
+[2025-06-21 21:45:51] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:51] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517150,
+    "current_time": 1750517151,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:51] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:51] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517150,
+        "csrf_token": "a6b3feb25be06e13d0e0241b0a3c5b44",
+        "csrf_token_time": 1750517150
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:51] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517151,
+    "current_time": 1750517151,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:51] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:51] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:51] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:51] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:51] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:51] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:52] DB: Database connection established successfully
+[2025-06-21 21:45:52] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517151,
+    "current_time": 1750517152,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:52] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:52] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517151,
+        "csrf_token": "a6b3feb25be06e13d0e0241b0a3c5b44",
+        "csrf_token_time": 1750517150
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:52] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517152,
+    "current_time": 1750517152,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:52] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:52] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:52] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517152,
+    "current_time": 1750517152,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:52] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:52] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517152,
+    "current_time": 1750517152,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:52] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:52] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:53] DB: Database connection established successfully
+[2025-06-21 21:45:53] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:53] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517152,
+    "current_time": 1750517153,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:53] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:53] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517152,
+        "csrf_token": "5899a2186707869681de085574718217",
+        "csrf_token_time": 1750517152
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:53] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517153,
+    "current_time": 1750517153,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:53] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:53] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:53] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:53] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:53] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:53] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:45:57] DB: Database connection established successfully
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517153,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/home\/index.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517153,
+        "csrf_token": "5899a2186707869681de085574718217",
+        "csrf_token_time": 1750517152
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] ACTIVITY_LOG_ERROR: {
+    "error": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'msbcore_bengkel.activity_log' doesn't exist"
+}
+[2025-06-21 21:45:57] DB: Database connection established successfully
+[2025-06-21 21:45:57] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/api\/dashboard.php",
+    "session_data": {
+        "test_count": 2,
+        "last_test": "2025-06-21 17:44:17",
+        "total_tests": 2,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750517157,
+        "csrf_token": "da42184e23d54842d0d01483f66f17b3",
+        "csrf_token_time": 1750517157
+    },
+    "is_logged_in": true
+}
+[2025-06-21 21:45:57] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750517157,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 21:45:57] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 21:45:57] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 21:45:57] API_DASHBOARD_DATA: Starting dashboard data collection
+[2025-06-21 21:45:57] API_DASHBOARD_QUERY: {
+    "query": "work_order_status"
+}
+[2025-06-21 21:45:57] API_DASHBOARD_STATUS_RESULT: {
+    "result": {
+        "pending": 0,
+        "in_progress": 0,
+        "completed": 0,
+        "cancelled": 0,
+        "on_hold": 0
+    }
+}
+[2025-06-21 21:45:57] API_DASHBOARD_ERROR: {
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actual_completion_date' in 'field list'",
+    "trace": "#0 \/storage\/emulated\/0\/htdocs\/api\/dashboard.php(38): PDO->query('SELECT \\n       ...')\n#1 {main}"
+}
+[2025-06-21 21:47:50] DB: Database connection established successfully
+[2025-06-21 21:47:50] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.00019621849060059s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.001802921295166s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.026124000549316s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.0074930191040039s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.0026559829711914s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.10724496841431s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.007979154586792s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.012120962142944s
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.00042390823364258s
+[2025-06-21 21:47:50] DB_SELECT_ONE: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.00025105476379395s
+[2025-06-21 21:47:50] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 21:47:50] DB_SELECT: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_QUERY: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 21:47:50] DB_PERF: Query executed in 0.0003211498260498s
+[2025-06-21 21:47:50] DB_SELECT_RESULT: {
+    "count": 2
+}
+[2025-06-21 22:29:07] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750517157,
+    "current_time": 1750519747,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:07] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:07] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519747,
+    "current_time": 1750519747,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:07] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:07] ADMIN_SERVER_TEST_ACCESS: {
+    "admin_user": "admin",
+    "user_id": 2,
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:138.0) Gecko\/20100101 Firefox\/138.0"
+}
+[2025-06-21 22:29:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519747,
+    "current_time": 1750519752,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:12] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519752,
+    "current_time": 1750519752,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:12] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:12] ADMIN_SERVER_TEST_ACCESS: {
+    "admin_user": "admin",
+    "user_id": 2,
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla\/5.0 (X11; Linux x86_64; rv:138.0) Gecko\/20100101 Firefox\/138.0"
+}
+[2025-06-21 22:29:25] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519752,
+    "current_time": 1750519765,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:25] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:25] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519752,
+        "csrf_token": "da42184e23d54842d0d01483f66f17b3",
+        "csrf_token_time": 1750517157
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:29:25] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519765,
+    "current_time": 1750519765,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:25] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:25] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:29:25] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519765,
+    "current_time": 1750519765,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:25] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:25] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519765,
+    "current_time": 1750519765,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:25] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:29] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519765,
+    "current_time": 1750519769,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:29] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:29] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519765,
+        "csrf_token": "485beb9e4fec50e66978dda95d243ad1",
+        "csrf_token_time": 1750519765
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:29:29] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519769,
+    "current_time": 1750519769,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:29] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:29] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:29:29] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519769,
+    "current_time": 1750519769,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:29] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:29] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519769,
+    "current_time": 1750519769,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:29] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:55] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519769,
+    "current_time": 1750519795,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:55] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:55] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519769,
+        "csrf_token": "89ce1957385fce69edcde8a0b3153925",
+        "csrf_token_time": 1750519769
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:29:55] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519795,
+    "current_time": 1750519795,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:55] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:55] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:29:55] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519795,
+    "current_time": 1750519795,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:55] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:29:55] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519795,
+    "current_time": 1750519795,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:29:55] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:30:06] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519795,
+    "current_time": 1750519806,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:30:06] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:30:06] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519795,
+        "csrf_token": "6a780cd46e52f2f9b919f0019b993e3e",
+        "csrf_token_time": 1750519795
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:30:06] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519806,
+    "current_time": 1750519806,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:30:06] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:30:06] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:30:06] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519806,
+    "current_time": 1750519806,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:30:06] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:30:06] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519806,
+    "current_time": 1750519806,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:30:06] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:30:13] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 22:30:19] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 22:30:19] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 22:30:19] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 22:30:24] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 22:30:24] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 22:30:24] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 22:32:35] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519806,
+    "current_time": 1750519955,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:35] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:35] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519806,
+        "csrf_token": "e80d6ae9cf4025a670ccceb0651ce7ef",
+        "csrf_token_time": 1750519806
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:32:35] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519955,
+    "current_time": 1750519955,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:35] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:35] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:32:35] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519955,
+    "current_time": 1750519955,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:35] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:35] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519955,
+    "current_time": 1750519955,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:35] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:39] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519955,
+    "current_time": 1750519959,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:39] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:39] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519955,
+        "csrf_token": "5d0b118de01c7d9f5ff869cfe01ab527",
+        "csrf_token_time": 1750519955
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:32:39] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519959,
+    "current_time": 1750519959,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:39] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:39] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:32:39] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519959,
+    "current_time": 1750519959,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:39] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:39] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519959,
+    "current_time": 1750519959,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:39] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:45] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519959,
+    "current_time": 1750519965,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:45] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:45] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519959,
+        "csrf_token": "263446efee16e194e2045227204244fb",
+        "csrf_token_time": 1750519959
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:32:45] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519965,
+    "current_time": 1750519965,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:45] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:45] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:32:45] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519965,
+    "current_time": 1750519965,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:45] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:45] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519965,
+    "current_time": 1750519965,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:45] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:54] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519965,
+    "current_time": 1750519974,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:54] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:54] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519965,
+        "csrf_token": "c63f5c6a05f86c921b223c6ff7dde6bd",
+        "csrf_token_time": 1750519965
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:32:54] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519974,
+    "current_time": 1750519974,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:54] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:54] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:32:54] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519974,
+    "current_time": 1750519974,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:54] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:32:54] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519974,
+    "current_time": 1750519974,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:32:54] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519974,
+    "current_time": 1750519993,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:13] AUTH_REQUIRE_LOGIN: {
+    "method": "requireLogin",
+    "current_url": "\/",
+    "session_data": {
+        "test_count": 3,
+        "last_test": "2025-06-21 21:47:50",
+        "total_tests": 3,
+        "user_id": 2,
+        "username": "admin",
+        "email": "admin@msbcore.com",
+        "role": "admin",
+        "login_time": 1750516890,
+        "logged_in": true,
+        "full_name": "System Administrator",
+        "last_activity": 1750519974,
+        "csrf_token": "5cbc498c903184abc58d7c291a13c7f3",
+        "csrf_token_time": 1750519974
+    },
+    "is_logged_in": true
+}
+[2025-06-21 22:33:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519993,
+    "current_time": 1750519993,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:13] AUTH_PASSED: {
+    "status": "authenticated",
+    "user_id": 2
+}
+[2025-06-21 22:33:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519993,
+    "current_time": 1750519993,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:13] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519993,
+    "current_time": 1750519993,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:13] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:22] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750519993,
+    "current_time": 1750520002,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:22] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:22] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750520002,
+    "current_time": 1750520002,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:22] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:22] ADMIN_SERVER_TEST_ACCESS: {
+    "admin_user": "admin",
+    "user_id": 2,
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:138.0) Gecko\/138.0 Firefox\/138.0"
+}
+[2025-06-21 22:33:24] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750520002,
+    "current_time": 1750520004,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:24] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:24] AUTH_IS_LOGGED_IN_CHECK: {
+    "session_logged_in": true,
+    "session_user_id": 2,
+    "session_last_activity": 1750520004,
+    "current_time": 1750520004,
+    "session_lifetime": 3600,
+    "has_remember_cookie": false
+}
+[2025-06-21 22:33:24] AUTH_SESSION_CHECK: {
+    "status": "session_logged_in_true"
+}
+[2025-06-21 22:33:24] ADMIN_SERVER_TEST_ACCESS: {
+    "admin_user": "admin",
+    "user_id": 2,
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla\/5.0 (Android 15; Mobile; rv:138.0) Gecko\/138.0 Firefox\/138.0"
+}
