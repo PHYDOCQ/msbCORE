@@ -3,10 +3,10 @@
 -- =====================================================
 
 -- Insert default admin user (password: admin123)
-INSERT INTO `users` (`username`, `email`, `password_hash`, `full_name`, `role`, `status`) VALUES
-('admin', 'admin@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'admin', 'active'),
-('manager', 'manager@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Workshop Manager', 'manager', 'active'),
-('tech1', 'tech1@msbcore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Senior Technician', 'technician', 'active');
+INSERT INTO `users` (`username`, `email`, `password_hash`, `full_name`, `role`, `is_active`) VALUES
+('admin', 'admin@msbcore.com', '$2y$10$nEEEnzEtHpLNuGnPYXeet.LLYL99z3iyxN9jD3XmuqdTs4NB4Uco2', 'System Administrator', 'admin', 1),
+('manager', 'manager@msbcore.com', '$2y$10$nEEEnzEtHpLNuGnPYXeet.LLYL99z3iyxN9jD3XmuqdTs4NB4Uco2', 'Workshop Manager', 'manager', 1),
+('tech1', 'tech1@msbcore.com', '$2y$10$nEEEnzEtHpLNuGnPYXeet.LLYL99z3iyxN9jD3XmuqdTs4NB4Uco2', 'Senior Technician', 'technician', 1);
 
 -- Insert sample customers
 INSERT INTO `customers` (`customer_code`, `name`, `email`, `phone`, `address`, `customer_type`, `is_active`) VALUES

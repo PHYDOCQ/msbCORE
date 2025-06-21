@@ -1,7 +1,132 @@
-[Fri Jun 20 04:57:16 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8000) started
-[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 Accepted
-[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 [302]: HEAD /
-[Fri Jun 20 04:57:35 2025] 127.0.0.1:47228 Closing
-[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 Accepted
-[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 [200]: HEAD /login.php
-[Fri Jun 20 04:57:42 2025] 127.0.0.1:36354 Closing
+[Sat Jun 21 06:16:19 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8000) started
+[Sat Jun 21 06:16:38 2025] 127.0.0.1:45624 Accepted
+[Sat Jun 21 06:16:38 2025] 127.0.0.1:45624 [200]: HEAD /login.php
+[Sat Jun 21 06:16:38 2025] 127.0.0.1:45624 Closing
+[Sat Jun 21 06:16:46 2025] 127.0.0.1:33130 Accepted
+[Sat Jun 21 06:16:46 2025] 127.0.0.1:33130 [200]: POST /login.php
+[Sat Jun 21 06:16:46 2025] 127.0.0.1:33130 Closing
+[Sat Jun 21 06:17:40 2025] 127.0.0.1:55986 Accepted
+[Sat Jun 21 06:17:40 2025] 127.0.0.1:55986 [200]: POST /login.php
+[Sat Jun 21 06:17:40 2025] 127.0.0.1:55986 Closing
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42372 Accepted
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42372 [200]: GET /login.php
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42372 Closing
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42384 Accepted
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42384 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42384 Closing
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42390 Accepted
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42390 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:18:25 2025] 127.0.0.1:42390 Closing
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41938 Accepted
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41938 [200]: POST /login.php
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41938 Closing
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41948 Accepted
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41948 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41948 Closing
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41964 Accepted
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41964 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:19:10 2025] 127.0.0.1:41964 Closing
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41970 Accepted
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41970 [302]: GET /
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41970 Closing
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41982 Accepted
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41982 [200]: GET /login.php
+[Sat Jun 21 06:19:13 2025] 127.0.0.1:41982 Closing
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:41996 Accepted
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:41996 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:41996 Closing
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:42002 Accepted
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:42002 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:19:14 2025] 127.0.0.1:42002 Closing
+[Sat Jun 21 06:19:15 2025] 127.0.0.1:37282 Accepted
+[Sat Jun 21 06:19:15 2025] 127.0.0.1:37282 [404]: GET /assets/favicon.ico - No such file or directory
+[Sat Jun 21 06:19:15 2025] 127.0.0.1:37282 Closing
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58072 Accepted
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58072 [200]: POST /login.php
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58072 Closing
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58084 Accepted
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58084 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58084 Closing
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58086 Accepted
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58086 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:19:40 2025] 127.0.0.1:58086 Closing
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:39836 Accepted
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:39836 [200]: POST /login.php
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:39836 Closing
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55712 Accepted
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55712 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55712 Closing
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55718 Accepted
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55718 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:19:54 2025] 127.0.0.1:55718 Closing
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53352 Accepted
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53352 [200]: GET /login.php
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53352 Closing
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53366 Accepted
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53366 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53366 Closing
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53382 Accepted
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53382 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:20:15 2025] 127.0.0.1:53382 Closing
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56414 Accepted
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56414 [200]: POST /login.php
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56414 Closing
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56424 Accepted
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56426 Accepted
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56424 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56424 Closing
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56426 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:20:56 2025] 127.0.0.1:56426 Closing
+[Sat Jun 21 06:21:31 2025] 127.0.0.1:37012 Accepted
+[Sat Jun 21 06:21:31 2025] 127.0.0.1:37012 [200]: POST /login.php
+[Sat Jun 21 06:21:31 2025] 127.0.0.1:37012 Closing
+[Sat Jun 21 06:21:51 2025] 127.0.0.1:43880 Accepted
+[Sat Jun 21 06:21:51 2025] 127.0.0.1:43880 [200]: POST /login.php
+[Sat Jun 21 06:21:51 2025] 127.0.0.1:43880 Closing
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53008 Accepted
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53008 [200]: GET /login.php
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53008 Closing
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53024 Accepted
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53024 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53024 Closing
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53036 Accepted
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53036 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:23:44 2025] 127.0.0.1:53036 Closing
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52714 Accepted
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52714 [302]: POST /login.php
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52714 Closing
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52716 Accepted
+[Sat Jun 21 06:24:33 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 51
+[Sat Jun 21 06:24:33 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 52
+[Sat Jun 21 06:24:33 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 53
+[Sat Jun 21 06:24:33 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 54
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52716 [500]: GET /index.php - Unclosed '{' on line 5 in /home/user/workspace/includes/functions.php on line 506
+[Sat Jun 21 06:24:33 2025] 127.0.0.1:52716 Closing
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43118 Accepted
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43118 [200]: GET /login.php
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43118 Closing
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43128 Accepted
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43128 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43128 Closing
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43132 Accepted
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43132 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:26:28 2025] 127.0.0.1:43132 Closing
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36932 Accepted
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36932 [302]: POST /login.php
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36932 Closing
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36946 Accepted
+[Sat Jun 21 06:27:23 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 51
+[Sat Jun 21 06:27:23 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 52
+[Sat Jun 21 06:27:23 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 53
+[Sat Jun 21 06:27:23 2025] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in /home/user/workspace/config/config.php on line 54
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36946 [302]: GET /index.php
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36946 Closing
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36956 Accepted
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36956 [200]: GET /login.php?redirect=%2Findex.php
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36956 Closing
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36970 Accepted
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36970 [200]: GET /assets/js/app.js
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36970 Closing
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36972 Accepted
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36972 [200]: GET /assets/css/style.css
+[Sat Jun 21 06:27:23 2025] 127.0.0.1:36972 Closing

@@ -13,9 +13,3 @@ Stack trace:
 #0 /storage/emulated/0/htdocs/test_server.php(2145): AdvancedServerTester->runAllTests()
 #1 {main}
   thrown in /storage/emulated/0/htdocs/test_server.php on line 279
-[20-Jun-2025 19:29:50 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
-[20-Jun-2025 19:29:50 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined method AdvancedServerTester::testDatabaseMethods() in /storage/emulated/0/htdocs/test_server.php:281
-Stack trace:
-#0 /storage/emulated/0/htdocs/test_server.php(2706): AdvancedServerTester->runAllTests()
-#1 {main}
-  thrown in /storage/emulated/0/htdocs/test_server.php on line 281
