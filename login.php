@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     [$user['id']]
                 );
                 
-                header('Location: /home/index.php');
+                header('Location: home/index.php');
                 exit();
             } else {
                 debugLog(['username' => $username, 'reason' => 'invalid_credentials'], 'LOGIN_FAILED');
