@@ -2079,3 +2079,64 @@
     "page": "login",
     "method": "GET"
 }
+[2025-06-21 18:07:46] DB: Database connection established successfully
+[2025-06-21 18:07:46] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 18:07:53] DB: Database connection established successfully
+[2025-06-21 18:07:53] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 18:07:53] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 18:07:53] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 18:07:53] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:07:53] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:07:53] DB_PERF: Query executed in 0.0069570541381836s
+[2025-06-21 18:07:53] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 18:07:53] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 18:07:53] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 18:07:53"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 18:07:53] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 18:07:53",
+        2
+    ]
+}
+[2025-06-21 18:07:53] DB_PERF: Query executed in 0.01130199432373s
+[2025-06-21 18:07:53] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}

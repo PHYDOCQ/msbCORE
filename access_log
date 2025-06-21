@@ -30,3 +30,6 @@
 127.0.0.1 - - [21/Jun/2025:17:46:31 +0700] "GET /login.php?redirect=%2Findex.php HTTP/1.1" 200 10294
 127.0.0.1 - - [21/Jun/2025:17:47:28 +0700] "GET /debug_system.php HTTP/1.1" 200 6850
 127.0.0.1 - - [21/Jun/2025:17:48:06 +0700] "GET /login.php?redirect=%2Findex.php HTTP/1.1" 200 10294
+127.0.0.1 - - [21/Jun/2025:18:07:46 +0700] "GET /login.php?redirect=%2Findex.php HTTP/1.1" 200 10294
+127.0.0.1 - - [21/Jun/2025:18:07:53 +0700] "POST /login.php?redirect=%2Findex.php HTTP/1.1" 302 -
+127.0.0.1 - - [21/Jun/2025:18:07:53 +0700] "GET /home/index.php HTTP/1.1" 200 282

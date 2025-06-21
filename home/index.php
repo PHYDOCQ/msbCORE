@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
-require_once 'config/database.php';
-require_once 'includes/auth.php';
+require_once '../config/database.php';
+require_once '../includes/auth.php';
 
 debugLog(['user_id' => $_SESSION['user_id'] ?? 'anonymous', 'endpoint' => 'dashboard'], 'API_DASHBOARD_START');
 
