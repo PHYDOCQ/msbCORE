@@ -1657,6 +1657,84 @@ class AdvancedServerTester {
         }
     }
     
+    private function testDatabaseMethods() {
+        $this->renderSection('🔧 Database Methods Testing', 'database-methods');
+        
+        if (!$this->db) {
+            $this->addResult('database-methods', 'Database Instance', 'FAIL', 
+                'Database instance not available');
+            return;
+        }
+        
+        try {
+            $connection = $this->db->getConnection();
+            if (!$connection) {
+                $this->addResult('database-methods', 'Database Connection', 'FAIL', 
+                    'No database connection available');
+                return;
+            }
+            
+            // Test basic CRUD methods
+            $methods = [
+                'selectOne' => 'Select single record method',
+                'select' => 'Select multiple records method', 
+                'insert' => 'Insert record method',
+                'update' => 'Update record method',
+                'delete' => 'Delete record method',
+                'count' => 'Count records method',
+                'exists' => 'Check record exists method',
+                'getTableSchema' => 'Get table schema method',
+                'executeTransaction' => 'Execute transaction method',
+                'getPerformanceMetrics' => 'Get performance metrics method'
+            ];
+            
+            foreach ($methods as $method => $description) {
+                if (method_exists($this->db, $method)) {
+                    $this->addResult('database-methods', $description, 'PASS', 
+                        "Method $method exists and is callable");
+                } else {
+                    $this->addResult('database-methods', $description, 'FAIL', 
+                        "Method $method does not exist");
+                }
+            }
+            
+            // Test actual method functionality with safe queries
+            try {
+                // Test selectOne
+                if (method_exists($this->db, 'selectOne')) {
+                    $result = $this->db->selectOne("SELECT 1 as test");
+                    $status = ($result && isset($result['test']) && $result['test'] == 1) ? 'PASS' : 'FAIL';
+                    $this->addResult('database-methods', 'selectOne Functionality', $status, 
+                        $status === 'PASS' ? 'Method works correctly' : 'Method returned unexpected result');
+                }
+                
+                // Test select
+                if (method_exists($this->db, 'select')) {
+                    $results = $this->db->select("SELECT 1 as test UNION SELECT 2 as test");
+                    $status = (is_array($results) && count($results) === 2) ? 'PASS' : 'FAIL';
+                    $this->addResult('database-methods', 'select Functionality', $status, 
+                        $status === 'PASS' ? 'Method works correctly' : 'Method returned unexpected result');
+                }
+                
+                // Test count (safe query)
+                if (method_exists($this->db, 'count')) {
+                    $count = $this->db->count('information_schema.tables', 'table_schema = ?', [DATABASE_NAME]);
+                    $status = (is_numeric($count) && $count >= 0) ? 'PASS' : 'FAIL';
+                    $this->addResult('database-methods', 'count Functionality', $status, 
+                        $status === 'PASS' ? "Method works correctly (found $count tables)" : 'Method returned unexpected result');
+                }
+                
+            } catch (Exception $e) {
+                $this->addResult('database-methods', 'Method Functionality Test', 'WARN', 
+                    'Some methods could not be tested: ' . $e->getMessage());
+            }
+            
+        } catch (Exception $e) {
+            $this->addResult('database-methods', 'Database Methods Test', 'FAIL', 
+                'Error testing database methods: ' . $e->getMessage());
+        }
+    }
+    
     private function testDatabasePerformance() {
         // Test query performance with multiple iterations
         $queryTimes = [];
