@@ -1,19 +1,13 @@
-[Sat Jun 21 14:15:24 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8000) started
-[Sat Jun 21 14:15:52 2025] 127.0.0.1:37282 Accepted
-[Sat Jun 21 14:15:52 2025] 127.0.0.1:37282 [200]: HEAD /login.php
-[Sat Jun 21 14:15:52 2025] 127.0.0.1:37282 Closing
-[Sat Jun 21 14:16:04 2025] 127.0.0.1:41440 Accepted
-[Sat Jun 21 14:16:04 2025] 127.0.0.1:41440 [200]: POST /login.php
-[Sat Jun 21 14:16:04 2025] 127.0.0.1:41440 Closing
-[Sat Jun 21 14:18:51 2025] 127.0.0.1:34786 Accepted
-[Sat Jun 21 14:18:51 2025] 127.0.0.1:34786 [200]: POST /login.php
-[Sat Jun 21 14:18:51 2025] 127.0.0.1:34786 Closing
-[Sat Jun 21 14:19:25 2025] 127.0.0.1:40294 Accepted
-[Sat Jun 21 14:19:25 2025] 127.0.0.1:40294 [200]: POST /login.php
-[Sat Jun 21 14:19:25 2025] 127.0.0.1:40294 Closing
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53008 Accepted
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53008 [302]: POST /login.php
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53008 Closing
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53016 Accepted
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53016 [200]: POST /home/index.php
-[Sat Jun 21 14:20:23 2025] 127.0.0.1:53016 Closing
+[Sat Jun 21 15:13:30 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8080) started
+[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 Accepted
+[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 [302]: HEAD /
+[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 Closing
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 Accepted
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 [302]: GET /
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 Closing
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 Accepted
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 [200]: GET /login.php
+[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 Closing
+[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 Accepted
+[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 [200]: GET /test_server.php
+[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 Closing

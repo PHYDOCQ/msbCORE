@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/database.php';
 require_once __DIR__ . '/../config/security.php';
 
 class Auth {
@@ -8,7 +8,8 @@ class Auth {
     private $lockoutTime = 900; // 15 minutes
     
     public function __construct() {
-        $this->db = Database::getInstance()->getConnection();
+        $database = new Database();
+        $this->db = $database->getConnection();
     }
     
     public function login($username, $password, $rememberMe = false) {
