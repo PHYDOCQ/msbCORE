@@ -191,7 +191,7 @@ include 'includes/header.php';
                 <h6 class="m-0 font-weight-bold">
                     <i class="fas fa-clock"></i> Recent Work Orders
                 </h6>
-                <a href="modules/work_orders/list.php" class="btn btn-sm btn-outline-primary">View All</a>
+                <a href="../modules/work_orders/list.php" class="btn btn-sm btn-outline-primary">View All</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -235,7 +235,7 @@ include 'includes/header.php';
 
 <!-- Include Chart.js and custom charts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/js/charts.js"></script>
+<script src="../assets/js/charts.js"></script>
 
 <script>
 // Auto-refresh dashboard every 5 minutes
@@ -252,12 +252,12 @@ document.getElementById('refreshDashboard').addEventListener('click', function()
 });
 
 function exportDashboard() {
-    window.location.href = 'exports/dashboard_export.php';
+    window.location.href = '../exports/dashboard_export.php';
 }
 
 function loadRecentActivities() {
     // Load recent work orders
-    fetch('api/recent_activities.php')
+    fetch('../api/recent_activities.php')
         .then(response => response.json())
         .then(data => {
             if (data.success) {
@@ -340,5 +340,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
 

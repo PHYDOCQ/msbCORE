@@ -2140,3 +2140,297 @@
 [2025-06-21 18:07:53] DB_UPDATE_RESULT: {
     "affected_rows": 1
 }
+[2025-06-21 18:25:34] DB: Database connection established successfully
+[2025-06-21 18:25:34] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 18:25:34] DB: Database connection established successfully
+[2025-06-21 18:25:34] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 18:25:36] DB: Database connection established successfully
+[2025-06-21 18:25:36] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 18:25:36] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 18:25:36] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 18:25:36] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:36] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:37] DB_PERF: Query executed in 0.025628805160522s
+[2025-06-21 18:25:37] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 18:25:37] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 18:25:37] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 18:25:37"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 18:25:37] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 18:25:37",
+        2
+    ]
+}
+[2025-06-21 18:25:37] DB_PERF: Query executed in 0.0042600631713867s
+[2025-06-21 18:25:37] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 18:25:37] DB: Database connection established successfully
+[2025-06-21 18:25:37] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 18:25:37] DB: Database connection established successfully
+[2025-06-21 18:25:37] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 18:25:39] DB: Database connection established successfully
+[2025-06-21 18:25:39] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 18:25:39] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 18:25:39] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 18:25:39] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:39] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:39] DB_PERF: Query executed in 0.002316951751709s
+[2025-06-21 18:25:39] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 18:25:39] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 18:25:39] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 18:25:39"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 18:25:39] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 18:25:39",
+        2
+    ]
+}
+[2025-06-21 18:25:39] DB_PERF: Query executed in 0.0091829299926758s
+[2025-06-21 18:25:39] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 18:25:40] DB: Database connection established successfully
+[2025-06-21 18:25:40] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 18:25:40] DB: Database connection established successfully
+[2025-06-21 18:25:40] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 18:25:44] DB: Database connection established successfully
+[2025-06-21 18:25:44] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 18:25:44] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 18:25:44] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 18:25:44] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:44] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 18:25:44] DB_PERF: Query executed in 0.0017020702362061s
+[2025-06-21 18:25:44] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 18:25:44] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 18:25:44] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 18:25:44"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 18:25:44] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 18:25:44",
+        2
+    ]
+}
+[2025-06-21 18:25:44] DB_PERF: Query executed in 0.0074789524078369s
+[2025-06-21 18:25:44] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 18:25:44] DB: Database connection established successfully
+[2025-06-21 18:25:44] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 18:25:44] DB: Database connection established successfully
+[2025-06-21 18:25:44] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:49:44] DB: Database connection established successfully
+[2025-06-21 19:49:44] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:49:48] DB: Database connection established successfully
+[2025-06-21 19:49:48] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 19:49:48] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 19:49:48] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 19:49:48] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:49:48] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 19:49:49] DB_PERF: Query executed in 0.0020279884338379s
+[2025-06-21 19:49:49] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 19:49:49] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 19:49:49] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 19:49:49"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 19:49:49] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 19:49:49",
+        2
+    ]
+}
+[2025-06-21 19:49:49] DB_PERF: Query executed in 0.0036349296569824s
+[2025-06-21 19:49:49] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 19:49:49] DB: Database connection established successfully
+[2025-06-21 19:49:49] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:49:49] DB: Database connection established successfully
+[2025-06-21 19:49:49] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:50:24] DB: Database connection established successfully
+[2025-06-21 19:50:24] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 19:50:41] DB: Database connection established successfully
+[2025-06-21 19:50:41] API_DASHBOARD_START: {
+    "user_id": 2,
+    "endpoint": "dashboard"
+}
+[2025-06-21 19:50:42] DB: Database connection established successfully
+[2025-06-21 19:50:42] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
