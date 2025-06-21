@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $db = Database::getInstance();
             $user = $db->selectOne(
-                "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+                "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
                 [$username, $username]
             );
 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Update last login
                 $db->update(
                     'users',
-                    ['last_login' => date('Y-m-d H:i:s')],
+                    ['last_login_at' => date('Y-m-d H:i:s')],
                     'id = ?',
                     [$user['id']]
                 );

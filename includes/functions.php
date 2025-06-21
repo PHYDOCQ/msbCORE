@@ -502,4 +502,5 @@ if (!function_exists('createNotification')) {
         return Utils::sendNotification($userId, $title, $message, $type, $actionUrl);
     }
 }
+} // Close the if (!class_exists('Utils')) block from line 5
 ?>

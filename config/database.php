@@ -196,10 +196,10 @@ class Database {
         try {
             debugLog(['table' => $table, 'data' => $data, 'where' => $where, 'whereParams' => $whereParams], 'DB_UPDATE');
             
-            $setParts = array_map(function($col) { return "$col = :$col"; }, array_keys($data));
+            $setParts = array_map(function($col) { return "$col = ?"; }, array_keys($data));
             $sql = sprintf("UPDATE %s SET %s WHERE %s", $table, implode(', ', $setParts), $where);
             
-            $params = array_merge($data, $whereParams);
+            $params = array_merge(array_values($data), $whereParams);
             $stmt = $this->query($sql, $params);
             $affectedRows = $stmt->rowCount();
             
