@@ -5,13 +5,25 @@ require_once __DIR__ . '/../config/security.php';
 class Auth {
     private $db;
     private $maxLoginAttempts = 5;
-    private $lockoutTime = 900; // 15 minutes
+    private $lockoutTime = 900; /**
+     * Initializes the Auth class with a new database connection.
+     */
     
     public function __construct() {
         $database = new Database();
         $this->db = $database->getConnection();
     }
     
+    /**
+     * Attempts to authenticate a user with the provided credentials.
+     *
+     * Performs rate limiting, verifies user existence and account status, checks password validity, and manages session and persistent login ("remember me") functionality. Returns an array indicating success or failure, with user details on success or an error message on failure.
+     *
+     * @param string $username The username or email of the user attempting to log in.
+     * @param string $password The user's password.
+     * @param bool $rememberMe Whether to enable persistent login via a "remember me" cookie.
+     * @return array Result of the login attempt, including success status and user information or error message.
+     */
     public function login($username, $password, $rememberMe = false) {
         try {
             // Rate limiting check

@@ -2,6 +2,11 @@
 class Database {
     private $pdo;
     
+    /**
+     * Initializes an in-memory SQLite database with a users table and sample data.
+     *
+     * Creates a PDO connection to an in-memory SQLite database, sets up the users table, and inserts predefined user records. If the connection or setup fails, the database connection is set to null.
+     */
     public function __construct() {
         try {
             $this->pdo = new PDO("sqlite::memory:");
@@ -27,10 +32,21 @@ class Database {
         }
     }
     
+    /**
+     * Retrieves the current PDO database connection.
+     *
+     * @return PDO|null The PDO instance if the connection is available, or null if the connection failed.
+     */
     public function getConnection() {
         return $this->pdo;
     }
     
+    /**
+     * Executes an SQL query on the in-memory SQLite database.
+     *
+     * @param string $sql The SQL query to execute.
+     * @return PDOStatement|false The result of the query, or false if the database connection is unavailable.
+     */
     public function query($sql) {
         if ($this->pdo) {
             return $this->pdo->query($sql);
