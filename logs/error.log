@@ -13,3 +13,17 @@ Stack trace:
 #0 /storage/emulated/0/htdocs/test_server.php(2145): AdvancedServerTester->runAllTests()
 #1 {main}
   thrown in /storage/emulated/0/htdocs/test_server.php on line 279
+[21-Jun-2025 17:44:13 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
+[21-Jun-2025 17:44:13 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "DATABASE_NAME" in /storage/emulated/0/htdocs/test_server.php:1721
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(281): AdvancedServerTester->testDatabaseMethods()
+#1 /storage/emulated/0/htdocs/test_server.php(2784): AdvancedServerTester->runAllTests()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 1721
+[21-Jun-2025 17:44:17 Asia/Jakarta] [msbCORE Test] Starting advanced comprehensive server tests
+[21-Jun-2025 17:44:18 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Undefined constant "DATABASE_NAME" in /storage/emulated/0/htdocs/test_server.php:1721
+Stack trace:
+#0 /storage/emulated/0/htdocs/test_server.php(281): AdvancedServerTester->testDatabaseMethods()
+#1 /storage/emulated/0/htdocs/test_server.php(2784): AdvancedServerTester->runAllTests()
+#2 {main}
+  thrown in /storage/emulated/0/htdocs/test_server.php on line 1721

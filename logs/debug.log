@@ -1603,3 +1603,479 @@
 [2025-06-21 13:23:28] DB_UPDATE_RESULT: {
     "affected_rows": 1
 }
+[2025-06-21 17:44:13] DB: Database connection established successfully
+[2025-06-21 17:44:13] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00048303604125977s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00023198127746582s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.029064178466797s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00089788436889648s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.0001378059387207s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.0013809204101562s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.0032689571380615s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.0029671192169189s
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00017285346984863s
+[2025-06-21 17:44:13] DB_SELECT_ONE: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00020194053649902s
+[2025-06-21 17:44:13] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:44:13] DB_SELECT: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_QUERY: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 17:44:13] DB_PERF: Query executed in 0.00028109550476074s
+[2025-06-21 17:44:13] DB_SELECT_RESULT: {
+    "count": 2
+}
+[2025-06-21 17:44:17] DB: Database connection established successfully
+[2025-06-21 17:44:17] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-21 17:44:17] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:17] DB_PERF: Query executed in 0.00028109550476074s
+[2025-06-21 17:44:17] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:44:17] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:44:17] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 17:44:17] DB_PERF: Query executed in 0.00023508071899414s
+[2025-06-21 17:44:17] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.011975049972534s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.0012550354003906s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.00071501731872559s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.013499975204468s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.0055499076843262s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.003931999206543s
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.00014305114746094s
+[2025-06-21 17:44:18] DB_SELECT_ONE: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.00024890899658203s
+[2025-06-21 17:44:18] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:44:18] DB_SELECT: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_QUERY: {
+    "sql": "SELECT 1 as test UNION SELECT 2 as test",
+    "params": []
+}
+[2025-06-21 17:44:18] DB_PERF: Query executed in 0.00026416778564453s
+[2025-06-21 17:44:18] DB_SELECT_RESULT: {
+    "count": 2
+}
+[2025-06-21 17:45:08] DB: Database connection established successfully
+[2025-06-21 17:45:08] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:45:11] DB: Database connection established successfully
+[2025-06-21 17:45:11] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 17:45:11] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 17:45:11] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 17:45:11] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:45:11] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:45:11] DB_PERF: Query executed in 0.0021889209747314s
+[2025-06-21 17:45:11] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:45:11] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 17:46:14] DB: Database connection established successfully
+[2025-06-21 17:46:14] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 17:46:14] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 17:46:14] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 17:46:14] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:14] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:14] DB_PERF: Query executed in 0.00094890594482422s
+[2025-06-21 17:46:14] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:46:14] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 17:46:14] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 17:46:14"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 17:46:14] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 17:46:14",
+        2
+    ]
+}
+[2025-06-21 17:46:14] DB_PERF: Query executed in 0.0081868171691895s
+[2025-06-21 17:46:14] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 17:46:14] DB: Database connection established successfully
+[2025-06-21 17:46:14] DB: Database connection established successfully
+[2025-06-21 17:46:14] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:46:17] DB: Database connection established successfully
+[2025-06-21 17:46:17] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 17:46:17] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 17:46:17] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 17:46:17] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:17] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:17] DB_PERF: Query executed in 0.0047011375427246s
+[2025-06-21 17:46:17] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:46:17] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 17:46:17] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 17:46:17"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 17:46:17] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 17:46:17",
+        2
+    ]
+}
+[2025-06-21 17:46:17] DB_PERF: Query executed in 0.025166034698486s
+[2025-06-21 17:46:17] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 17:46:17] DB: Database connection established successfully
+[2025-06-21 17:46:17] DB: Database connection established successfully
+[2025-06-21 17:46:17] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:46:26] DB: Database connection established successfully
+[2025-06-21 17:46:26] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:46:28] DB: Database connection established successfully
+[2025-06-21 17:46:28] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 17:46:28] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 17:46:28] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 17:46:28] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:28] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:28] DB_PERF: Query executed in 0.019942045211792s
+[2025-06-21 17:46:28] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:46:28] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 17:46:28] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 17:46:28"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 17:46:28] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 17:46:28",
+        2
+    ]
+}
+[2025-06-21 17:46:28] DB_PERF: Query executed in 0.0076839923858643s
+[2025-06-21 17:46:28] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 17:46:29] DB: Database connection established successfully
+[2025-06-21 17:46:29] DB: Database connection established successfully
+[2025-06-21 17:46:29] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:46:30] DB: Database connection established successfully
+[2025-06-21 17:46:30] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 17:46:30] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 17:46:30] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 17:46:30] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:30] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 17:46:30] DB_PERF: Query executed in 0.00045895576477051s
+[2025-06-21 17:46:30] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 17:46:31] LOGIN_SUCCESS: {
+    "user_id": 2,
+    "username": "admin"
+}
+[2025-06-21 17:46:31] DB_UPDATE: {
+    "table": "users",
+    "data": {
+        "last_login_at": "2025-06-21 17:46:31"
+    },
+    "where": "id = ?",
+    "whereParams": [
+        2
+    ]
+}
+[2025-06-21 17:46:31] DB_QUERY: {
+    "sql": "UPDATE users SET last_login_at = ? WHERE id = ?",
+    "params": [
+        "2025-06-21 17:46:31",
+        2
+    ]
+}
+[2025-06-21 17:46:31] DB_PERF: Query executed in 0.0068709850311279s
+[2025-06-21 17:46:31] DB_UPDATE_RESULT: {
+    "affected_rows": 1
+}
+[2025-06-21 17:46:31] DB: Database connection established successfully
+[2025-06-21 17:46:31] DB: Database connection established successfully
+[2025-06-21 17:46:31] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 17:47:28] DB: Database connection established successfully
+[2025-06-21 17:47:28] DB_SELECT_ONE: {
+    "sql": "SELECT 1 as test, NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:47:28] DB_QUERY: {
+    "sql": "SELECT 1 as test, NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:47:28] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT 1 as test, NOW() as current_time",
+    "params": []
+}
+[2025-06-21 17:47:28] DB_SELECT_ONE_ERROR: {
+    "error": "Database error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT 1 as test, NOW() as current_time"
+}
+[2025-06-21 17:48:06] DB: Database connection established successfully
+[2025-06-21 17:48:06] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
