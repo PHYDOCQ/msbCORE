@@ -1496,3 +1496,324 @@
     "page": "login",
     "method": "GET"
 }
+[2025-06-20 18:31:31] DB: Database connection established successfully
+[2025-06-20 18:31:31] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-20 19:29:18] DB: Database connection established successfully
+[2025-06-20 19:29:18] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-20 19:29:50] DB: Database connection established successfully
+[2025-06-20 19:29:50] ADVANCED_SERVER_TEST: Starting advanced comprehensive server tests
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT 1 as test",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.00038003921508789s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_ERROR: {
+    "error": "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'current_time' at line 1",
+    "sql": "SELECT NOW() as current_time",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.000579833984375s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'uptime'",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.010635137557983s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT COUNT(*) as connection_count FROM information_schema.processlist",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.002065896987915s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT VERSION() as version",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.00013899803161621s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SELECT \n                ROUND(SUM(data_length + index_length) \/ 1024 \/ 1024, 2) AS size_mb,\n                COUNT(*) as table_count\n                FROM information_schema.tables \n                WHERE table_schema = DATABASE()",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.0079159736633301s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Threads_connected'",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.0030889511108398s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SHOW STATUS LIKE 'Uptime'",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.0028901100158691s
+[2025-06-20 19:29:50] DB_QUERY: {
+    "sql": "SHOW GRANTS",
+    "params": []
+}
+[2025-06-20 19:29:50] DB_PERF: Query executed in 0.00029706954956055s
+[2025-06-20 19:32:56] DB: Database connection established successfully
+[2025-06-20 19:32:56] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 13:08:05] DB: Database connection established successfully
+[2025-06-21 13:08:05] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "GET"
+}
+[2025-06-21 13:08:09] DB: Database connection established successfully
+[2025-06-21 13:08:09] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:09] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:09] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:09] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:09] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:09] DB_PERF: Query executed in 0.0092658996582031s
+[2025-06-21 13:08:09] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:09] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:11] DB: Database connection established successfully
+[2025-06-21 13:08:11] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:11] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:11] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:11] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:11] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:11] DB_PERF: Query executed in 0.0010731220245361s
+[2025-06-21 13:08:11] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:11] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:13] DB: Database connection established successfully
+[2025-06-21 13:08:13] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:13] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:13] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:13] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:13] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:13] DB_PERF: Query executed in 0.00079703330993652s
+[2025-06-21 13:08:13] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:13] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:16] DB: Database connection established successfully
+[2025-06-21 13:08:16] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:16] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:16] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:16] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:16] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:16] DB_PERF: Query executed in 0.00048112869262695s
+[2025-06-21 13:08:16] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:17] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:18] DB: Database connection established successfully
+[2025-06-21 13:08:18] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:18] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:18] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:18] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:18] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:18] DB_PERF: Query executed in 0.0011308193206787s
+[2025-06-21 13:08:18] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:18] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:19] DB: Database connection established successfully
+[2025-06-21 13:08:19] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:19] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:19] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:19] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:19] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:19] DB_PERF: Query executed in 0.00045108795166016s
+[2025-06-21 13:08:19] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:19] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
+[2025-06-21 13:08:23] DB: Database connection established successfully
+[2025-06-21 13:08:23] LOGIN_PAGE_ACCESS: {
+    "page": "login",
+    "method": "POST"
+}
+[2025-06-21 13:08:23] LOGIN_POST: {
+    "action": "login_attempt",
+    "ip": "127.0.0.1"
+}
+[2025-06-21 13:08:23] LOGIN_CREDENTIALS: {
+    "username": "admin",
+    "has_password": true
+}
+[2025-06-21 13:08:23] DB_SELECT_ONE: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:23] DB_QUERY: {
+    "sql": "SELECT id, username, email, password_hash, role, status FROM users WHERE (username = ? OR email = ?) AND status = 'active'",
+    "params": [
+        "admin",
+        "admin"
+    ]
+}
+[2025-06-21 13:08:23] DB_PERF: Query executed in 0.00056290626525879s
+[2025-06-21 13:08:23] DB_SELECT_ONE_RESULT: {
+    "result": "found"
+}
+[2025-06-21 13:08:23] LOGIN_FAILED: {
+    "username": "admin",
+    "reason": "invalid_credentials"
+}
