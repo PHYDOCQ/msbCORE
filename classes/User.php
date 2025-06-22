@@ -106,8 +106,8 @@ class User {
                 throw new Exception('Invalid email format');
             }
             
-            // Hash password
-            $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            // Hash password using Security class
+            $data['password_hash'] = Security::hashPassword($data['password']);
             unset($data['password']); // Remove plain password
             
             // Set default values
@@ -578,7 +578,7 @@ class User {
     private function prepareUserData($data) {
         // Hash password if provided
         if (!empty($data['password'])) {
-            $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            $data['password_hash'] = Security::hashPassword($data['password']);
             unset($data['password']); // Remove plain password
         }
         
