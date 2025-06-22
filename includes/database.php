@@ -12,6 +12,11 @@ class Database {
     private $username;
     private $password;
     
+    /**
+     * Initializes the Database instance with configuration parameters and establishes a database connection.
+     *
+     * Loads connection settings from defined constants or defaults, then attempts to connect to the database.
+     */
     private function __construct() {
         // Load database configuration
         $this->host = defined('DB_HOST') ? DB_HOST : 'localhost';
@@ -23,7 +28,11 @@ class Database {
     }
     
     /**
-     * Get singleton instance
+     * Returns the singleton instance of the Database class.
+     *
+     * Ensures only one instance of the Database exists throughout the application.
+     *
+     * @return Database The singleton Database instance.
      */
     public static function getInstance() {
         if (self::$instance === null) {
@@ -33,7 +42,9 @@ class Database {
     }
     
     /**
-     * Establish database connection
+     * Establishes a database connection using MySQL if available, with fallback to file-based or in-memory SQLite.
+     *
+     * Attempts to connect to a MySQL database with UTF-8 settings. If the connection fails, falls back to a file-based SQLite database, and if that also fails, uses an in-memory SQLite database. For SQLite connections, initializes test tables and data.
      */
     private function connect() {
         try {
@@ -73,7 +84,9 @@ class Database {
     }
     
     /**
-     * Create basic tables for testing
+     * Creates required tables and inserts test users for SQLite testing.
+     *
+     * Sets up the `users`, `remember_tokens`, and `user_activities` tables if they do not exist, and populates the `users` table with predefined test accounts using hashed passwords.
      */
     private function createTestTables() {
         $tables = [
@@ -135,14 +148,24 @@ class Database {
     }
     
     /**
-     * Get PDO connection
+     * Returns the current PDO database connection instance.
+     *
+     * @return \PDO The active PDO connection.
      */
     public function getConnection() {
         return $this->pdo;
     }
     
     /**
-     * Execute a query
+     * Executes a SQL query, optionally with parameters, and returns the result.
+     *
+     * If parameters are provided, the query is prepared and executed with those parameters; otherwise, it is executed directly.
+     * Returns a PDOStatement object on success.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params Optional parameters to bind to the query.
+     * @return \PDOStatement The resulting PDO statement.
+     * @throws \PDOException If the query execution fails.
      */
     public function query($sql, $params = []) {
         try {
@@ -162,7 +185,11 @@ class Database {
     }
     
     /**
-     * Select single record
+     * Executes a query and returns the first matching record as an associative array.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params Optional parameters to bind to the query.
+     * @return array|false The first record as an associative array, or false if no record is found.
      */
     public function selectOne($sql, $params = []) {
         $stmt = $this->query($sql, $params);
@@ -170,7 +197,11 @@ class Database {
     }
     
     /**
-     * Select multiple records
+     * Executes a SQL query and returns all matching records as an array.
+     *
+     * @param string $sql The SQL query to execute.
+     * @param array $params Optional parameters to bind to the query.
+     * @return array An array of all matching records.
      */
     public function select($sql, $params = []) {
         $stmt = $this->query($sql, $params);
@@ -178,7 +209,11 @@ class Database {
     }
     
     /**
-     * Insert record
+     * Inserts a new record into the specified table.
+     *
+     * @param string $table The name of the table to insert into.
+     * @param array $data An associative array of column names and values to insert.
+     * @return string The ID of the newly inserted record.
      */
     public function insert($table, $data) {
         $columns = implode(',', array_keys($data));
@@ -192,7 +227,13 @@ class Database {
     }
     
     /**
-     * Update record
+     * Updates records in a table matching the specified condition.
+     *
+     * @param string $table The name of the table to update.
+     * @param array $data An associative array of columns and their new values.
+     * @param string $where The WHERE clause to specify which records to update.
+     * @param array $whereParams Optional associative array of parameters for the WHERE clause.
+     * @return bool True on success, false on failure.
      */
     public function update($table, $data, $where, $whereParams = []) {
         $setParts = [];
@@ -210,7 +251,12 @@ class Database {
     }
     
     /**
-     * Delete record
+     * Deletes records from a table matching the specified condition.
+     *
+     * @param string $table The name of the table to delete from.
+     * @param string $where The WHERE clause to specify which records to delete.
+     * @param array $whereParams Optional parameters to bind to the WHERE clause.
+     * @return bool True on success, false on failure.
      */
     public function delete($table, $where, $whereParams = []) {
         $sql = "DELETE FROM {$table} WHERE {$where}";
@@ -219,7 +265,12 @@ class Database {
     }
     
     /**
-     * Count records
+     * Returns the number of records in a table matching the specified condition.
+     *
+     * @param string $table The name of the table to count records from.
+     * @param string $where Optional SQL WHERE clause to filter records. Defaults to '1=1' (all records).
+     * @param array $whereParams Optional parameters for the WHERE clause.
+     * @return int The count of matching records.
      */
     public function count($table, $where = '1=1', $whereParams = []) {
         $sql = "SELECT COUNT(*) as count FROM {$table} WHERE {$where}";
@@ -228,40 +279,50 @@ class Database {
     }
     
     /**
-     * Begin transaction
+     * Starts a new database transaction.
+     *
+     * @return bool True on success, false if a transaction is already active.
      */
     public function beginTransaction() {
         return $this->pdo->beginTransaction();
     }
     
     /**
-     * Commit transaction
+     * Commits the current database transaction.
+     *
+     * @return bool True on success, false on failure.
      */
     public function commit() {
         return $this->pdo->commit();
     }
     
     /**
-     * Rollback transaction
+     * Rolls back the current database transaction.
+     *
+     * @return bool True on success, false on failure.
      */
     public function rollback() {
         return $this->pdo->rollback();
     }
     
     /**
-     * Check if in transaction
+     * Determines whether a database transaction is currently active.
+     *
+     * @return bool True if a transaction is active, false otherwise.
      */
     public function inTransaction() {
         return $this->pdo->inTransaction();
     }
     
     /**
-     * Prevent cloning
-     */
+ * Prevents cloning of the singleton instance.
+ */
     private function __clone() {}
     
     /**
-     * Prevent unserialization
+     * Prevents unserialization of the singleton instance.
+     *
+     * @throws Exception Always thrown to prevent unserialization.
      */
     public function __wakeup() {
         throw new Exception("Cannot unserialize singleton");

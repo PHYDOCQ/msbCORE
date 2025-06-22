@@ -41,16 +41,18 @@ if (!defined('DB_SSL_MODE')) {
 }
 
 /**
- * Get database connection using singleton pattern
- * @return Database
+ * Returns the singleton instance of the Database class.
+ *
+ * @return Database The shared Database instance.
  */
 function getDatabase() {
     return Database::getInstance();
 }
 
 /**
- * Get PDO connection directly
- * @return PDO
+ * Returns the PDO connection from the singleton Database instance.
+ *
+ * @return PDO The active PDO database connection.
  */
 function getDatabaseConnection() {
     return Database::getInstance()->getConnection();

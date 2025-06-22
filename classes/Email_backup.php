@@ -45,6 +45,11 @@ class Email {
     private $phpmailerAvailable;
     private $fallbackMode;
     
+    /**
+     * Initializes the Email class, setting up PHPMailer if available or enabling fallback mode.
+     *
+     * Attempts to configure PHPMailer for SMTP email sending. If PHPMailer is unavailable or initialization fails, enables fallback mode to use PHP's native mail functionality.
+     */
     public function __construct() {
         $this->phpmailerAvailable = PHPMAILER_AVAILABLE && !defined('PHPMAILER_FALLBACK');
         $this->fallbackMode = !$this->phpmailerAvailable;
@@ -63,6 +68,14 @@ class Email {
         }
     }
     
+    /**
+     * Configures the PHPMailer instance with SMTP settings and sender information.
+     *
+     * Sets SMTP host, authentication, credentials, encryption, port, sender email, and character encoding.
+     * Enables fallback mode and logs an error if configuration fails.
+     *
+     * @return bool True if configuration succeeds, false otherwise.
+     */
     private function configure() {
         if (!$this->phpmailerAvailable || !$this->mailer) {
             return false;
@@ -99,6 +112,12 @@ class Email {
         }
     }
     
+    /**
+     * Sends an email notification to the customer when a work order is created.
+     *
+     * @param array $workOrder Associative array containing work order and customer details.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     public function sendWorkOrderCreated($workOrder) {
         try {
             $this->mailer->clearAddresses();
@@ -117,6 +136,12 @@ class Email {
         }
     }
     
+    /**
+     * Sends an email notification to the customer when a work order is completed.
+     *
+     * @param array $workOrder The work order data, including customer and completion details.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     public function sendWorkOrderCompleted($workOrder) {
         try {
             $this->mailer->clearAddresses();
@@ -135,6 +160,14 @@ class Email {
         }
     }
     
+    /**
+     * Sends a low stock alert email to all active admin users.
+     *
+     * Each admin receives an email listing the items that are low in stock.
+     *
+     * @param array $items List of items that are low in stock.
+     * @return bool True if emails were sent successfully to all admins, false if an error occurred.
+     */
     public function sendLowStockAlert($items) {
         try {
             // Send to admin users
@@ -162,6 +195,14 @@ class Email {
         }
     }
     
+    /**
+     * Generates an HTML email template for notifying a customer that a work order has been created.
+     *
+     * The template includes customer name, work order number, vehicle details, status, priority, damage description, and estimated cost if available.
+     *
+     * @param array $workOrder Associative array containing work order details.
+     * @return string The HTML content for the work order creation notification email.
+     */
     private function getWorkOrderCreatedTemplate($workOrder) {
         return "
         <html>
@@ -204,6 +245,14 @@ class Email {
         </html>";
     }
     
+    /**
+     * Generates an HTML email template notifying a customer that their work order has been completed.
+     *
+     * The template includes work order details such as number, vehicle information, completion date, final amount, and technician notes if available.
+     *
+     * @param array $workOrder Associative array containing work order and customer details.
+     * @return string The HTML content for the work order completion email.
+     */
     private function getWorkOrderCompletedTemplate($workOrder) {
         return "
         <html>
@@ -245,6 +294,14 @@ class Email {
         </html>";
     }
     
+    /**
+     * Generates an HTML email template listing items that are low in stock.
+     *
+     * The template includes a styled list of items with their current stock, unit of measure, and minimum required stock, along with a warning message.
+     *
+     * @param array $items An array of items, each containing 'name', 'current_stock', 'unit_of_measure', and 'minimum_stock'.
+     * @return string The HTML content for the low stock alert email.
+     */
     private function getLowStockTemplate($items) {
         $itemsList = '';
         foreach($items as $item) {
@@ -283,6 +340,14 @@ class Email {
         </html>";
     }
     
+    /**
+     * Sends an HTML email using PHP's native mail() function as a fallback.
+     *
+     * @param string $to Recipient email address.
+     * @param string $subject Email subject.
+     * @param string $message HTML email body.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     private function sendFallbackEmail($to, $subject, $message) {
         // Fallback using PHP's mail() function
         $headers = "From: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "
