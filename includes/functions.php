@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/security.php';
 
+if (!class_exists('Utils')) {
 class Utils {
     
     public static function generateCustomerCode($db = null) {
@@ -469,6 +470,7 @@ class Utils {
         debugLog(['directory' => $directory, 'deleted_count' => $deletedCount], 'CLEANUP_OLD_FILES');
         return $deletedCount;
     }
+}
 }
 
 // Helper functions for backward compatibility
