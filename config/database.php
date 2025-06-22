@@ -1,40 +1,96 @@
 <?php
-// Simple database configuration for testing
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'msbcore_bengkel');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+/**
+ * Database Configuration
+ * Defines database connection constants safely
+ */
 
-// Create a simple PDO connection with error handling
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST, DB_USER, DB_PASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Create database if it doesn't exist
-    $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
-    $pdo->exec("USE " . DB_NAME);
-    
-    // Create a simple users table for testing
-    $pdo->exec("CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(50) NOT NULL,
-        email VARCHAR(100) NOT NULL,
-        role ENUM('admin', 'manager', 'technician', 'staff') DEFAULT 'staff',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )");
-    
-    // Insert some test data
-    $pdo->exec("INSERT IGNORE INTO users (id, username, email, role) VALUES 
-        (1, 'admin', 'admin@garage.com', 'admin'),
-        (2, 'manager1', 'manager@garage.com', 'manager'),
-        (3, 'tech1', 'tech1@garage.com', 'technician'),
-        (4, 'staff1', 'staff@garage.com', 'staff')");
-    
-} catch (PDOException $e) {
-    // For testing purposes, we'll create a mock connection
-    $pdo = null;
+// Prevent constant redefinition
+if (!defined('DB_HOST')) {
+    define('DB_HOST', 'localhost');
 }
 
-// Global database connection
-$GLOBALS['db'] = $pdo;
+if (!defined('DB_NAME')) {
+    define('DB_NAME', 'msbcore_bengkel');
+}
+
+if (!defined('DB_USER')) {
+    define('DB_USER', 'root');
+}
+
+if (!defined('DB_PASS')) {
+    define('DB_PASS', '');
+}
+
+// Database connection options
+if (!defined('DB_CHARSET')) {
+    define('DB_CHARSET', 'utf8mb4');
+}
+
+if (!defined('DB_COLLATION')) {
+    define('DB_COLLATION', 'utf8mb4_unicode_ci');
+}
+
+// Connection timeout settings
+if (!defined('DB_TIMEOUT')) {
+    define('DB_TIMEOUT', 30);
+}
+
+// SSL settings for production
+if (!defined('DB_SSL_MODE')) {
+    define('DB_SSL_MODE', false);
+}
+
+/**
+ * Get database connection using singleton pattern
+ * @return Database
+ */
+function getDatabase() {
+    return Database::getInstance();
+}
+
+/**
+ * Get PDO connection directly
+ * @return PDO
+ */
+function getDatabaseConnection() {
+    return Database::getInstance()->getConnection();
+}
+
+// Initialize database connection if not already done
+if (!isset($GLOBALS['db_initialized'])) {
+    try {
+        // Load the Database class if not already loaded
+        if (!class_exists('Database')) {
+            require_once __DIR__ . '/../includes/database.php';
+        }
+        
+        // Initialize the database connection
+        $db = Database::getInstance();
+        $GLOBALS['db'] = $db->getConnection();
+        $GLOBALS['db_initialized'] = true;
+        
+        if (function_exists('debugLog')) {
+            debugLog(['status' => 'Database initialized successfully'], 'DATABASE_INIT');
+        }
+        
+    } catch (Exception $e) {
+        if (function_exists('debugLog')) {
+            debugLog(['error' => $e->getMessage()], 'DATABASE_INIT_ERROR');
+        }
+        
+        // For testing, try SQLite fallback
+        try {
+            $sqliteDb = new PDO('sqlite::memory:');
+            $sqliteDb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $GLOBALS['db'] = $sqliteDb;
+            $GLOBALS['db_initialized'] = true;
+            error_log("Using SQLite fallback for testing");
+        } catch (Exception $sqliteError) {
+            // Set null connection for graceful degradation
+            $GLOBALS['db'] = null;
+            $GLOBALS['db_initialized'] = false;
+            error_log("Database initialization failed: " . $e->getMessage());
+        }
+    }
+}
 ?>
