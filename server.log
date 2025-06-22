@@ -1,13 +1,27 @@
-[Sat Jun 21 15:13:30 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8080) started
-[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 Accepted
-[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 [302]: HEAD /
-[Sat Jun 21 15:14:05 2025] 127.0.0.1:33408 Closing
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 Accepted
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 [302]: GET /
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48196 Closing
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 Accepted
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 [200]: GET /login.php
-[Sat Jun 21 15:14:32 2025] 127.0.0.1:48200 Closing
-[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 Accepted
-[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 [200]: GET /test_server.php
-[Sat Jun 21 15:14:48 2025] 127.0.0.1:56970 Closing
+[Sun Jun 22 08:41:02 2025] PHP 8.1.2-1ubuntu2.21 Development Server (http://0.0.0.0:8080) started
+[Sun Jun 22 08:41:49 2025] 127.0.0.1:55932 Accepted
+[Sun Jun 22 08:41:49 2025] 127.0.0.1:55932 [302]: HEAD /
+[Sun Jun 22 08:41:49 2025] 127.0.0.1:55932 Closing
+[Sun Jun 22 08:42:01 2025] 127.0.0.1:33900 Accepted
+[Sun Jun 22 08:42:01 2025] 127.0.0.1:33900 [500]: HEAD /login.php - Uncaught Error: Call to private Database::__construct() from scope Auth in /home/user/workspace/includes/auth.php:11
+Stack trace:
+#0 /home/user/workspace/includes/auth.php(364): Auth->__construct()
+#1 /home/user/workspace/login.php(5): require_once('...')
+#2 {main}
+  thrown in /home/user/workspace/includes/auth.php on line 11
+[Sun Jun 22 08:42:01 2025] 127.0.0.1:33900 Closing
+[Sun Jun 22 08:42:59 2025] 127.0.0.1:39482 Accepted
+[Sun Jun 22 08:42:59 2025] 127.0.0.1:39482 [500]: HEAD /login.php - Uncaught PDOException: could not find driver in /home/user/workspace/includes/database.php:66
+Stack trace:
+#0 /home/user/workspace/includes/database.php(66): PDO->__construct()
+#1 /home/user/workspace/includes/database.php(22): Database->connect()
+#2 /home/user/workspace/includes/database.php(30): Database->__construct()
+#3 /home/user/workspace/includes/auth.php(11): Database::getInstance()
+#4 /home/user/workspace/includes/auth.php(363): Auth->__construct()
+#5 /home/user/workspace/login.php(5): require_once('...')
+#6 {main}
+  thrown in /home/user/workspace/includes/database.php on line 66
+[Sun Jun 22 08:42:59 2025] 127.0.0.1:39482 Closing
+[Sun Jun 22 08:43:51 2025] 127.0.0.1:48364 Accepted
+[Sun Jun 22 08:43:51 2025] 127.0.0.1:48364 [200]: GET /test.php
+[Sun Jun 22 08:43:51 2025] 127.0.0.1:48364 Closing
