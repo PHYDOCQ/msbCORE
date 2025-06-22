@@ -15,7 +15,7 @@ $auth->requireLogin();
 $currentUser = $auth->getCurrentUser();
 
 // Generate CSRF token
-$csrfToken = Security::generateCSRF();
+$csrfToken = SecurityAudit::generateCSRFToken();
 
 // Check for flash messages
 $flashMessage = $_SESSION['flash_message'] ?? null;

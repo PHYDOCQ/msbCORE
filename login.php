@@ -11,53 +11,60 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     debugLog(['action' => 'login_attempt', 'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'], 'LOGIN_POST');
     
-    $username = trim($_POST['username'] ?? '');
+    $username = Security::sanitizeInput(trim($_POST['username'] ?? ''));
     $password = $_POST['password'] ?? '';
 
     if ($username && $password) {
         debugLog(['username' => $username, 'has_password' => !empty($password)], 'LOGIN_CREDENTIALS');
         
-        try {
-            $db = Database::getInstance();
-             $user = $db->selectOne(
-                 "SELECT id, username, email, password_hash, full_name, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
-                 [$username, $username]
-             );
-
-            if ($user && password_verify($password, $user['password_hash'])) {
-                debugLog(['user_id' => $user['id'], 'username' => $user['username']], 'LOGIN_SUCCESS');
-                
-                // Use Auth class to properly set session
-                session_regenerate_id(true);
-                $_SESSION['logged_in'] = true;
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['full_name'] = $user['full_name'] ?? $user['username'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['role'] = $user['role'];
-                $_SESSION['last_activity'] = time();
-                $_SESSION['login_time'] = time();
-                
-                debugLog(['session_set' => $_SESSION], 'LOGIN_SESSION_SET');
-                
-                // Update last login
-                $db->update(
-                    'users',
-                    ['last_login_at' => date('Y-m-d H:i:s')],
-                    'id = ?',
-                    [$user['id']]
+        // Check rate limiting
+        $rateLimitCheck = SecurityAudit::checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown', 10, 900); // 10 attempts per 15 minutes
+        if (!$rateLimitCheck['allowed']) {
+            $error = 'Too many login attempts. Please try again later.';
+            debugLog(['ip' => $_SERVER['REMOTE_ADDR'], 'rate_limited' => true], 'LOGIN_RATE_LIMITED');
+        } else {
+            try {
+                $db = Database::getInstance();
+                $user = $db->selectOne(
+                    "SELECT id, username, email, password_hash, full_name, role, is_active FROM users WHERE (username = ? OR email = ?) AND is_active = 1",
+                    [$username, $username]
                 );
-                
-                debugLog(['redirect_target' => 'home/index.php', 'session_data' => $_SESSION], 'LOGIN_REDIRECT');
-                header('Location: home/index.php');
-                exit();
-            } else {
-                debugLog(['username' => $username, 'reason' => 'invalid_credentials'], 'LOGIN_FAILED');
-                $error = 'Username atau password salah';
+
+                if ($user && Security::verifyPassword($password, $user['password_hash'])) {
+                    debugLog(['user_id' => $user['id'], 'username' => $user['username']], 'LOGIN_SUCCESS');
+                    
+                    // Use Auth class to properly set session
+                    session_regenerate_id(true);
+                    $_SESSION['logged_in'] = true;
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+                    $_SESSION['full_name'] = $user['full_name'] ?? $user['username'];
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['role'] = $user['role'];
+                    $_SESSION['last_activity'] = time();
+                    $_SESSION['login_time'] = time();
+                    
+                    debugLog(['session_set' => $_SESSION], 'LOGIN_SESSION_SET');
+                    
+                    // Update last login
+                    $db->update(
+                        'users',
+                        ['last_login_at' => date('Y-m-d H:i:s')],
+                        'id = ?',
+                        [$user['id']]
+                    );
+                    
+                    debugLog(['redirect_target' => 'home/index.php', 'session_data' => $_SESSION], 'LOGIN_REDIRECT');
+                    header('Location: home/index.php');
+                    exit();
+                } else {
+                    debugLog(['username' => $username, 'reason' => 'invalid_credentials'], 'LOGIN_FAILED');
+                    $error = 'Username atau password salah';
+                }
+            } catch (Exception $e) {
+                debugLog(['error' => $e->getMessage(), 'username' => $username], 'LOGIN_ERROR');
+                $error = 'Terjadi kesalahan sistem. Silakan coba lagi.';
             }
-        } catch (Exception $e) {
-            debugLog(['error' => $e->getMessage(), 'username' => $username], 'LOGIN_ERROR');
-            $error = 'Terjadi kesalahan sistem. Silakan coba lagi.';
         }
     } else {
         debugLog(['missing_username' => empty($username), 'missing_password' => empty($password)], 'LOGIN_VALIDATION_ERROR');

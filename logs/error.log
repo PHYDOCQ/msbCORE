@@ -194,3 +194,5 @@ Stack trace:
 [22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 52
 [22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 53
 [22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 56
+[22-Jun-2025 15:42:01 Asia/Jakarta] Database initialization failed: could not find driver
+[22-Jun-2025 15:42:59 Asia/Jakarta] Database initialization failed: could not find driver
