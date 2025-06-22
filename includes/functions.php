@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/security.php';
 
-if (!class_exists('Utils')) {
 class Utils {
     
     public static function generateCustomerCode($db = null) {
@@ -502,5 +501,4 @@ if (!function_exists('createNotification')) {
         return Utils::sendNotification($userId, $title, $message, $type, $actionUrl);
     }
 }
-} // Close the if (!class_exists('Utils')) block from line 5
 ?>

@@ -184,3 +184,5 @@ Stack trace:
 #1 /storage/emulated/0/htdocs/test_server.php(3157): AdvancedServerTester->__construct()
 #2 {main}
   thrown in /storage/emulated/0/htdocs/test_server.php on line 330
+[22-Jun-2025 10:27:34 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/config/config.php on line 98
+[22-Jun-2025 10:28:47 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/config/config.php on line 98

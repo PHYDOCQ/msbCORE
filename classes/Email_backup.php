@@ -26,15 +26,17 @@ if (PHPMAILER_AVAILABLE) {
             class_alias('PHPMailer\PHPMailer\Exception', 'PHPMailer_Exception');
         } else {
             // PHPMailer not properly installed
-            if (!defined('PHPMAILER_FALLBACK')) {
+            if (defined('PHPMAILER_AVAILABLE')) {
+                // Redefine constant safely
+                define('PHPMAILER_FALLBACK', true);
+            } else {
+                define('PHPMAILER_AVAILABLE', false);
                 define('PHPMAILER_FALLBACK', true);
             }
         }
     } catch (Exception $e) {
         error_log("PHPMailer class aliasing failed: " . $e->getMessage());
-        if (!defined('PHPMAILER_FALLBACK')) {
-            define('PHPMAILER_FALLBACK', true);
-        }
+        define('PHPMAILER_FALLBACK', true);
     }
 }
 
@@ -73,8 +75,13 @@ class Email {
             $this->mailer->Username = defined('SMTP_USER') ? SMTP_USER : '';
             $this->mailer->Password = defined('SMTP_PASS') ? SMTP_PASS : '';
             
-            // Use string constant for compatibility
-            $this->mailer->SMTPSecure = 'tls';
+            // Use constant if available, otherwise fallback to string
+            if (defined('PHPMailer_PHPMailer::ENCRYPTION_STARTTLS')) {
+                $this->mailer->SMTPSecure = PHPMailer_PHPMailer::ENCRYPTION_STARTTLS;
+            } else {
+                $this->mailer->SMTPSecure = 'tls';
+            }
+            
             $this->mailer->Port = defined('SMTP_PORT') ? SMTP_PORT : 587;
             
             $this->mailer->setFrom(
@@ -93,110 +100,69 @@ class Email {
     }
     
     public function sendWorkOrderCreated($workOrder) {
-        $subject = "Work Order Created - {$workOrder['work_order_number']}";
-        $body = $this->getWorkOrderCreatedTemplate($workOrder);
-        
-        if ($this->phpmailerAvailable && $this->mailer) {
-            try {
-                $this->mailer->clearAddresses();
-                $this->mailer->addAddress($workOrder['customer_email'], $workOrder['customer_name']);
-                $this->mailer->Subject = $subject;
-                $this->mailer->msgHTML($body);
-                
-                return $this->mailer->send();
-                
-            } catch (Exception $e) {
-                error_log("PHPMailer send failed: " . $e->getMessage());
-                // Fallback to basic mail
-                return $this->sendFallbackEmail($workOrder['customer_email'], $subject, $body);
-            }
-        } else {
-            // Use fallback method
-            return $this->sendFallbackEmail($workOrder['customer_email'], $subject, $body);
+        try {
+            $this->mailer->clearAddresses();
+            $this->mailer->addAddress($workOrder['customer_email'], $workOrder['customer_name']);
+            
+            $this->mailer->Subject = "Work Order Created - {$workOrder['work_order_number']}";
+            
+            $body = $this->getWorkOrderCreatedTemplate($workOrder);
+            $this->mailer->msgHTML($body);
+            
+            return $this->mailer->send();
+            
+        } catch (Exception $e) {
+            error_log("Email send failed: " . $e->getMessage());
+            return false;
         }
     }
     
     public function sendWorkOrderCompleted($workOrder) {
-        $subject = "Work Order Completed - {$workOrder['work_order_number']}";
-        $body = $this->getWorkOrderCompletedTemplate($workOrder);
-        
-        if ($this->phpmailerAvailable && $this->mailer) {
-            try {
-                $this->mailer->clearAddresses();
-                $this->mailer->addAddress($workOrder['customer_email'], $workOrder['customer_name']);
-                $this->mailer->Subject = $subject;
-                $this->mailer->msgHTML($body);
-                
-                return $this->mailer->send();
-                
-            } catch (Exception $e) {
-                error_log("PHPMailer send failed: " . $e->getMessage());
-                // Fallback to basic mail
-                return $this->sendFallbackEmail($workOrder['customer_email'], $subject, $body);
-            }
-        } else {
-            // Use fallback method
-            return $this->sendFallbackEmail($workOrder['customer_email'], $subject, $body);
+        try {
+            $this->mailer->clearAddresses();
+            $this->mailer->addAddress($workOrder['customer_email'], $workOrder['customer_name']);
+            
+            $this->mailer->Subject = "Work Order Completed - {$workOrder['work_order_number']}";
+            
+            $body = $this->getWorkOrderCompletedTemplate($workOrder);
+            $this->mailer->msgHTML($body);
+            
+            return $this->mailer->send();
+            
+        } catch (Exception $e) {
+            error_log("Email send failed: " . $e->getMessage());
+            return false;
         }
     }
     
     public function sendLowStockAlert($items) {
         try {
-            // Get admin users safely
-            $admins = [];
-            try {
-                $db = Database::getInstance();
-                $admins = $db->select("SELECT email, full_name FROM users WHERE role = 'admin' AND is_active = 1");
-            } catch (Exception $e) {
-                error_log("Failed to get admin users: " . $e->getMessage());
-                return false;
-            }
-            
-            if (empty($admins)) {
-                error_log("No admin users found for low stock alert");
-                return false;
-            }
-            
-            $subject = "Low Stock Alert - " . count($items) . " Items";
-            $body = $this->getLowStockTemplate($items);
-            $success = true;
+            // Send to admin users
+            $admins = Database::getInstance()->getConnection()
+                     ->query("SELECT email, full_name FROM users WHERE role = 'admin' AND is_active = 1")
+                     ->fetchAll();
             
             foreach($admins as $admin) {
-                if ($this->phpmailerAvailable && $this->mailer) {
-                    try {
-                        $this->mailer->clearAddresses();
-                        $this->mailer->addAddress($admin['email'], $admin['full_name']);
-                        $this->mailer->Subject = $subject;
-                        $this->mailer->msgHTML($body);
-                        
-                        if (!$this->mailer->send()) {
-                            $success = false;
-                        }
-                    } catch (Exception $e) {
-                        error_log("PHPMailer send failed for {$admin['email']}: " . $e->getMessage());
-                        // Try fallback
-                        if (!$this->sendFallbackEmail($admin['email'], $subject, $body)) {
-                            $success = false;
-                        }
-                    }
-                } else {
-                    // Use fallback method
-                    if (!$this->sendFallbackEmail($admin['email'], $subject, $body)) {
-                        $success = false;
-                    }
-                }
+                $this->mailer->clearAddresses();
+                $this->mailer->addAddress($admin['email'], $admin['full_name']);
+                
+                $this->mailer->Subject = "Low Stock Alert - " . count($items) . " Items";
+                
+                $body = $this->getLowStockTemplate($items);
+                $this->mailer->msgHTML($body);
+                
+                $this->mailer->send();
             }
             
-            return $success;
+            return true;
             
         } catch (Exception $e) {
-            error_log("Low stock alert failed: " . $e->getMessage());
+            error_log("Email send failed: " . $e->getMessage());
             return false;
         }
     }
     
     private function getWorkOrderCreatedTemplate($workOrder) {
-        $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         return "
         <html>
         <head>
@@ -222,7 +188,7 @@ class Email {
                         <p><strong>Work Order Number:</strong> {$workOrder['work_order_number']}</p>
                         <p><strong>Vehicle:</strong> {$workOrder['brand']} {$workOrder['model']} ({$workOrder['license_plate']})</p>
                         <p><strong>Status:</strong> Pending</p>
-                        <p><strong>Priority:</strong> " . ucfirst($workOrder['priority'] ?? 'normal') . "</p>
+                        <p><strong>Priority:</strong> " . ucfirst($workOrder['priority']) . "</p>
                         <p><strong>Damage Description:</strong> {$workOrder['damage_description']}</p>
                         " . (!empty($workOrder['estimated_cost']) ? "<p><strong>Estimated Cost:</strong> Rp " . number_format($workOrder['estimated_cost'], 0, ',', '.') . "</p>" : "") . "
                     </div>
@@ -230,7 +196,7 @@ class Email {
                     <p>We will keep you updated on the progress. Thank you for choosing our service!</p>
                 </div>
                 <div class='footer'>
-                    <p>{$fromName}</p>
+                    <p>" . FROM_NAME . "</p>
                     <p>This is an automated message, please do not reply.</p>
                 </div>
             </div>
@@ -239,7 +205,6 @@ class Email {
     }
     
     private function getWorkOrderCompletedTemplate($workOrder) {
-        $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         return "
         <html>
         <head>
@@ -264,7 +229,7 @@ class Email {
                         <h4>Completion Details:</h4>
                         <p><strong>Work Order Number:</strong> {$workOrder['work_order_number']}</p>
                         <p><strong>Vehicle:</strong> {$workOrder['brand']} {$workOrder['model']} ({$workOrder['license_plate']})</p>
-                        <p><strong>Completed Date:</strong> " . date('d/m/Y H:i', strtotime($workOrder['actual_completion_date'] ?? 'now')) . "</p>
+                        <p><strong>Completed Date:</strong> " . date('d/m/Y H:i', strtotime($workOrder['actual_completion_date'])) . "</p>
                         " . (!empty($workOrder['final_amount']) ? "<p><strong>Total Amount:</strong> Rp " . number_format($workOrder['final_amount'], 0, ',', '.') . "</p>" : "") . "
                         " . (!empty($workOrder['technician_notes']) ? "<p><strong>Technician Notes:</strong> {$workOrder['technician_notes']}</p>" : "") . "
                     </div>
@@ -272,7 +237,7 @@ class Email {
                     <p>Please contact us to arrange pickup of your vehicle. Thank you for your business!</p>
                 </div>
                 <div class='footer'>
-                    <p>{$fromName}</p>
+                    <p>" . FROM_NAME . "</p>
                     <p>This is an automated message, please do not reply.</p>
                 </div>
             </div>
@@ -281,7 +246,6 @@ class Email {
     }
     
     private function getLowStockTemplate($items) {
-        $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         $itemsList = '';
         foreach($items as $item) {
             $itemsList .= "<li>{$item['name']} - Stock: {$item['current_stock']} {$item['unit_of_measure']} (Min: {$item['minimum_stock']})</li>";
@@ -311,7 +275,7 @@ class Email {
                     </div>
                 </div>
                 <div class='footer'>
-                    <p>{$fromName}</p>
+                    <p>" . FROM_NAME . "</p>
                     <p>This is an automated alert message.</p>
                 </div>
             </div>
@@ -321,9 +285,12 @@ class Email {
     
     private function sendFallbackEmail($to, $subject, $message) {
         // Fallback using PHP's mail() function
-        $headers = "From: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "\r\n";
-        $headers .= "Reply-To: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $headers = "From: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "
+";
+        $headers .= "Reply-To: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "
+";
+        $headers .= "Content-Type: text/html; charset=UTF-8
+";
         
         $result = mail($to, $subject, $message, $headers);
         
