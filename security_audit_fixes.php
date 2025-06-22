@@ -27,8 +27,12 @@ if (!defined('SECURITY_CONSTANTS_LOADED')) {
     define('UPLOAD_PATH', __DIR__ . '/uploads/');
     
     // Rate Limiting
-    define('RATE_LIMIT_REQUESTS', 100);
-    define('RATE_LIMIT_WINDOW', 3600); // 1 hour
+    if (!defined('RATE_LIMIT_REQUESTS')) {
+        define('RATE_LIMIT_REQUESTS', 100);
+    }
+    if (!defined('RATE_LIMIT_WINDOW')) {
+        define('RATE_LIMIT_WINDOW', 3600); // 1 hour
+    }
     
     // CSRF Protection
     define('CSRF_TOKEN_LIFETIME', 3600); // 1 hour
@@ -46,7 +50,7 @@ class SecurityAudit {
      */
     public static function initializeSecureSession() {
         // Prevent session fixation
-        if (session_status() === PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
             // Set secure session parameters
             ini_set('session.cookie_httponly', 1);
             ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));

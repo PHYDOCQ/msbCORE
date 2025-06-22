@@ -223,17 +223,33 @@ class Auth {
     }
     
     private function handleFailedLogin($userId) {
-        $query = "UPDATE users 
-                 SET failed_login_attempts = failed_login_attempts + 1,
-                     last_failed_login = NOW(),
-                     account_locked_until = CASE 
-                         WHEN failed_login_attempts + 1 >= ? THEN DATE_ADD(NOW(), INTERVAL ? SECOND)
-                         ELSE account_locked_until 
-                     END
-                 WHERE id = ?";
+        $currentTime = date('Y-m-d H:i:s');
+        $lockoutUntil = date('Y-m-d H:i:s', time() + $this->lockoutTime);
         
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$this->maxLoginAttempts, $this->lockoutTime, $userId]);
+        // First get current failed attempts
+        $checkQuery = "SELECT failed_login_attempts FROM users WHERE id = ?";
+        $stmt = $this->db->prepare($checkQuery);
+        $stmt->execute([$userId]);
+        $result = $stmt->fetch();
+        $currentAttempts = $result ? (int)$result['failed_login_attempts'] : 0;
+        
+        // Update with database-agnostic query
+        if ($currentAttempts + 1 >= $this->maxLoginAttempts) {
+            $query = "UPDATE users 
+                     SET failed_login_attempts = failed_login_attempts + 1,
+                         last_failed_login = ?,
+                         account_locked_until = ?
+                     WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$currentTime, $lockoutUntil, $userId]);
+        } else {
+            $query = "UPDATE users 
+                     SET failed_login_attempts = failed_login_attempts + 1,
+                         last_failed_login = ?
+                     WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute([$currentTime, $userId]);
+        }
         
         debugLog(['user_id' => $userId, 'attempts' => 'incremented'], 'AUTH_FAILED_LOGIN');
     }
@@ -250,14 +266,15 @@ class Auth {
     }
     
     private function updateLoginTracking($userId) {
+        $currentTime = date('Y-m-d H:i:s');
         $query = "UPDATE users 
-                 SET last_login = NOW(),
+                 SET last_login_at = ?,
                      login_count = login_count + 1,
                      last_login_ip = ?
                  WHERE id = ?";
         
         $stmt = $this->db->prepare($query);
-        $stmt->execute([$_SERVER['REMOTE_ADDR'] ?? '', $userId]);
+        $stmt->execute([$currentTime, $_SERVER['REMOTE_ADDR'] ?? '', $userId]);
     }
     
     private function setUserSession($user) {
@@ -278,15 +295,20 @@ class Auth {
         $hash = hash('sha256', $token);
         $expiry = time() + (30 * 24 * 3600); // 30 days
         
-        // Store token hash in database
-        $query = "INSERT INTO remember_tokens (user_id, token_hash, expires_at) 
-                 VALUES (?, ?, FROM_UNIXTIME(?))
-                 ON DUPLICATE KEY UPDATE 
-                 token_hash = VALUES(token_hash), 
-                 expires_at = VALUES(expires_at)";
+        // Store token hash in database (database-agnostic)
+        $expiryDate = date('Y-m-d H:i:s', $expiry);
         
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$userId, $hash, $expiry]);
+        // First try to update existing token
+        $updateQuery = "UPDATE remember_tokens SET token_hash = ?, expires_at = ? WHERE user_id = ?";
+        $stmt = $this->db->prepare($updateQuery);
+        $stmt->execute([$hash, $expiryDate, $userId]);
+        
+        // If no rows affected, insert new token
+        if ($stmt->rowCount() === 0) {
+            $insertQuery = "INSERT INTO remember_tokens (user_id, token_hash, expires_at) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($insertQuery);
+            $stmt->execute([$userId, $hash, $expiryDate]);
+        }
         
         // Set cookie
         setcookie('remember_token', $token, $expiry, '/', '', false, true);
@@ -311,13 +333,14 @@ class Auth {
     private function validateRememberMeToken($token) {
         $hash = hash('sha256', $token);
         
+        $currentTime = date('Y-m-d H:i:s');
         $query = "SELECT rt.user_id, u.username, u.email, u.full_name, u.role 
                  FROM remember_tokens rt
                  JOIN users u ON rt.user_id = u.id
-                 WHERE rt.token_hash = ? AND rt.expires_at > NOW() AND u.is_active = 1";
+                 WHERE rt.token_hash = ? AND rt.expires_at > ? AND u.is_active = 1";
         
         $stmt = $this->db->prepare($query);
-        $stmt->execute([$hash]);
+        $stmt->execute([$hash, $currentTime]);
         $user = $stmt->fetch();
         
         if ($user) {

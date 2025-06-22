@@ -186,3 +186,11 @@ Stack trace:
   thrown in /storage/emulated/0/htdocs/test_server.php on line 330
 [22-Jun-2025 10:27:34 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/config/config.php on line 98
 [22-Jun-2025 10:28:47 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/config/config.php on line 98
+[22-Jun-2025 11:25:02 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/config/config.php on line 98
+[22-Jun-2025 11:29:07 Asia/Jakarta] PHP Fatal error:  Cannot declare class Utils, because the name is already in use in /home/user/workspace/includes/functions.php on line 5
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  Constant RATE_LIMIT_REQUESTS already defined in /home/user/workspace/security_audit_fixes.php on line 30
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  Constant RATE_LIMIT_WINDOW already defined in /home/user/workspace/security_audit_fixes.php on line 31
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 51
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 52
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 53
+[22-Jun-2025 11:30:10 Asia/Jakarta] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/user/workspace/security_audit_fixes.php on line 56

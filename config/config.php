@@ -15,10 +15,18 @@ define('APP_ENV', $serverName === 'localhost' ? 'development' : 'production');
 define('DEBUG_MODE', APP_ENV === 'development');
 
 // Database Configuration
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'msbcore_bengkel');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+if (!defined('DB_HOST')) {
+    define('DB_HOST', 'localhost');
+}
+if (!defined('DB_NAME')) {
+    define('DB_NAME', 'msbcore_bengkel');
+}
+if (!defined('DB_USER')) {
+    define('DB_USER', 'root');
+}
+if (!defined('DB_PASS')) {
+    define('DB_PASS', '');
+}
 
 // Security Configuration
 define('ENCRYPTION_KEY', hash('sha256', 'bengkel_management_secret_key_2024'));
@@ -47,12 +55,14 @@ define('MAX_PAGINATION_LINKS', 5);
 define('RATE_LIMIT_REQUESTS', 100);
 define('RATE_LIMIT_WINDOW', 3600); // 1 hour
 
-// Session Configuration
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 1 : 0);
-ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
-ini_set('session.cookie_samesite', 'Strict');
+// Session Configuration - Only set if session not started and no headers sent
+if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.use_only_cookies', 1);
+    ini_set('session.cookie_secure', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 1 : 0);
+    ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
+    ini_set('session.cookie_samesite', 'Strict');
+}
 
 // Error Reporting
 if (DEBUG_MODE) {
@@ -93,11 +103,17 @@ function debugLog($data, $label = 'DEBUG') {
     }
 }
 
-// Session start with error handling
-if (session_status() === PHP_SESSION_NONE) {
+// Session start with error handling - Only if no headers sent
+if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
     if (!session_start()) {
-        debugLog('Session start failed', 'ERROR');
-        die('Session initialization failed');
+        if (function_exists('debugLog')) {
+            debugLog('Session start failed', 'ERROR');
+        }
+        error_log('Session initialization failed');
+        // Don't die in CLI mode or when headers already sent
+        if (php_sapi_name() !== 'cli') {
+            die('Session initialization failed');
+        }
     }
 }
 ?>
