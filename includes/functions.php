@@ -471,7 +471,6 @@ class Utils {
         return $deletedCount;
     }
 }
-}
 
 // Helper functions for backward compatibility
 if (!function_exists('generateCustomerCode')) {
