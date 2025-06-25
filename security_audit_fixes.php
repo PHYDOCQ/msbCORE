@@ -46,7 +46,11 @@ if (!defined('SECURITY_CONSTANTS_LOADED')) {
 class SecurityAudit {
     
     /**
-     * Initialize secure session
+     * Initializes a secure PHP session with enhanced security settings.
+     *
+     * Configures session cookies to be HTTP-only, secure (if using HTTPS), strict mode, and SameSite=Strict. Starts the session if not already active, regenerates the session ID at defined intervals to prevent fixation, and enforces session timeout. Returns true if the session is valid, or false if the session has expired and was destroyed.
+     *
+     * @return bool True if the session is active and valid, false if the session was destroyed due to timeout.
      */
     public static function initializeSecureSession() {
         // Prevent session fixation
@@ -81,7 +85,12 @@ class SecurityAudit {
     }
     
     /**
-     * Validate password strength
+     * Checks whether a password meets the configured strength requirements.
+     *
+     * Validates the password against minimum length, uppercase, lowercase, numeric, and special character rules as defined by security constants.
+     *
+     * @param string $password The password to validate.
+     * @return array An array of error messages for each unmet requirement; empty if the password is strong.
      */
     public static function validatePasswordStrength($password) {
         $errors = [];
@@ -110,7 +119,15 @@ class SecurityAudit {
     }
     
     /**
-     * Check for brute force attacks
+     * Checks if login attempts for the given identifier are within allowed limits to prevent brute force attacks.
+     *
+     * Tracks failed login attempts in the session and determines if the account is currently locked out or how many attempts remain before lockout. Resets attempt count after the lockout period expires.
+     *
+     * @param string $identifier Unique identifier for tracking login attempts (e.g., username or IP address).
+     * @return array Associative array with keys:
+     *   - 'allowed' (bool): Whether login attempts are currently permitted.
+     *   - 'remaining_attempts' (int): Number of attempts left before lockout.
+     *   - 'locked_until' (int): Unix timestamp when lockout expires (0 if not locked).
      */
     public static function checkBruteForce($identifier) {
         $key = 'login_attempts_' . hash('sha256', $identifier);
@@ -143,7 +160,11 @@ class SecurityAudit {
     }
     
     /**
-     * Record failed login attempt
+     * Increments the failed login attempt count for the specified identifier and applies lockout if the maximum is exceeded.
+     *
+     * Updates session data to track failed attempts and sets a lockout period when the maximum allowed attempts are reached.
+     *
+     * @param string $identifier The unique identifier for tracking login attempts (e.g., username or IP address).
      */
     public static function recordFailedLogin($identifier) {
         $key = 'login_attempts_' . hash('sha256', $identifier);
@@ -164,7 +185,9 @@ class SecurityAudit {
     }
     
     /**
-     * Clear login attempts on successful login
+     * Removes stored failed login attempt data for the specified identifier from the session.
+     *
+     * Call this after a successful login to reset brute force tracking for the user or IP.
      */
     public static function clearLoginAttempts($identifier) {
         $key = 'login_attempts_' . hash('sha256', $identifier);
@@ -172,7 +195,12 @@ class SecurityAudit {
     }
     
     /**
-     * Secure file upload validation
+     * Validates an uploaded file for security and compliance with configured restrictions.
+     *
+     * Checks for upload presence, errors, file size limits, allowed extensions, MIME type, and scans file content for potentially malicious patterns. Returns an array of error messages if validation fails; an empty array indicates the file is valid.
+     *
+     * @param array $file The uploaded file array from $_FILES.
+     * @return array List of error messages if validation fails; empty if the file is valid.
      */
     public static function validateFileUpload($file) {
         $errors = [];
@@ -226,7 +254,10 @@ class SecurityAudit {
     }
     
     /**
-     * Generate secure filename
+     * Generates a secure, unique filename by combining the current timestamp and a random string, preserving the original file extension.
+     *
+     * @param string $originalFilename The original name of the uploaded file.
+     * @return string The generated secure filename.
      */
     public static function generateSecureFilename($originalFilename) {
         $extension = pathinfo($originalFilename, PATHINFO_EXTENSION);
@@ -237,7 +268,10 @@ class SecurityAudit {
     }
     
     /**
-     * SQL Injection Prevention
+     * Recursively sanitizes input by removing null bytes and stripping dangerous SQL keywords to mitigate SQL injection risks.
+     *
+     * @param mixed $input The input string or array to sanitize.
+     * @return mixed The sanitized input with potentially harmful SQL elements removed.
      */
     public static function sanitizeForSQL($input) {
         if (is_array($input)) {
@@ -257,7 +291,12 @@ class SecurityAudit {
     }
     
     /**
-     * XSS Prevention
+     * Sanitizes input to prevent cross-site scripting (XSS) attacks.
+     *
+     * Recursively removes dangerous HTML tags, scripting protocols, and event handlers from the input, then encodes remaining HTML entities.
+     *
+     * @param mixed $input The input string or array to sanitize.
+     * @return mixed The sanitized input with XSS vectors removed.
      */
     public static function preventXSS($input) {
         if (is_array($input)) {
@@ -285,7 +324,9 @@ class SecurityAudit {
     }
     
     /**
-     * CSRF Token Management
+     * Generates and stores a cryptographically secure CSRF token in the session, creating a new token if none exists or if the current token has expired.
+     *
+     * @return string The current valid CSRF token.
      */
     public static function generateCSRFToken() {
         if (!isset($_SESSION['csrf_token']) || 
@@ -300,7 +341,10 @@ class SecurityAudit {
     }
     
     /**
-     * Validate CSRF Token
+     * Validates a CSRF token against the session token and checks for expiration.
+     *
+     * @param string $token The CSRF token to validate.
+     * @return bool True if the token is valid and not expired, false otherwise.
      */
     public static function validateCSRFToken($token) {
         if (!isset($_SESSION['csrf_token']) || 
@@ -319,7 +363,18 @@ class SecurityAudit {
     }
     
     /**
-     * Rate Limiting
+     * Checks and enforces rate limiting for a given identifier within a specified time window.
+     *
+     * Tracks the number of requests made by the identifier (such as a user or IP address) in the current time window. Returns whether further requests are allowed, how many requests remain, and when the rate limit will reset.
+     *
+     * @param string $identifier Unique key to track rate limiting (e.g., user ID or IP address).
+     * @param int $maxRequests Maximum number of allowed requests in the time window.
+     * @param int $timeWindow Duration of the rate limit window in seconds.
+     * @return array{
+     *     allowed: bool,
+     *     remaining: int,
+     *     reset_time: int
+     * } Associative array indicating if the request is allowed, remaining requests, and the reset timestamp.
      */
     public static function checkRateLimit($identifier, $maxRequests = RATE_LIMIT_REQUESTS, $timeWindow = RATE_LIMIT_WINDOW) {
         $key = 'rate_limit_' . hash('sha256', $identifier);
@@ -351,7 +406,9 @@ class SecurityAudit {
     }
     
     /**
-     * Secure Headers
+     * Sends HTTP security headers to enhance browser protection.
+     *
+     * Sets headers to prevent MIME type sniffing, clickjacking, and cross-site scripting, enforces strict referrer and content security policies, and applies HTTP Strict Transport Security (HSTS) when HTTPS is enabled.
      */
     public static function setSecurityHeaders() {
         if (!headers_sent()) {
@@ -369,7 +426,12 @@ class SecurityAudit {
     }
     
     /**
-     * Log security events
+     * Logs a security-related event with contextual metadata.
+     *
+     * Records the event type, timestamp, client IP, user agent, user ID (if available), and additional details to the error log. Recognizes critical events for potential alerting.
+     *
+     * @param string $event The type or name of the security event.
+     * @param array $details Optional additional information about the event.
      */
     public static function logSecurityEvent($event, $details = []) {
         $logData = [

@@ -5,6 +5,13 @@ require_once __DIR__ . '/../config/security.php';
 if (!class_exists('Utils')) {
 class Utils {
     
+    /**
+     * Generates a unique customer code in the format "CUST" followed by a zero-padded 6-digit number.
+     *
+     * The generated code is guaranteed to be unique among existing customer codes in the database.
+     *
+     * @return string The newly generated unique customer code.
+     */
     public static function generateCustomerCode($db = null) {
         if (!$db) {
             $db = Database::getInstance()->getConnection();
@@ -499,6 +506,16 @@ if (!function_exists('formatDate')) {
 }
 
 if (!function_exists('createNotification')) {
+    /**
+     * Creates a notification for a specific user.
+     *
+     * @param int $userId The ID of the user to receive the notification.
+     * @param string $title The notification title.
+     * @param string $message The notification message content.
+     * @param string $type The notification type (e.g., 'info', 'warning', 'error'). Defaults to 'info'.
+     * @param string|null $actionUrl Optional URL for an action associated with the notification.
+     * @return bool True if the notification was created successfully, false otherwise.
+     */
     function createNotification($userId, $title, $message, $type = 'info', $actionUrl = null) {
         return Utils::sendNotification($userId, $title, $message, $type, $actionUrl);
     }
