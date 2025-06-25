@@ -43,6 +43,11 @@ class Email {
     private $phpmailerAvailable;
     private $fallbackMode;
     
+    /**
+     * Initializes the Email class, setting up PHPMailer if available or enabling fallback mode otherwise.
+     *
+     * Attempts to instantiate and configure PHPMailer for email sending. If PHPMailer is unavailable or initialization fails, enables fallback mode to use PHP's native mail functionality.
+     */
     public function __construct() {
         $this->phpmailerAvailable = PHPMAILER_AVAILABLE && !defined('PHPMAILER_FALLBACK');
         $this->fallbackMode = !$this->phpmailerAvailable;
@@ -61,6 +66,13 @@ class Email {
         }
     }
     
+    /**
+     * Configures the PHPMailer instance with SMTP settings.
+     *
+     * Sets SMTP host, authentication, credentials, encryption, port, sender information, and character set for outgoing emails. Enables fallback mode and returns false if configuration fails.
+     *
+     * @return bool True if configuration succeeds; false if PHPMailer is unavailable or configuration fails.
+     */
     private function configure() {
         if (!$this->phpmailerAvailable || !$this->mailer) {
             return false;
@@ -92,6 +104,14 @@ class Email {
         }
     }
     
+    /**
+     * Sends a work order creation notification email to the customer.
+     *
+     * Attempts to use PHPMailer for sending an HTML email with work order details. If PHPMailer is unavailable or sending fails, falls back to PHP's native mail function.
+     *
+     * @param array $workOrder Associative array containing work order and customer details.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     public function sendWorkOrderCreated($workOrder) {
         $subject = "Work Order Created - {$workOrder['work_order_number']}";
         $body = $this->getWorkOrderCreatedTemplate($workOrder);
@@ -116,6 +136,14 @@ class Email {
         }
     }
     
+    /**
+     * Sends a work order completion notification email to the customer.
+     *
+     * Attempts to send an HTML email using PHPMailer if available; falls back to PHP's native mail function if PHPMailer is unavailable or sending fails.
+     *
+     * @param array $workOrder The work order data, including customer email and name.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     public function sendWorkOrderCompleted($workOrder) {
         $subject = "Work Order Completed - {$workOrder['work_order_number']}";
         $body = $this->getWorkOrderCompletedTemplate($workOrder);
@@ -140,6 +168,14 @@ class Email {
         }
     }
     
+    /**
+     * Sends a low stock alert email to all active admin users.
+     *
+     * Attempts to notify each admin about items with low stock using PHPMailer if available, or falls back to PHP's mail function. Returns true if all emails are sent successfully, false if any fail or if no admins are found.
+     *
+     * @param array $items List of items with low stock to include in the alert.
+     * @return bool True if all alert emails are sent successfully, false otherwise.
+     */
     public function sendLowStockAlert($items) {
         try {
             // Get admin users safely
@@ -195,6 +231,14 @@ class Email {
         }
     }
     
+    /**
+     * Generates an HTML email template for notifying a customer of a newly created work order.
+     *
+     * The template includes customer name, work order number, vehicle details, status, priority, damage description, and estimated cost if available. It uses inline CSS for styling and includes a footer with the system name and an automated message notice.
+     *
+     * @param array $workOrder Associative array containing work order details.
+     * @return string The HTML content for the work order creation notification email.
+     */
     private function getWorkOrderCreatedTemplate($workOrder) {
         $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         return "
@@ -238,6 +282,14 @@ class Email {
         </html>";
     }
     
+    /**
+     * Generates an HTML email template for notifying a customer that their work order has been completed.
+     *
+     * The template includes customer name, work order number, vehicle details, completion date, optional final amount, and technician notes.
+     *
+     * @param array $workOrder Associative array containing work order and customer details.
+     * @return string The HTML email content for work order completion notification.
+     */
     private function getWorkOrderCompletedTemplate($workOrder) {
         $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         return "
@@ -280,6 +332,14 @@ class Email {
         </html>";
     }
     
+    /**
+     * Generates an HTML email template for a low stock alert.
+     *
+     * The template lists items that are below their minimum stock levels, including item name, current stock, unit of measure, and minimum stock threshold.
+     *
+     * @param array $items List of items with low stock, each containing 'name', 'current_stock', 'unit_of_measure', and 'minimum_stock'.
+     * @return string The HTML content for the low stock alert email.
+     */
     private function getLowStockTemplate($items) {
         $fromName = defined('FROM_NAME') ? FROM_NAME : 'Bengkel Management System';
         $itemsList = '';
@@ -319,6 +379,16 @@ class Email {
         </html>";
     }
     
+    /**
+     * Sends an HTML email using PHP's native mail() function as a fallback.
+     *
+     * Uses default sender and reply-to addresses if not defined. Logs an error if sending fails.
+     *
+     * @param string $to Recipient email address.
+     * @param string $subject Email subject.
+     * @param string $message HTML email body.
+     * @return bool True if the email was sent successfully, false otherwise.
+     */
     private function sendFallbackEmail($to, $subject, $message) {
         // Fallback using PHP's mail() function
         $headers = "From: " . (defined('FROM_EMAIL') ? FROM_EMAIL : 'noreply@localhost') . "\r\n";
